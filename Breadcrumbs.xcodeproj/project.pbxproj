@@ -16,6 +16,15 @@
 		66FF1DCC13879AEF009E4F89 /* BreadcrumbsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1DCB13879AEF009E4F89 /* BreadcrumbsAppDelegate.m */; };
 		66FF1DCF13879AEF009E4F89 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DCD13879AEF009E4F89 /* MainWindow.xib */; };
 		66FF1DD213879AEF009E4F89 /* Breadcrumbs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1DD013879AEF009E4F89 /* Breadcrumbs.xcdatamodeld */; };
+		66FF1DDE13886DEF009E4F89 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DDD13886DEF009E4F89 /* NoteCell.xib */; };
+		66FF1DE21388740B009E4F89 /* 43-film-roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE01388740B009E4F89 /* 43-film-roll.png */; };
+		66FF1DE31388740B009E4F89 /* 43-film-roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE11388740B009E4F89 /* 43-film-roll@2x.png */; };
+		66FF1DE61388741C009E4F89 /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE41388741C009E4F89 /* 45-movie-1.png */; };
+		66FF1DE71388741C009E4F89 /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE51388741C009E4F89 /* 45-movie-1@2x.png */; };
+		66FF1DEA1388743B009E4F89 /* 66-microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE81388743B009E4F89 /* 66-microphone.png */; };
+		66FF1DEB1388743B009E4F89 /* 66-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */; };
+		66FF1DEE1388763C009E4F89 /* 68-paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DEC1388763C009E4F89 /* 68-paperclip.png */; };
+		66FF1DEF1388763C009E4F89 /* 68-paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,14 +33,23 @@
 		66FF1DBB13879AEF009E4F89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66FF1DBD13879AEF009E4F89 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		66FF1DBF13879AEF009E4F89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		66FF1DC313879AEF009E4F89 /* Breadcrumbs-Info.plist */ = {isa = PBXFileReference; path = "Breadcrumbs-Info.plist"; sourceTree = "<group>"; };
+		66FF1DC313879AEF009E4F89 /* Breadcrumbs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Breadcrumbs-Info.plist"; sourceTree = "<group>"; };
 		66FF1DC513879AEF009E4F89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		66FF1DC713879AEF009E4F89 /* Breadcrumbs-Prefix.pch */ = {isa = PBXFileReference; path = "Breadcrumbs-Prefix.pch"; sourceTree = "<group>"; };
+		66FF1DC713879AEF009E4F89 /* Breadcrumbs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Breadcrumbs-Prefix.pch"; sourceTree = "<group>"; };
 		66FF1DC813879AEF009E4F89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		66FF1DCA13879AEF009E4F89 /* BreadcrumbsAppDelegate.h */ = {isa = PBXFileReference; path = BreadcrumbsAppDelegate.h; sourceTree = "<group>"; };
+		66FF1DCA13879AEF009E4F89 /* BreadcrumbsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BreadcrumbsAppDelegate.h; sourceTree = "<group>"; };
 		66FF1DCB13879AEF009E4F89 /* BreadcrumbsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BreadcrumbsAppDelegate.m; sourceTree = "<group>"; };
 		66FF1DCE13879AEF009E4F89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		66FF1DD113879AEF009E4F89 /* Breadcrumbs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Breadcrumbs.xcdatamodel; sourceTree = "<group>"; };
+		66FF1DDD13886DEF009E4F89 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
+		66FF1DE01388740B009E4F89 /* 43-film-roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "43-film-roll.png"; sourceTree = "<group>"; };
+		66FF1DE11388740B009E4F89 /* 43-film-roll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "43-film-roll@2x.png"; sourceTree = "<group>"; };
+		66FF1DE41388741C009E4F89 /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1.png"; sourceTree = "<group>"; };
+		66FF1DE51388741C009E4F89 /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1@2x.png"; sourceTree = "<group>"; };
+		66FF1DE81388743B009E4F89 /* 66-microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "66-microphone.png"; sourceTree = "<group>"; };
+		66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "66-microphone@2x.png"; sourceTree = "<group>"; };
+		66FF1DEC1388763C009E4F89 /* 68-paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip.png"; sourceTree = "<group>"; };
+		66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +103,7 @@
 				66FF1DCD13879AEF009E4F89 /* MainWindow.xib */,
 				66FF1DD013879AEF009E4F89 /* Breadcrumbs.xcdatamodeld */,
 				66FF1DC213879AEF009E4F89 /* Supporting Files */,
+				66FF1DDF13886E98009E4F89 /* Notes View */,
 			);
 			path = Breadcrumbs;
 			sourceTree = "<group>";
@@ -98,6 +117,22 @@
 				66FF1DC813879AEF009E4F89 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		66FF1DDF13886E98009E4F89 /* Notes View */ = {
+			isa = PBXGroup;
+			children = (
+				66FF1DEC1388763C009E4F89 /* 68-paperclip.png */,
+				66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */,
+				66FF1DE81388743B009E4F89 /* 66-microphone.png */,
+				66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */,
+				66FF1DE41388741C009E4F89 /* 45-movie-1.png */,
+				66FF1DE51388741C009E4F89 /* 45-movie-1@2x.png */,
+				66FF1DE01388740B009E4F89 /* 43-film-roll.png */,
+				66FF1DE11388740B009E4F89 /* 43-film-roll@2x.png */,
+				66FF1DDD13886DEF009E4F89 /* NoteCell.xib */,
+			);
+			name = "Notes View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +184,15 @@
 			files = (
 				66FF1DC613879AEF009E4F89 /* InfoPlist.strings in Resources */,
 				66FF1DCF13879AEF009E4F89 /* MainWindow.xib in Resources */,
+				66FF1DDE13886DEF009E4F89 /* NoteCell.xib in Resources */,
+				66FF1DE21388740B009E4F89 /* 43-film-roll.png in Resources */,
+				66FF1DE31388740B009E4F89 /* 43-film-roll@2x.png in Resources */,
+				66FF1DE61388741C009E4F89 /* 45-movie-1.png in Resources */,
+				66FF1DE71388741C009E4F89 /* 45-movie-1@2x.png in Resources */,
+				66FF1DEA1388743B009E4F89 /* 66-microphone.png in Resources */,
+				66FF1DEB1388743B009E4F89 /* 66-microphone@2x.png in Resources */,
+				66FF1DEE1388763C009E4F89 /* 68-paperclip.png in Resources */,
+				66FF1DEF1388763C009E4F89 /* 68-paperclip@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
