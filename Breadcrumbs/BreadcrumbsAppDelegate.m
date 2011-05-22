@@ -7,6 +7,7 @@
 //
 
 #import "BreadcrumbsAppDelegate.h"
+#import "NotesViewController.h"
 
 @implementation BreadcrumbsAppDelegate
 
@@ -19,9 +20,16 @@
 
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NotesViewController *notes = [[NotesViewController alloc] initWithStyle:UITableViewStylePlain
+                                                     inManagedObjectContext:self.managedObjectContext];
+    
+    
+    UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
+    tbc.viewControllers = [NSArray arrayWithObjects:nil, nil];
+    
+    self.window.rootViewController = tbc;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -25,6 +25,15 @@
 		66FF1DEB1388743B009E4F89 /* 66-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */; };
 		66FF1DEE1388763C009E4F89 /* 68-paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DEC1388763C009E4F89 /* 68-paperclip.png */; };
 		66FF1DEF1388763C009E4F89 /* 68-paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */; };
+		66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */; };
+		66FF1E04138899D6009E4F89 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E03138899D6009E4F89 /* NotesViewController.m */; };
+		66FF1E261388C25E009E4F89 /* Attachment_Types.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E251388C25E009E4F89 /* Attachment_Types.m */; };
+		66FF1E291388C34D009E4F89 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E281388C34D009E4F89 /* Attachment.m */; };
+		66FF1E2C1388C34E009E4F89 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2B1388C34E009E4F89 /* Note.m */; };
+		66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2E1388C34E009E4F89 /* Tag.m */; };
+		66FF1E321388C866009E4F89 /* Note_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E311388C866009E4F89 /* Note_Create.m */; };
+		66FF1E361388CB9D009E4F89 /* MKMapView_ZoomToFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E351388CB9D009E4F89 /* MKMapView_ZoomToFit.m */; };
+		66FF1E391388CC30009E4F89 /* NSManagedObjectContext_Autosave.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E381388CC30009E4F89 /* NSManagedObjectContext_Autosave.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +59,24 @@
 		66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "66-microphone@2x.png"; sourceTree = "<group>"; };
 		66FF1DEC1388763C009E4F89 /* 68-paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip.png"; sourceTree = "<group>"; };
 		66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip@2x.png"; sourceTree = "<group>"; };
+		66FF1DF11388768F009E4F89 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		66FF1E02138899D6009E4F89 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		66FF1E03138899D6009E4F89 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		66FF1E241388C25E009E4F89 /* Attachment_Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment_Types.h; sourceTree = "<group>"; };
+		66FF1E251388C25E009E4F89 /* Attachment_Types.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment_Types.m; sourceTree = "<group>"; };
+		66FF1E271388C34D009E4F89 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
+		66FF1E281388C34D009E4F89 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
+		66FF1E2A1388C34D009E4F89 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		66FF1E2B1388C34E009E4F89 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		66FF1E2D1388C34E009E4F89 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		66FF1E2E1388C34E009E4F89 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		66FF1E301388C866009E4F89 /* Note_Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note_Create.h; sourceTree = "<group>"; };
+		66FF1E311388C866009E4F89 /* Note_Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note_Create.m; sourceTree = "<group>"; };
+		66FF1E341388CB9D009E4F89 /* MKMapView_ZoomToFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMapView_ZoomToFit.h; sourceTree = "<group>"; };
+		66FF1E351388CB9D009E4F89 /* MKMapView_ZoomToFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMapView_ZoomToFit.m; sourceTree = "<group>"; };
+		66FF1E371388CC30009E4F89 /* NSManagedObjectContext_Autosave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectContext_Autosave.h; sourceTree = "<group>"; };
+		66FF1E381388CC30009E4F89 /* NSManagedObjectContext_Autosave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext_Autosave.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,12 +125,16 @@
 		66FF1DC113879AEF009E4F89 /* Breadcrumbs */ = {
 			isa = PBXGroup;
 			children = (
+				66FF1E331388CB8D009E4F89 /* Categories */,
 				66FF1DCA13879AEF009E4F89 /* BreadcrumbsAppDelegate.h */,
 				66FF1DCB13879AEF009E4F89 /* BreadcrumbsAppDelegate.m */,
+				66FF1E0E1388B6FB009E4F89 /* Managed Objects */,
+				66FF1E0D13889E7C009E4F89 /* Assets */,
+				66FF1DF013887669009E4F89 /* Core Data TVC */,
 				66FF1DCD13879AEF009E4F89 /* MainWindow.xib */,
 				66FF1DD013879AEF009E4F89 /* Breadcrumbs.xcdatamodeld */,
 				66FF1DC213879AEF009E4F89 /* Supporting Files */,
-				66FF1DDF13886E98009E4F89 /* Notes View */,
+				66FF1DDF13886E98009E4F89 /* Notes Browser */,
 			);
 			path = Breadcrumbs;
 			sourceTree = "<group>";
@@ -119,20 +150,66 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		66FF1DDF13886E98009E4F89 /* Notes View */ = {
+		66FF1DDF13886E98009E4F89 /* Notes Browser */ = {
 			isa = PBXGroup;
 			children = (
-				66FF1DEC1388763C009E4F89 /* 68-paperclip.png */,
-				66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */,
-				66FF1DE81388743B009E4F89 /* 66-microphone.png */,
-				66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */,
-				66FF1DE41388741C009E4F89 /* 45-movie-1.png */,
-				66FF1DE51388741C009E4F89 /* 45-movie-1@2x.png */,
-				66FF1DE01388740B009E4F89 /* 43-film-roll.png */,
-				66FF1DE11388740B009E4F89 /* 43-film-roll@2x.png */,
+				66FF1E02138899D6009E4F89 /* NotesViewController.h */,
+				66FF1E03138899D6009E4F89 /* NotesViewController.m */,
 				66FF1DDD13886DEF009E4F89 /* NoteCell.xib */,
 			);
-			name = "Notes View";
+			name = "Notes Browser";
+			sourceTree = "<group>";
+		};
+		66FF1DF013887669009E4F89 /* Core Data TVC */ = {
+			isa = PBXGroup;
+			children = (
+				66FF1DF11388768F009E4F89 /* CoreDataTableViewController.h */,
+				66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */,
+			);
+			name = "Core Data TVC";
+			sourceTree = "<group>";
+		};
+		66FF1E0D13889E7C009E4F89 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				66FF1DE01388740B009E4F89 /* 43-film-roll.png */,
+				66FF1DE11388740B009E4F89 /* 43-film-roll@2x.png */,
+				66FF1DE41388741C009E4F89 /* 45-movie-1.png */,
+				66FF1DE51388741C009E4F89 /* 45-movie-1@2x.png */,
+				66FF1DE81388743B009E4F89 /* 66-microphone.png */,
+				66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */,
+				66FF1DEC1388763C009E4F89 /* 68-paperclip.png */,
+				66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		66FF1E0E1388B6FB009E4F89 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				66FF1E271388C34D009E4F89 /* Attachment.h */,
+				66FF1E281388C34D009E4F89 /* Attachment.m */,
+				66FF1E241388C25E009E4F89 /* Attachment_Types.h */,
+				66FF1E251388C25E009E4F89 /* Attachment_Types.m */,
+				66FF1E2A1388C34D009E4F89 /* Note.h */,
+				66FF1E2B1388C34E009E4F89 /* Note.m */,
+				66FF1E301388C866009E4F89 /* Note_Create.h */,
+				66FF1E311388C866009E4F89 /* Note_Create.m */,
+				66FF1E2D1388C34E009E4F89 /* Tag.h */,
+				66FF1E2E1388C34E009E4F89 /* Tag.m */,
+			);
+			name = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		66FF1E331388CB8D009E4F89 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				66FF1E341388CB9D009E4F89 /* MKMapView_ZoomToFit.h */,
+				66FF1E351388CB9D009E4F89 /* MKMapView_ZoomToFit.m */,
+				66FF1E371388CC30009E4F89 /* NSManagedObjectContext_Autosave.h */,
+				66FF1E381388CC30009E4F89 /* NSManagedObjectContext_Autosave.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +283,15 @@
 				66FF1DC913879AEF009E4F89 /* main.m in Sources */,
 				66FF1DCC13879AEF009E4F89 /* BreadcrumbsAppDelegate.m in Sources */,
 				66FF1DD213879AEF009E4F89 /* Breadcrumbs.xcdatamodeld in Sources */,
+				66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */,
+				66FF1E04138899D6009E4F89 /* NotesViewController.m in Sources */,
+				66FF1E261388C25E009E4F89 /* Attachment_Types.m in Sources */,
+				66FF1E291388C34D009E4F89 /* Attachment.m in Sources */,
+				66FF1E2C1388C34E009E4F89 /* Note.m in Sources */,
+				66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */,
+				66FF1E321388C866009E4F89 /* Note_Create.m in Sources */,
+				66FF1E361388CB9D009E4F89 /* MKMapView_ZoomToFit.m in Sources */,
+				66FF1E391388CC30009E4F89 /* NSManagedObjectContext_Autosave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
