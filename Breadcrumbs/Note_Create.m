@@ -18,6 +18,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     request.entity = [NSEntityDescription entityForName:NSStringFromClass([self class])
                                  inManagedObjectContext:context];
+#warning Every note should have a unique - probably a hash or something?
     request.predicate = [NSPredicate predicateWithFormat:@"title = %@", [info objectForKey:@"title"]];
     
     NSError *error = nil;

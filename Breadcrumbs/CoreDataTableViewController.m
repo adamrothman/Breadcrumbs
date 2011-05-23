@@ -122,16 +122,7 @@
  * Configure the cell for each object.
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView
-          cellForManagedObject:(NSManagedObject *)managedObject {
-    static NSString *identifier = @"CoreDataTableViewControllerCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
-    }
-    
-    return cell;
-}
+          cellForManagedObject:(NSManagedObject *)managedObject { return nil; }
 
 /**
  * Called when an object's cell is selected.
@@ -152,8 +143,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self tableView:tableView
-      cellForManagedObject:[[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath]];
+    return [self tableView:tableView cellForManagedObject:[[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
