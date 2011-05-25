@@ -39,12 +39,6 @@
 //    return self;
 //}
 
-- (void)dealloc {
-    [mapView release];
-    [managedObjectContext release];
-    [super dealloc];
-}
-
 #pragma mark - Properties
 
 - (MKMapView *)mapView {
@@ -69,7 +63,7 @@
     self.view = self.mapView;
     
     self.navigationItem.title = @"Nearby";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"74-location-white"]
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mini-location-arrow-white"]
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self
                                                                               action:@selector(centerOnUser:)] autorelease];
@@ -77,20 +71,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // this should get set programmatically
+    self.navigationController.tabBarItem.badgeValue = @"1";
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    request.entity = [NSEntityDescription entityForName:@"Note"
-                                 inManagedObjectContext:self.managedObjectContext];
-    
-    NSError *error = nil;
-    [self.mapView addAnnotations:[self.managedObjectContext executeFetchRequest:request error:&error]];
-    
-    //[self centerOnUser:self.navigationItem.rightBarButtonItem];
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+//    request.entity = [NSEntityDescription entityForName:@"Note"
+//                                 inManagedObjectContext:self.managedObjectContext];
+//    
+//    [self.mapView removeAnnotations:self.mapView.annotations];
+//    NSError *error = nil;
+//    [self.mapView addAnnotations:[self.managedObjectContext executeFetchRequest:request error:&error]];
+//}
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -99,7 +95,15 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Memory management
+
+- (void)dealloc {
+    [mapView release];
+    [managedObjectContext release];
+    [super dealloc];
 }
 
 @end

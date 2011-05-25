@@ -8,7 +8,6 @@
 
 #import "Attachment_Types.h"
 
-
 @implementation Attachment (Attachment_Types)
 
 @end

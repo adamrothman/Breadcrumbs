@@ -10,19 +10,19 @@
 #import "NotesViewController.h"
 #import "Note_Create.h"
 #import "Attachment_Types.h"
+#import "NoteCell.h"
+#import "NoteViewController.h"
+#import "ActionSheetPicker.h"
 
 @interface NotesViewController()
 
-@property (nonatomic, retain) UINib *noteCellNib;
-@property (nonatomic, retain) UITableView *notes;
-@property (nonatomic, retain) UITableView *sortBy;
+@property (nonatomic, retain) NSArray *sortOptions;
 
 @end
 
 @implementation NotesViewController
 
-@synthesize notes, sortBy;
-@synthesize noteCellNib, noteCell;
+@synthesize sortOptions;
 
 #pragma mark - Designated initializer
 
@@ -45,6 +45,11 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
                                                                                             cacheName:nil] autorelease];
             
             self.searchKey = @"title";
+            
+            self.sortOptions = [NSArray arrayWithObjects:@"title", @"date", @"location", nil];
+            
+            self.tableView.scrollsToTop = YES;
+            self.tableView.rowHeight = 64;
         }
     } else {
         [self release];
@@ -54,86 +59,31 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     return self;
 }
 
-#pragma mark - Memory management
-
-- (void)dealloc {
-    [noteCellNib release];
-    [notes release];
-    [sortBy release];
-    [super dealloc];
-}
-
-#pragma mark - Properties
-
-- (UINib *)noteCellNib {
-    if (!noteCellNib) {
-        noteCellNib = [[UINib nibWithNibName:@"NoteCell" bundle:[NSBundle mainBundle]] retain];
-    }
-    return noteCellNib;
-}
-
-#pragma mark - Superclass methods
-
-- (void)configureCell:(UITableViewCell *)cell
-      forMangedObject:(NSManagedObject *)managedObject {
-    if ([managedObject isKindOfClass:[Note class]]) {
-        Note *note = (Note *)managedObject;
-        
-        UILabel *title = (UILabel *)[cell viewWithTag:0];
-        title.text = note.title;
-        
-        UILabel *date = (UILabel *)[cell viewWithTag:1];
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-        [formatter setDateFormat:@"MM/dd/yy"];
-        date.text = [formatter stringFromDate:note.modified];
-        
-        UILabel *preview = (UILabel *)[cell viewWithTag:2];
-        preview.text = note.text;
-        
-        UIImage *attachmentIcon= (UIImage *)[cell viewWithTag:3];
-        if (![note.attachments count]) {
-            attachmentIcon = nil;
-        } else if ([note.attachments count] == 1) {
-            Attachment *attachment = [note.attachments anyObject];
-            
-            switch ([attachment.type unsignedLongLongValue]) {
-                case AttachmentTypePhoto:
-                    attachmentIcon = [UIImage imageNamed:@"43-film-roll"]; break;
-                case AttachmentTypeMovie:
-                    attachmentIcon = [UIImage imageNamed:@"45-movie-1"]; break;
-                case AttachmentTypeAudio:
-                    attachmentIcon = [UIImage imageNamed:@"66-microphone"]; break;
-            }
-        } else if ([note.attachments count] > 1) {
-            attachmentIcon = [UIImage imageNamed:@"68-paperclip.png"];
-        }
-    }
-}
+#pragma mark - CoreDataTableViewController customization
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForManagedObject:(NSManagedObject *)managedObject {
     static NSString *reuseIdentifier = @"NoteCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NoteCell *cell = (NoteCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        [self.noteCellNib instantiateWithOwner:self options:nil];
-        
-        cell = self.noteCell;
-        self.noteCell = nil;
+        cell = [[[NoteCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                reuseIdentifier:reuseIdentifier] autorelease];
     }
     
-    [self configureCell:cell forMangedObject:managedObject];
+    if ([managedObject isKindOfClass:[Note class]]) {
+        cell.note = (Note *)managedObject;
+    }
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView
-heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 64.0f;
-}
-
 - (void)didSelectManagedObject:(NSManagedObject *)managedObject {
-    // do nothing for now
+    if ([managedObject isKindOfClass:[Note class]]) {
+        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+        noteViewer.note = (Note *)managedObject;
+        [self.navigationController pushViewController:noteViewer animated:YES];
+    }
 }
 
 - (BOOL)canRemoveManagedObject:(NSManagedObject *)managedObject {
@@ -141,24 +91,64 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)didRemoveManagedObject:(NSManagedObject *)managedObject {
-    // do nothing for now
+    // can't remove yet, so do nothing for now
 }
 
-#pragma mark - Organize
-
--(void)organize:(UIBarButtonItem *)sender {
-    // animate a view switch
-}
-
-#pragma mark - Tools
+#pragma mark - Testing tools
 
 - (int)randomDoubleFrom:(double)low
                      to:(double)high {
     double multiplier = arc4random() / (pow(2, 32) - 1);
-    double retVal = low + multiplier * (high - low);
+    return low + multiplier * (high - low);
+}
+
+- (int)randomIntFrom:(int)low
+                  to:(int)high {
+    return (int)[self randomDoubleFrom:low to:high];
+}
+
+- (void)createSampleNotes:(int)numberOfNotes {
+    NSString *sample = @"Aenean facilisis nulla vitae urna tincidunt congue sed ut dui. Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur, nisl orci bibendum elit, eu euismod magna sapien ut nibh. Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula egestas tincidunt. Nullam risus magna, ornare vitae varius eget, scelerisque a libero. Morbi eu porttitor ipsum. Nullam lorem nisi, posuere quis volutpat eget, luctus nec massa. Pellentesque aliquam lacinia tellus sit amet bibendum. Ut posuere justo in enim pretium scelerisque. Etiam ornare vehicula euismod. Vestibulum at risus augue. Sed non semper dolor. Sed fringilla consequat velit a porta. Pellentesque sed lectus pharetra ipsum ultricies commodo non sit amet velit. Suspendisse volutpat lobortis ipsum, in scelerisque nisi iaculis a. Duis pulvinar lacinia commodo. Integer in lorem id nibh luctus aliquam. Sed elementum, est ac sagittis porttitor, neque metus ultricies ante, in accumsan massa nisl non metus. Vivamus sagittis quam a lacus dictum tempor. Nullam in semper ipsum. Cras a est id massa malesuada tincidunt. Etiam a urna tellus. Ut rutrum vehicula dui, eu cursus magna tincidunt pretium. Donec malesuada accumsan quam, et commodo orci viverra et. Integer tincidunt sagittis lectus. Mauris ac ligula quis orci auctor tincidunt. Suspendisse odio justo, varius id posuere sit amet, iaculis sit amet orci. Suspendisse potenti. Suspendisse potenti. Aliquam erat volutpat. Sed posuere dignissim odio, nec cursus odio mollis et. Praesent cursus, orci ut dictum adipiscing, tellus ante porttitor leo, vel gravida lacus lorem vitae est. Duis ultricies feugiat ante nec aliquam. Maecenas varius, nulla vel fermentum semper, metus nibh bibendum nunc, vitae suscipit mauris velit ac nunc. Mauris nunc eros, egestas at vehicula tincidunt, commodo ac mauris. Nulla facilisi. Nunc eros sem, lobortis non pulvinar id, blandit in eros. In bibendum suscipit porta. Quisque vitae erat eget nulla cursus malesuada. Nulla venenatis feugiat quam, sed rutrum tellus suscipit quis. Aliquam placerat velit in quam imperdiet vel vehicula nulla interdum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros. Quisque facilisis.";
     
-    NSLog(@"random double: %g", retVal);
-    return retVal;
+    for (int i = 0; i < numberOfNotes; i++) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        
+        int loc = [self randomIntFrom:0 to:[sample length] - 10];
+        int len = [self randomIntFrom:10 to:[sample length] - loc];
+        [info setObject:[sample substringWithRange:NSMakeRange(loc, len)]
+                 forKey:@"title"];
+        
+        [info setObject:sample
+                 forKey:@"text"];
+        
+        int days = [self randomIntFrom:-730 to:730];
+        [info setObject:[NSDate dateWithTimeIntervalSinceNow:days * 86400]
+                 forKey:@"modified"];
+        
+        [info setObject:[[[CLLocation alloc] initWithLatitude:[self randomDoubleFrom:-90 to:90]
+                                                    longitude:[self randomDoubleFrom:-180 to:180]] autorelease]
+                 forKey:@"location"];
+        
+        [Note noteWithInfo:info inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
+    }
+}
+
+#pragma mark - Sort selection
+
+- (void)sort:(UIBarButtonItem *)sender {
+    [ActionSheetPicker displayActionPickerWithView:self.view
+                                              data:self.sortOptions
+                                     selectedIndex:0
+                                            target:self
+                                            action:@selector(itemSelected:)
+                                             title:@"Sort by..."];
+    
+    // right now, just create a bunch of sample notes
+    [self createSampleNotes:100];
+}
+
+- (void)itemSelected:(NSNumber *)selectedIndex {
+    NSLog(@"selected: %@", [self.sortOptions objectAtIndex:[selectedIndex unsignedIntegerValue]]);
 }
 
 #pragma mark - View lifecycle
@@ -170,33 +160,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sort"
                                                                               style:UIBarButtonItemStyleBordered
                                                                              target:self
-                                                                             action:@selector(organize:)] autorelease];
+                                                                             action:@selector(sort:)] autorelease];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    for (int i = 0; i < 15; i++) {
-        NSMutableDictionary *info = [NSMutableDictionary dictionary];
-        [info setObject:[NSString stringWithFormat:@"Note %d", i + 1]
-                 forKey:@"title"];
-        [info setObject:@"Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem."
-                 forKey:@"text"];
-        [info setObject:[NSDate date]
-                 forKey:@"modified"];
-        [info setObject:[[[CLLocation alloc] initWithLatitude:[self randomDoubleFrom:-90 to:90]
-                                                    longitude:[self randomDoubleFrom:-180 to:180]] autorelease]
-                 forKey:@"location"];
-        
-        [Note noteWithInfo:info inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    }
-}
-
-- (void)viewDidUnload {
-    self.noteCellNib = nil;
-    self.noteCell = nil;
-    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Memory management
+
+- (void)dealloc {
+    [sortOptions release];
+    [super dealloc];
 }
 
 @end

@@ -39,7 +39,7 @@
                                                                     bundle:nil] autorelease];
     UINavigationController *newNoteNVC = [[[UINavigationController alloc] initWithRootViewController:newNote] autorelease];
     newNoteNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil
-                                                           image:[UIImage imageNamed:@"13-plus"]
+                                                           image:[UIImage imageNamed:@"10-medical"]
                                                              tag:2] autorelease];
     
     UIViewController *tags = [[[UIViewController alloc] initWithNibName:nil

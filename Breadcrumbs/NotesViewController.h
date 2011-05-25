@@ -11,8 +11,6 @@
 
 @interface NotesViewController : CoreDataTableViewController
 
-@property (nonatomic, assign) IBOutlet UITableViewCell *noteCell;
-
 - (id)initWithStyle:(UITableViewStyle)style
 inManagedObjectContext:(NSManagedObjectContext *)context;
 

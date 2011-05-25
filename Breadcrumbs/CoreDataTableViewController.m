@@ -23,19 +23,6 @@
 @synthesize normalPredicate;
 @synthesize sectionIndexTitlesEnabled;
 
-- (void)dealloc {
-    fetchedResultsController.delegate = nil;
-    [fetchedResultsController release];
-    searchController.delegate = nil;
-    searchController.searchResultsDelegate = nil;
-    searchController.searchResultsDataSource = nil;
-    [searchController release];
-    [searchKey release];
-    [currentSearch release];
-    [normalPredicate release];
-    [super dealloc];
-}
-
 #pragma mark - Fetching
 
 - (void)performFetchForTableView:(UITableView *)tableView {
@@ -59,7 +46,8 @@
                self.searchKey &&
                ![self.currentSearch isEqualToString:self.searchDisplayController.searchBar.text]) {
 		self.currentSearch = self.searchDisplayController.searchBar.text;
-        NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ contains[c] %@", self.searchKey, self.searchDisplayController.searchBar.text]];
+        NSString *searchPredicateFormat = [NSString stringWithFormat:@"%@ contains[c] %@", self.searchKey, @"%@"];
+        NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:searchPredicateFormat, self.searchDisplayController.searchBar.text]];
         [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
 		self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:searchPredicate, self.normalPredicate , nil]];
 		[self performFetchForTableView:tableView];
@@ -265,6 +253,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.fetchedResultsController.fetchedObjects) {
         [self performFetchForTableView:self.tableView];
     }
+}
+
+#pragma mark - Memory management
+
+- (void)dealloc {
+    fetchedResultsController.delegate = nil;
+    [fetchedResultsController release];
+    searchController.delegate = nil;
+    searchController.searchResultsDelegate = nil;
+    searchController.searchResultsDataSource = nil;
+    [searchController release];
+    [searchKey release];
+    [currentSearch release];
+    [normalPredicate release];
+    [super dealloc];
 }
 
 @end
