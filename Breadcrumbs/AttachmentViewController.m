@@ -8,12 +8,16 @@
 
 #import "AttachmentViewController.h"
 
+@interface AttachmentViewController()
+@property (nonatomic, retain) Attachment *attachment;
+@end
+
 @implementation AttachmentViewController
 
 @synthesize attachment;
 
 - (id)initWithAttachment:(Attachment *)anAttachment {
-    self = [super initWithNibName:@"AttachmentViewController" bundle:nil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.attachment = anAttachment;
     }

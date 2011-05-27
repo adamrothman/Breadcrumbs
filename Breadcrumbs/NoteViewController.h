@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 
-@interface NoteViewController : UIViewController <UIScrollViewDelegate>
+@interface NoteViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
-@property (nonatomic, retain) Note *note;
-
+@property (nonatomic, retain) IBOutlet UITextField *titleTextField;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+
+- (id)initWithNote:(Note *)aNote;
 
 @end

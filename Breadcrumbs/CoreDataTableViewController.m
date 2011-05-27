@@ -9,11 +9,9 @@
 #import "CoreDataTableViewController.h"
 
 @interface CoreDataTableViewController()
-
 @property (nonatomic, retain) UISearchDisplayController *searchController;
 @property (nonatomic, copy) NSString *currentSearch;
 @property (nonatomic, retain) NSPredicate *normalPredicate;
-
 @end
 
 @implementation CoreDataTableViewController

@@ -11,8 +11,6 @@
 
 @interface AttachmentViewController : UIViewController
 
-@property (nonatomic, retain) Attachment *attachment;
-
 - (id)initWithAttachment:(Attachment *)anAttachment;
 
 @end

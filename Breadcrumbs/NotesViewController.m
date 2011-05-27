@@ -15,9 +15,7 @@
 #import "ActionSheetPicker.h"
 
 @interface NotesViewController()
-
 @property (nonatomic, retain) NSArray *sortOptions;
-
 @end
 
 @implementation NotesViewController
@@ -80,8 +78,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 
 - (void)didSelectManagedObject:(NSManagedObject *)managedObject {
     if ([managedObject isKindOfClass:[Note class]]) {
-        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-        noteViewer.note = (Note *)managedObject;
+        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:(Note *)managedObject] autorelease];
         [self.navigationController pushViewController:noteViewer animated:YES];
     }
 }
@@ -144,7 +141,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
                                              title:@"Sort by..."];
     
     // right now, just create a bunch of sample notes
-    [self createSampleNotes:100];
+    [self createSampleNotes:10];
 }
 
 - (void)itemSelected:(NSNumber *)selectedIndex {

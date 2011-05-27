@@ -17,12 +17,12 @@
 		664621F01388D5BB0041FC2C /* 164-glasses-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 664621EE1388D5BB0041FC2C /* 164-glasses-2@2x.png */; };
 		664C25D11389ABD000180B92 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C25D01389ABD000180B92 /* NearbyViewController.m */; };
 		664C25D81389B3DE00180B92 /* Note_MKAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C25D71389B3DE00180B92 /* Note_MKAnnotation.m */; };
+		665BB9CD138DBC940049E12F /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665BB9CB138DBC940049E12F /* NoteViewController.xib */; };
+		665BB9CE138DBC940049E12F /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665BB9CC138DBC940049E12F /* NoteViewController.m */; };
 		665F2915138D098F004D628B /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2913138D098F004D628B /* 07-map-marker.png */; };
 		665F2916138D098F004D628B /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2914138D098F004D628B /* 07-map-marker@2x.png */; };
 		665F292C138D20D5004D628B /* AttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665F292A138D20D5004D628B /* AttachmentViewController.m */; };
 		665F292D138D20D5004D628B /* AttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665F292B138D20D5004D628B /* AttachmentViewController.xib */; };
-		667E0CBF138DA28C00932809 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667E0CBD138DA28C00932809 /* NoteViewController.m */; };
-		667E0CC0138DA28C00932809 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667E0CBE138DA28C00932809 /* NoteViewController.xib */; };
 		669A9ABB138CABAF009F56F2 /* 10-medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 669A9AB9138CABAF009F56F2 /* 10-medical.png */; };
 		669A9ABC138CABAF009F56F2 /* 10-medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669A9ABA138CABAF009F56F2 /* 10-medical@2x.png */; };
 		669A9AD0138CB1FB009F56F2 /* mini-location-arrow-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 669A9ACE138CB1FB009F56F2 /* mini-location-arrow-white.png */; };
@@ -30,6 +30,8 @@
 		669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */; };
 		66B0A261138A6186001D2280 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A260138A6186001D2280 /* NoteCell.m */; };
 		66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A264138A61C6001D2280 /* NoteCellView.m */; };
+		66F40113138F028000240B71 /* NoteManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F40111138F027F00240B71 /* NoteManagerViewController.m */; };
+		66F40114138F028000240B71 /* NoteManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F40112138F027F00240B71 /* NoteManagerViewController.xib */; };
 		66FF1DBA13879AEF009E4F89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DB913879AEF009E4F89 /* UIKit.framework */; };
 		66FF1DBC13879AEF009E4F89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBB13879AEF009E4F89 /* Foundation.framework */; };
 		66FF1DBE13879AEF009E4F89 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBD13879AEF009E4F89 /* CoreGraphics.framework */; };
@@ -73,14 +75,14 @@
 		664C25D01389ABD000180B92 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		664C25D61389B3DE00180B92 /* Note_MKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note_MKAnnotation.h; sourceTree = "<group>"; };
 		664C25D71389B3DE00180B92 /* Note_MKAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note_MKAnnotation.m; sourceTree = "<group>"; };
+		665BB9CA138DBC940049E12F /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
+		665BB9CB138DBC940049E12F /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+		665BB9CC138DBC940049E12F /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		665F2913138D098F004D628B /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		665F2914138D098F004D628B /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker@2x.png"; sourceTree = "<group>"; };
 		665F2929138D20D5004D628B /* AttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentViewController.h; sourceTree = "<group>"; };
 		665F292A138D20D5004D628B /* AttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentViewController.m; sourceTree = "<group>"; };
 		665F292B138D20D5004D628B /* AttachmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentViewController.xib; sourceTree = "<group>"; };
-		667E0CBC138DA28C00932809 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteViewController.h; path = ../../../Projects/Breadcrumbs/Breadcrumbs/NoteViewController.h; sourceTree = "<group>"; };
-		667E0CBD138DA28C00932809 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteViewController.m; path = ../../../Projects/Breadcrumbs/Breadcrumbs/NoteViewController.m; sourceTree = "<group>"; };
-		667E0CBE138DA28C00932809 /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoteViewController.xib; path = ../../../Projects/Breadcrumbs/Breadcrumbs/NoteViewController.xib; sourceTree = "<group>"; };
 		669A9AB9138CABAF009F56F2 /* 10-medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical.png"; sourceTree = "<group>"; };
 		669A9ABA138CABAF009F56F2 /* 10-medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical@2x.png"; sourceTree = "<group>"; };
 		669A9ACE138CB1FB009F56F2 /* mini-location-arrow-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mini-location-arrow-white.png"; sourceTree = "<group>"; };
@@ -91,6 +93,9 @@
 		66B0A260138A6186001D2280 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		66B0A263138A61C6001D2280 /* NoteCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCellView.h; sourceTree = "<group>"; };
 		66B0A264138A61C6001D2280 /* NoteCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCellView.m; sourceTree = "<group>"; };
+		66F40110138F027F00240B71 /* NoteManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManagerViewController.h; sourceTree = "<group>"; };
+		66F40111138F027F00240B71 /* NoteManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManagerViewController.m; sourceTree = "<group>"; };
+		66F40112138F027F00240B71 /* NoteManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteManagerViewController.xib; sourceTree = "<group>"; };
 		66FF1DB513879AEF009E4F89 /* Breadcrumbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breadcrumbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FF1DB913879AEF009E4F89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66FF1DBB13879AEF009E4F89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -230,10 +235,11 @@
 		66627722138C78B700E41287 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				667E0CBC138DA28C00932809 /* NoteViewController.h */,
-				667E0CBD138DA28C00932809 /* NoteViewController.m */,
-				667E0CBE138DA28C00932809 /* NoteViewController.xib */,
+				665BB9CA138DBC940049E12F /* NoteViewController.h */,
+				665BB9CC138DBC940049E12F /* NoteViewController.m */,
+				665BB9CB138DBC940049E12F /* NoteViewController.xib */,
 				665F292E138D20DE004D628B /* Attachment */,
+				66F40115138F028500240B71 /* Manager */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -256,6 +262,16 @@
 				66B0A264138A61C6001D2280 /* NoteCellView.m */,
 			);
 			name = "Note Cell";
+			sourceTree = "<group>";
+		};
+		66F40115138F028500240B71 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				66F40110138F027F00240B71 /* NoteManagerViewController.h */,
+				66F40111138F027F00240B71 /* NoteManagerViewController.m */,
+				66F40112138F027F00240B71 /* NoteManagerViewController.xib */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		66FF1DAA13879AEF009E4F89 = {
@@ -452,7 +468,8 @@
 				665F2915138D098F004D628B /* 07-map-marker.png in Resources */,
 				665F2916138D098F004D628B /* 07-map-marker@2x.png in Resources */,
 				665F292D138D20D5004D628B /* AttachmentViewController.xib in Resources */,
-				667E0CC0138DA28C00932809 /* NoteViewController.xib in Resources */,
+				665BB9CD138DBC940049E12F /* NoteViewController.xib in Resources */,
+				66F40114138F028000240B71 /* NoteManagerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +498,8 @@
 				66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */,
 				669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */,
 				665F292C138D20D5004D628B /* AttachmentViewController.m in Sources */,
-				667E0CBF138DA28C00932809 /* NoteViewController.m in Sources */,
+				665BB9CE138DBC940049E12F /* NoteViewController.m in Sources */,
+				66F40113138F028000240B71 /* NoteManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Rothman (GYW3E4YXDF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -520,6 +539,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "91970CA1-9A04-4E2E-9AF2-280B7E1BCDBE";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -528,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Rothman (GYW3E4YXDF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -535,6 +556,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "91970CA1-9A04-4E2E-9AF2-280B7E1BCDBE";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
