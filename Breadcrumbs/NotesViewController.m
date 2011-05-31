@@ -14,12 +14,12 @@
 #import "ActionSheetPicker.h"
 
 @interface NotesViewController()
-@property (nonatomic, retain) NSArray *sortOptions;
+@property (nonatomic, retain) NSArray *sortDescriptorKeys;
 @end
 
 @implementation NotesViewController
 
-@synthesize sortOptions;
+@synthesize sortDescriptorKeys;
 
 #pragma mark - Designated initializer
 
@@ -28,22 +28,21 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     if (context) {
         self = [super initWithStyle:style];
         if (self) {
+            NSString *key = [(NSString *)[self.sortDescriptorKeys objectAtIndex:0] lowercaseString];
+            
             NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
             request.entity = [NSEntityDescription entityForName:@"Note"
                                          inManagedObjectContext:context];
             request.sortDescriptors = [NSArray arrayWithObject:
-                                       [NSSortDescriptor sortDescriptorWithKey:@"title"
+                                       [NSSortDescriptor sortDescriptorWithKey:key
                                                                      ascending:YES
                                                                       selector:@selector(localizedCaseInsensitiveCompare:)]];
-            
             self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
                                                                                             cacheName:nil] autorelease];
             
-            self.searchKey = @"title";
-            
-            self.sortOptions = [NSArray arrayWithObjects:@"title", @"date", @"location", nil];
+            self.searchKey = key;
         }
     } else {
         [self release];
@@ -51,6 +50,15 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     }
     
     return self;
+}
+                                           
+#pragma mark - Properties
+
+- (NSArray *)sortDescriptorKeys {
+    if (!sortDescriptorKeys) {
+        sortDescriptorKeys = [[NSArray alloc] initWithObjects:@"Title", @"Modified", @"Location", nil];
+    }
+    return sortDescriptorKeys;
 }
 
 #pragma mark - CoreDataTableViewController customization
@@ -80,17 +88,17 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 }
 
 - (BOOL)canRemoveManagedObject:(NSManagedObject *)managedObject {
-    return NO;
+    return YES;
 }
 
 - (void)didRemoveManagedObject:(NSManagedObject *)managedObject {
-    // can't remove yet, so do nothing for now
+    NSLog(@"NYE: note removal");
 }
 
 #pragma mark - Testing tools
 
-- (int)randomDoubleFrom:(double)low
-                     to:(double)high {
+- (double)randomDoubleFrom:(double)low
+                        to:(double)high {
     double multiplier = arc4random() / (pow(2, 32) - 1);
     return low + multiplier * (high - low);
 }
@@ -106,7 +114,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     for (int i = 0; i < numberOfNotes; i++) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         
-        int loc = [self randomIntFrom:0 to:[sample length] - 10];
+        int loc = [self randomIntFrom:0 to:[sample length] / 3];
         int len = [self randomIntFrom:10 to:[sample length] - loc];
         [info setObject:[sample substringWithRange:NSMakeRange(loc, len)]
                  forKey:@"title"];
@@ -118,8 +126,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
         [info setObject:[NSDate dateWithTimeIntervalSinceNow:days * 86400]
                  forKey:@"modified"];
         
-        [info setObject:[[[CLLocation alloc] initWithLatitude:[self randomDoubleFrom:-90 to:90]
-                                                    longitude:[self randomDoubleFrom:-180 to:180]] autorelease]
+        [info setObject:[[[CLLocation alloc] initWithLatitude:37.42644 + [self randomDoubleFrom:-0.1 to:0.1]
+                                                    longitude:-122.16331 + [self randomDoubleFrom:-0.1 to:0.1]] autorelease]
                  forKey:@"location"];
         
         [Note noteWithInfo:info inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
@@ -130,22 +138,48 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 
 - (void)sort:(UIBarButtonItem *)sender {
     [ActionSheetPicker displayActionPickerWithView:self.view
-                                              data:self.sortOptions
+                                              data:self.sortDescriptorKeys
                                      selectedIndex:0
                                             target:self
                                             action:@selector(itemSelected:)
                                              title:@"Sort by..."];
-    
-    // right now, just create a bunch of sample notes
-    [self createSampleNotes:10];
 }
 
 - (void)itemSelected:(NSNumber *)selectedIndex {
-    NSLog(@"selected: %@", [self.sortOptions objectAtIndex:[selectedIndex unsignedIntegerValue]]);
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    
+    NSString *key = [(NSString *)[self.sortDescriptorKeys objectAtIndex:[selectedIndex unsignedIntegerValue]] lowercaseString];
+    BOOL ascending;
+    SEL comparator;
+    if ([key isEqualToString:@"title"]) {
+        ascending = YES;
+        comparator = @selector(localizedCaseInsensitiveCompare:);
+    } else if ([key isEqualToString:@"modified"]) {
+        ascending = NO;
+        comparator = @selector(compare:);
+    } else if ([key isEqualToString:@"location"]) {
+        // this isn't really right
+        ascending = YES;
+        comparator = @selector(localizedCaseInsensitiveCompare:);
+    }
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    request.entity = [NSEntityDescription entityForName:@"Note"
+                                 inManagedObjectContext:context];
+    request.sortDescriptors = [NSArray arrayWithObject:
+                               [NSSortDescriptor sortDescriptorWithKey:key
+                                                             ascending:ascending
+                                                              selector:comparator]];
+    
+    self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                         managedObjectContext:context
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil] autorelease];
 }
 
 - (void)newNote:(UIBarButtonItem *)sender {
-    
+    // right now, just create a bunch of sample notes
+    [self createSampleNotes:10];
 }
 
 #pragma mark - View lifecycle
@@ -178,7 +212,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 #pragma mark - Memory management
 
 - (void)dealloc {
-    [sortOptions release];
+    [sortDescriptorKeys release];
     [super dealloc];
 }
 

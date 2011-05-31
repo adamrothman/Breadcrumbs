@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface NearbyViewController : UIViewController
+@interface NearbyViewController : UIViewController <MKMapViewDelegate>
 @property (nonatomic, retain) MKMapView *mapView;
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext *)context;

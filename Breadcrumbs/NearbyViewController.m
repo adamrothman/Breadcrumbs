@@ -7,9 +7,7 @@
 //
 
 #import "NearbyViewController.h"
-
-#define LATITUDE_PADDING    0.1
-#define LONGITUDE_PADDING   0.1
+#import "MKMapView_ZoomToFit.h"
 
 @interface NearbyViewController()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -47,10 +45,25 @@
 }
 
 - (void)centerOnUser:(UIBarButtonItem *)sender {
-    MKCoordinateRegion region = MKCoordinateRegionMake(self.mapView.userLocation.location.coordinate,
-                                                       MKCoordinateSpanMake(LATITUDE_PADDING, LONGITUDE_PADDING));
+    [self.mapView zoomToFitUserAnimated:YES];
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)sender
+            viewForAnnotation:(id <MKAnnotation>)annotation {
+    static NSString *reuseIdentifier = @"NearbyAnnotationView";
+    MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
+    if (!aView) {
+        aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                 reuseIdentifier:reuseIdentifier] autorelease];
+        aView.animatesDrop = YES;
+        aView.canShowCallout = YES;
+        aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    }
+    aView.annotation = annotation;
     
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    return aView;
 }
 
 #pragma mark - View lifecycle
@@ -65,29 +78,31 @@
                                                                               action:@selector(centerOnUser:)] autorelease];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    // this should get set programmatically
+    // should be set according to number of "nearby" notes
     self.navigationController.tabBarItem.badgeValue = @"1";
-}
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-//    request.entity = [NSEntityDescription entityForName:@"Note"
-//                                 inManagedObjectContext:self.managedObjectContext];
-//    
-//    [self.mapView removeAnnotations:self.mapView.annotations];
-//    NSError *error = nil;
-//    [self.mapView addAnnotations:[self.managedObjectContext executeFetchRequest:request error:&error]];
-//}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    
+    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:self.mapView.annotations];
+    [annotationsToRemove removeObject:self.mapView.userLocation];
+    [self.mapView removeAnnotations:annotationsToRemove];
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    request.entity = [NSEntityDescription entityForName:@"Note"
+                                 inManagedObjectContext:self.managedObjectContext];
+    request.sortDescriptors = [NSArray arrayWithObject:
+                               [NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                             ascending:YES
+                                                              selector:@selector(localizedCaseInsensitiveCompare:)]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([fetchedObjects count]) {
+        [self.mapView addAnnotations:fetchedObjects];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

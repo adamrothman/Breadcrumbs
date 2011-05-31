@@ -9,12 +9,24 @@
 #import "MKMapView_ZoomToFit.h"
 
 #define PADDING_MULTIPLIER  1.05
+#define LATITUDE_PADDING    0.1
+#define LONGITUDE_PADDING   0.1
 
 @implementation MKMapView (MKMapView_ZoomToFit)
 
 /**
- * Zoom and center the map view so that it displays all of its annotations
- * with a bit of padding around them.
+ * Zoom and center to the map so that it displays the given annotation.
+ */
+- (void)zoomToFitAnnotation:(id <MKAnnotation>)annotation
+                   animated:(BOOL)animated {
+    MKCoordinateRegion region = MKCoordinateRegionMake(annotation.coordinate,
+                                                       MKCoordinateSpanMake(LATITUDE_PADDING, LONGITUDE_PADDING));
+    
+    [self setRegion:[self regionThatFits:region] animated:animated];
+}
+
+/**
+ * Zoom and center the map so that it displays all of its annotations.
  */
 - (void)zoomToFitAnnotationsAnimated:(BOOL)animated {
     if ([self.annotations count]) {
@@ -36,6 +48,18 @@
         MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
         
         [self setRegion:[self regionThatFits:region] animated:animated];
+    }
+}
+
+/**
+ * Zoom and center the map so that it display's the user's location.
+ */
+- (void)zoomToFitUserAnimated:(BOOL)animated {
+    if (self.showsUserLocation) {
+        MKCoordinateRegion region = MKCoordinateRegionMake(self.userLocation.location.coordinate,
+                                                           MKCoordinateSpanMake(LATITUDE_PADDING, LONGITUDE_PADDING));
+        
+        [self setRegion:[self regionThatFits:region] animated:YES];
     }
 }
 

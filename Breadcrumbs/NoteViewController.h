@@ -12,10 +12,12 @@
 #import "NoteManagerViewController.h"
 #import "NoteEditorViewController.h"
 
-@interface NoteViewController : UIViewController <NoteMapDelegate, NoteManagerDelegate, NoteEditorDelegate>
-
-@property (nonatomic, retain) IBOutlet UIView *content;
+@interface NoteViewController : UIViewController <NoteMapDelegate>
+@property (nonatomic, retain) IBOutlet UILabel *daysAgoLabel;
+@property (nonatomic, retain) IBOutlet UILabel *dateLabel;
+@property (nonatomic, retain) IBOutlet UILabel *timeLabel;
+@property (nonatomic, retain) IBOutlet UITextField *titleTextField;
+@property (nonatomic, retain) IBOutlet UITextView *bodyTextView;
 
 - (id)initWithNote:(Note *)aNote;
-
 @end

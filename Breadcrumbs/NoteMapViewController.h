@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "Note.h"
 
-@interface NoteMapViewController : UIViewController
+@protocol NoteMapDelegate
+- (void)dismissMap:(BOOL)animated;
+@end
+
+@interface NoteMapViewController : UIViewController <MKMapViewDelegate>
+@property (nonatomic, assign) id <NoteMapDelegate> delegate;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+
+- (id)initWithNote:(Note *)aNote;
 @end
