@@ -2,32 +2,35 @@
 //  NoteViewController.m
 //  Breadcrumbs
 //
-//  Created by Adam Rothman on 5/25/11.
+//  Created by Adam Rothman on 5/26/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <QuartzCore/QuartzCore.h>
 #import "NoteViewController.h"
-#import "AttachmentViewController.h"
-#import "NoteManagerViewController.h"
+#import "NoteMapViewController.h"
+#import "NoteEditorViewController.h"
+#import "NoteAttachmentsViewController.h"
+#import "Attachment_Create.h"
 #import "NSManagedObjectContext_Autosave.h"
 
-@interface NoteViewController()
+@interface NoteViewController() <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, retain) Note *note;
-@property (nonatomic, retain) UITextView *textView;
-@property (nonatomic, retain) NSArray *attachmentsArray;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
-@property (nonatomic) NSUInteger numberOfPages;
-
-- (void)loadScrollViewWithPage:(NSUInteger)page;
+@property (nonatomic) NSUInteger currentIndex;
+@property (nonatomic, retain) CATransition *swipeRightTransition;
+@property (nonatomic, retain) CATransition *swipeLeftTransition;
+@property (nonatomic, retain) UIActionSheet *mediaSourceSelector;
+@property (nonatomic, retain) UIActionSheet *deletionConfirmer;
 @end
 
 @implementation NoteViewController
 
-@synthesize note;
-@synthesize titleTextField, scrollView;
-@synthesize textView, attachmentsArray, viewControllers, numberOfPages;
-
-#pragma mark - Designated initializer
+@synthesize content;
+@synthesize note, viewControllers, currentIndex;
+@synthesize swipeRightTransition, swipeLeftTransition;
+@synthesize mediaSourceSelector, deletionConfirmer;
 
 - (id)initWithNote:(Note *)aNote {
     self = [super initWithNibName:nil bundle:nil];
@@ -38,116 +41,211 @@
     return self;
 }
 
-- (void)setup {
-    self.titleTextField.text = self.note.title;
-    self.titleTextField.delegate = self;
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
     
-    self.attachmentsArray = [self.note.attachments sortedArrayUsingDescriptors:
-                             [NSArray arrayWithObject:
-                              [NSSortDescriptor sortDescriptorWithKey:@"bytes" ascending:YES]]];
-    
-    self.viewControllers = [NSMutableArray arrayWithCapacity:[self.attachmentsArray count] + 2];
-    for (int i = 0; i < [self.attachmentsArray count] + 2; i++) {
-        [self.viewControllers addObject:[NSNull null]];
-    }
-    
-    self.numberOfPages = [self.viewControllers count];
-    
-    // a page is the width of the scroll view
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width * self.numberOfPages,
-                                             scrollView.bounds.size.height);
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.directionalLockEnabled = YES;
-    self.scrollView.scrollsToTop = NO;
-    self.scrollView.delegate = self;
-    
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
-    [self loadScrollViewWithPage:2];
-    
-    CGRect frame = self.scrollView.frame;
-    frame.origin.x = frame.size.width;
-    frame.origin.y = 0;
-    [self.scrollView scrollRectToVisible:frame animated:NO];
+    // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)loadScrollViewWithPage:(NSUInteger)page {
-    if (page < self.numberOfPages) {
-        UIView *pageToAdd = nil;
+#pragma mark - Properties
+
+- (NSMutableArray *)viewControllers {
+    if (!viewControllers) {
+        NoteMapViewController *nmvc = [[[NoteMapViewController alloc] 
+                                        initWithNibName:nil bundle:nil] autorelease];
+        [viewControllers addObject:nmvc];
         
-        CGRect frame = self.scrollView.bounds;
-        frame.origin.x = frame.size.width * page;
-        frame.origin.y = 0;
+        NoteEditorViewController *nevc = [[[NoteEditorViewController alloc]
+                                           initWithNote:self.note] autorelease];
+        nevc.delegate = self;
+        [viewControllers addObject:nevc];
         
-        UIViewController *vc = [self.viewControllers objectAtIndex:page];
-        if ((NSNull *)vc == [NSNull null]) {
-            if (page == 0) {
-                NoteManagerViewController *nmvc = [[[NoteManagerViewController alloc] initWithNote:self.note] autorelease];
-                [self.viewControllers replaceObjectAtIndex:page
-                                                withObject:nmvc];
-                nmvc.view.frame = frame;
-                
-                pageToAdd = nmvc.view;
-            } else if (page == 1 && !self.textView) { // text view
-                self.textView = [[[UITextView alloc] initWithFrame:frame] autorelease];
-                self.textView.text = self.note.text;
-                self.textView.font = [UIFont systemFontOfSize:14];
-                self.textView.directionalLockEnabled = YES;
-                self.textView.delegate = self;
-                
-                pageToAdd = self.textView;
-            } else {
-                AttachmentViewController *avc = [[[AttachmentViewController alloc] initWithAttachment:
-                                                  [self.attachmentsArray objectAtIndex:page - 2]] autorelease];
-                [self.viewControllers replaceObjectAtIndex:page
-                                                withObject:avc];
-                avc.view.frame = frame;
-                
-                pageToAdd = avc.view;
-            }
-            
-            [self.scrollView addSubview:pageToAdd];
+        NoteAttachmentsViewController *navc = [[[NoteAttachmentsViewController alloc]
+                                                initWithStyle:UITableViewStyleGrouped andNote:self.note] autorelease];
+        
+        viewControllers = [[NSMutableArray alloc] initWithObjects:nmvc, nevc, navc, nil];
+    }
+    
+    return viewControllers;
+}
+
+- (CATransition *)swipeRightTransition{
+    if (!swipeRightTransition) {
+        swipeRightTransition = [[CATransition animation] retain];
+        swipeRightTransition.type = kCATransitionPush;
+        swipeRightTransition.subtype = kCATransitionFromLeft;
+        swipeRightTransition.duration = 0.2;
+        swipeRightTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    }
+    return swipeRightTransition;
+}
+
+- (CATransition *)swipeLeftTransition {
+    if (!swipeLeftTransition) {
+        swipeLeftTransition = [[CATransition animation] retain];
+        swipeLeftTransition.type = kCATransitionPush;
+        swipeLeftTransition.subtype = kCATransitionFromRight;
+        swipeLeftTransition.duration = 0.2;
+        swipeLeftTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    }
+    return swipeLeftTransition;
+}
+
+- (UIActionSheet *)mediaSourceSelector {
+    if (!mediaSourceSelector) {
+        mediaSourceSelector = [[UIActionSheet alloc] initWithTitle:nil
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Cancel"
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:@"Take Photo or Video", @"Choose Existing", nil];
+    }
+    return mediaSourceSelector;
+}
+
+- (UIActionSheet *)deletionConfirmer {
+    if (!deletionConfirmer) {
+        deletionConfirmer = [[UIActionSheet alloc] initWithTitle:@"Are you sure?"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:@"Delete"
+                                               otherButtonTitles:nil];
+    }
+    return deletionConfirmer;
+}
+
+#pragma mark - Gesture actions
+
+- (void)swipeRight:(UIGestureRecognizer *)gesture {
+    if (self.currentIndex >= 1) {
+        UIViewController *currentController = [self.viewControllers objectAtIndex:self.currentIndex];
+        UIViewController *newController = [self.viewControllers objectAtIndex:self.currentIndex - 1];
+        
+        [self.content.layer addAnimation:self.swipeRightTransition forKey:nil];
+        
+        [currentController.view removeFromSuperview];
+        [self.content insertSubview:newController.view atIndex:0];
+        
+        self.currentIndex -= 1;
+    }
+}
+
+- (void)swipeLeft:(UIGestureRecognizer *)gesture {
+    if (self.currentIndex < [self.viewControllers count] - 1) {
+        UIViewController *currentController = [self.viewControllers objectAtIndex:self.currentIndex];
+        UIViewController *newController = [self.viewControllers objectAtIndex:self.currentIndex + 1];
+        
+        [self.content.layer addAnimation:self.swipeLeftTransition forKey:nil];
+        
+        [currentController.view removeFromSuperview];
+        [self.content insertSubview:newController.view atIndex:0];
+        
+        self.currentIndex += 1;
+    }
+}
+
+#pragma mark - NoteManagerDelegate
+
+- (void)addCameraAttachment {
+    [self.mediaSourceSelector showInView:self.view];
+}
+
+- (void)addAudioAttachment {
+    
+}
+
+
+#pragma mark - NoteMapDelegate
+
+- (void)setRightBarButtonItem:(UIBarButtonItem *)item {
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+#pragma mark - NoteEditorDelegate
+
+- (void)deleteNote {
+    [self.deletionConfirmer showInView:self.view];
+    //[self.deletionConfirmer showFromTabBar:self.navigationController.tabBarController.tabBar];
+}
+
+- (void)showOnMap {
+    [self swipeRight:nil];
+}
+
+- (void)manageTags {
+    // modal view of tags manager
+}
+
+- (void)showAttachments {
+    [self swipeLeft:nil];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet == self.mediaSourceSelector && buttonIndex != 2) {
+        UIImagePickerController *picker = [[[UIImagePickerController alloc] init] autorelease];
+        picker.delegate = self;
+        if (buttonIndex == 0 &&
+            [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        } else {
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
+        
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        NSLog(@"%@", [availableMediaTypes description]);
+        NSMutableArray *mediaTypes = [NSMutableArray arrayWithCapacity:[availableMediaTypes count]];
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
+            [mediaTypes addObject:(NSString *)kUTTypeImage];
+        }
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeMovie]) {
+            [mediaTypes addObject:(NSString *)kUTTypeMovie];
+        }
+        if ([mediaTypes count]) {
+            picker.mediaTypes = mediaTypes;
+            [self presentModalViewController:picker animated:YES];
+        }
+    } else if (actionSheet == self.deletionConfirmer && buttonIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+        NSManagedObjectContext *context = [self.note managedObjectContext];
+        [context deleteObject:self.note];
+        [NSManagedObjectContext autosave:context];
     }
 }
 
-#pragma mark - UIScrollViewDelegate
+#pragma mark - UIImagePickerControllerDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
-}
-
-#pragma mark - UITextFieldDelegate
-
-#pragma mark - UITextViewDelegate
-
-#pragma mark - Control actions
-
-- (void)save:(UIBarButtonItem *)sender {
-    self.note.title = self.titleTextField.text;
-    self.note.text = self.textView.text;
-    // also save attachments
-    
-    [NSManagedObjectContext autosave:[self.note managedObjectContext]];
+- (void) imagePickerController:(UIImagePickerController *)picker
+ didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // done picking an image or video, so attach it to the current note
 }
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setup];
+    
+    self.navigationItem.title = self.note.title;
+    
+    UIViewController *defaultVC = [self.viewControllers objectAtIndex:1];
+    [self.content insertSubview:defaultVC.view atIndex:0];
+    self.currentIndex = 1;
+    
+    UISwipeGestureRecognizer *rightRecognizer = [[[UISwipeGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(swipeRight:)] autorelease];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.content addGestureRecognizer:rightRecognizer];
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[[UISwipeGestureRecognizer alloc]
+                                                 initWithTarget:self action:@selector(swipeLeft:)] autorelease];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.content addGestureRecognizer:leftRecognizer];
 }
 
 - (void)viewDidUnload {
-    self.titleTextField = nil;
-    self.scrollView = nil;
+    self.content = nil;
     
     [super viewDidUnload];
 }
@@ -159,10 +257,13 @@
 #pragma mark - Memory management
 
 - (void)dealloc {
-    [titleTextField release];
-    [scrollView release];
-    [textView release];
+    [content release];
+    [note release];
     [viewControllers release];
+    [swipeRightTransition release];
+    [swipeLeftTransition release];
+    [mediaSourceSelector release];
+    [deletionConfirmer release];
     [super dealloc];
 }
 

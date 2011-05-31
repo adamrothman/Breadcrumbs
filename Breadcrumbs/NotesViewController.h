@@ -10,8 +10,6 @@
 #import "CoreDataTableViewController.h"
 
 @interface NotesViewController : CoreDataTableViewController
-
 - (id)initWithStyle:(UITableViewStyle)style
 inManagedObjectContext:(NSManagedObjectContext *)context;
-
 @end

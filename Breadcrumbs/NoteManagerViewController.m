@@ -8,69 +8,32 @@
 
 #import "NoteManagerViewController.h"
 
-@interface NoteManagerViewController()
-@property (nonatomic, retain) Note *note;
-@end
-
 @implementation NoteManagerViewController
 
-@synthesize note;
-
-- (id)initWithNote:(Note *)aNote {
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        self.note = aNote;
-    }
-    return self;
-}
+@synthesize delegate;
 
 #pragma mark - IBActions
 
-- (IBAction)browseTags:(UIButton *)sender {
-    
+- (IBAction)tagsButtonPressed:(UIButton *)sender {
+    [self.delegate manageTags];
 }
 
-- (IBAction)addPhotoAttachment:(UIButton *)sender {
-    // check that this is supported
-    
-    UIImagePickerController *picker = [[[UIImagePickerController alloc] init] autorelease];
-    picker.delegate = self;
-    
-    NSLog(@"%@", [self.parentViewController class]);
-    
-    [self presentModalViewController:picker animated:YES];
+- (IBAction)cameraButtonPressed:(UIButton *)sender {
+    [self.delegate addCameraAttachment];
 }
 
-- (IBAction)addVideoAttachment:(UIButton *)sender {
-    
+- (IBAction)audioButtonPressed:(UIButton *)sender {
+    [self.delegate addAudioAttachment];
 }
 
-- (IBAction)addAudioAttachment:(UIButton *)sender {
-    
+- (IBAction)deleteButtonPressed:(UIButton *)sender {
+    [self.delegate deleteNote];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark - Memory management
-
-- (void)dealloc {
-    [note release];
-    [super dealloc];
 }
 
 @end

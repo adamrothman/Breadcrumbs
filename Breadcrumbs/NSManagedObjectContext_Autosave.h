@@ -12,7 +12,5 @@
 #define AUTOSAVE_DELAY  2
 
 @interface NSManagedObjectContext (NSManagedObjectContext_Autosave)
-
 + (void)autosave:(NSManagedObjectContext *)context;
-
 @end

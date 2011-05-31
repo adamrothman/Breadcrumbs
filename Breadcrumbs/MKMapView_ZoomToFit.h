@@ -9,7 +9,5 @@
 #import <MapKit/MapKit.h>
 
 @interface MKMapView (MKMapView_ZoomToFit)
-
 - (void)zoomToFitAnnotationsAnimated:(BOOL)animated;
-
 @end

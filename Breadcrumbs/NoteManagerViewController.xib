@@ -45,7 +45,7 @@
 					<object class="IBUIButton" id="592468555">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{164, 58}, {128, 128}}</string>
+						<string key="NSFrame">{{28, 144}, {128, 128}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="943789649"/>
@@ -73,13 +73,13 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">43-film-roll.png</string>
+							<string key="NSResourceName">86-camera.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="874001919">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{28, 58}, {128, 128}}</string>
+						<string key="NSFrame">{{92, 72}, {136, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="592468555"/>
@@ -103,10 +103,10 @@
 					<object class="IBUIButton" id="943789649">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{28, 194}, {128, 128}}</string>
+						<string key="NSFrame">{{164, 144}, {128, 128}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="745993812"/>
+						<reference key="NSNextKeyView" ref="727842052"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -124,10 +124,10 @@
 							<string key="NSResourceName">66-microphone.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="745993812">
+					<object class="IBUIButton" id="727842052">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{164, 194}, {128, 128}}</string>
+						<string key="NSFrame">{{92, 280}, {136, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -145,11 +145,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="98590452"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">45-movie-1.png</string>
+							<string key="NSResourceName">31-circle-x.png</string>
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 380}</string>
+				<string key="NSFrameSize">{320, 416}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="874001919"/>
@@ -10010,39 +10010,39 @@ AAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addPhotoAttachment:</string>
-						<reference key="source" ref="592468555"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">browseTags:</string>
+						<string key="label">tagsButtonPressed:</string>
 						<reference key="source" ref="874001919"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">10</int>
+					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addVideoAttachment:</string>
-						<reference key="source" ref="745993812"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">11</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addAudioAttachment:</string>
+						<string key="label">audioButtonPressed:</string>
 						<reference key="source" ref="943789649"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">12</int>
+					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">deleteButtonPressed:</string>
+						<reference key="source" ref="727842052"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">cameraButtonPressed:</string>
+						<reference key="source" ref="592468555"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">20</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10062,7 +10062,7 @@ AAEAAQABA</bytes>
 							<reference ref="592468555"/>
 							<reference ref="874001919"/>
 							<reference ref="943789649"/>
-							<reference ref="745993812"/>
+							<reference ref="727842052"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -10093,8 +10093,8 @@ AAEAAQABA</bytes>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="745993812"/>
+						<int key="objectID">18</int>
+						<reference key="object" ref="727842052"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -10107,10 +10107,10 @@ AAEAAQABA</bytes>
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
+					<string>18.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
-					<string>7.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10136,7 +10136,7 @@ AAEAAQABA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">12</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10164,16 +10164,16 @@ AAEAAQABA</bytes>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>15-tags.png</string>
-				<string>43-film-roll.png</string>
-				<string>45-movie-1.png</string>
+				<string>31-circle-x.png</string>
 				<string>66-microphone.png</string>
+				<string>86-camera.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{24, 25}</string>
-				<string>{26, 22}</string>
-				<string>{19, 25}</string>
+				<string>{28, 28}</string>
 				<string>{12, 24}</string>
+				<string>{24, 18}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">301</string>

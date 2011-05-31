@@ -11,8 +11,6 @@
 #import "Note.h"
 
 @interface Note (Note_MKAnnotation) <MKAnnotation>
-
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) NSString *subtitle;
-
 @end

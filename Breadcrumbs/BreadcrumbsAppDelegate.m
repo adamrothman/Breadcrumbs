@@ -35,29 +35,22 @@
                                                          image:[UIImage imageNamed:@"179-notepad"]
                                                            tag:1] autorelease];
     
-    UIViewController *newNote = [[[UIViewController alloc] initWithNibName:nil
-                                                                    bundle:nil] autorelease];
-    UINavigationController *newNoteNVC = [[[UINavigationController alloc] initWithRootViewController:newNote] autorelease];
-    newNoteNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil
-                                                           image:[UIImage imageNamed:@"10-medical"]
-                                                             tag:2] autorelease];
-    
     UIViewController *tags = [[[UIViewController alloc] initWithNibName:nil
                                                                  bundle:nil] autorelease];
     UINavigationController *tagsNVC = [[[UINavigationController alloc] initWithRootViewController:tags] autorelease];
     tagsNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Tags"
                                                            image:[UIImage imageNamed:@"15-tags"]
-                                                             tag:3] autorelease];
+                                                             tag:2] autorelease];
     
     UIViewController *augmentedReality = [[[UIViewController alloc] initWithNibName:nil
                                                                              bundle:nil] autorelease];
     UINavigationController *augmentedRealityNVC = [[[UINavigationController alloc] initWithRootViewController:augmentedReality] autorelease];
     augmentedRealityNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"AR"
                                                       image:[UIImage imageNamed:@"164-glasses-2"]
-                                                        tag:4] autorelease];
+                                                        tag:3] autorelease];
     
     UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
-    tbc.viewControllers = [NSArray arrayWithObjects:nearbyNVC, notesNVC, newNoteNVC, tagsNVC, augmentedRealityNVC, nil];
+    tbc.viewControllers = [NSArray arrayWithObjects:nearbyNVC, notesNVC, tagsNVC, augmentedRealityNVC, nil];
     
     self.window.rootViewController = tbc;
     

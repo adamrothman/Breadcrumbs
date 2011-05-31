@@ -10,8 +10,6 @@
 #import "Note.h"
 
 @interface Note (Note_Create)
-
 + (Note *)noteWithInfo:(NSDictionary *)info
 inManagedObjectContext:(NSManagedObjectContext *)context;
-
 @end

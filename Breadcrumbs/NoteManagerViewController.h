@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 
-@interface NoteManagerViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@protocol NoteManagerDelegate
+- (void)manageTags;
+- (void)addCameraAttachment;
+- (void)addAudioAttachment;
+- (void)deleteNote;
+@end
 
-- (id)initWithNote:(Note *)aNote;
+@interface NoteManagerViewController : UIViewController
+
+@property (nonatomic, assign) id <NoteManagerDelegate> delegate;
 
 @end

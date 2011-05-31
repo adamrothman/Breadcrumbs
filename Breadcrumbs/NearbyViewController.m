@@ -11,6 +11,10 @@
 #define LATITUDE_PADDING    0.1
 #define LONGITUDE_PADDING   0.1
 
+@interface NearbyViewController()
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@end
+
 @implementation NearbyViewController
 
 @synthesize mapView, managedObjectContext;
@@ -30,14 +34,6 @@
     
     return self;
 }
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
 
 #pragma mark - Properties
 

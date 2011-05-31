@@ -9,7 +9,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NotesViewController.h"
 #import "Note_Create.h"
-#import "Attachment_Types.h"
 #import "NoteCell.h"
 #import "NoteViewController.h"
 #import "ActionSheetPicker.h"
@@ -45,9 +44,6 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
             self.searchKey = @"title";
             
             self.sortOptions = [NSArray arrayWithObjects:@"title", @"date", @"location", nil];
-            
-            self.tableView.scrollsToTop = YES;
-            self.tableView.rowHeight = 64;
         }
     } else {
         [self release];
@@ -118,7 +114,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
         [info setObject:sample
                  forKey:@"text"];
         
-        int days = [self randomIntFrom:-730 to:730];
+        int days = [self randomIntFrom:-3 to:0];
         [info setObject:[NSDate dateWithTimeIntervalSinceNow:days * 86400]
                  forKey:@"modified"];
         
@@ -130,7 +126,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     }
 }
 
-#pragma mark - Sort selection
+#pragma mark - Button actions
 
 - (void)sort:(UIBarButtonItem *)sender {
     [ActionSheetPicker displayActionPickerWithView:self.view
@@ -148,6 +144,10 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     NSLog(@"selected: %@", [self.sortOptions objectAtIndex:[selectedIndex unsignedIntegerValue]]);
 }
 
+- (void)newNote:(UIBarButtonItem *)sender {
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
@@ -158,7 +158,17 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
                                                                               style:UIBarButtonItemStyleBordered
                                                                              target:self
                                                                              action:@selector(sort:)] autorelease];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                            target:self
+                                                                                            action:@selector(newNote:)] autorelease];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.tableView.scrollsToTop = YES;
+    self.tableView.rowHeight = 64;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

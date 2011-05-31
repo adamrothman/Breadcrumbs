@@ -8,18 +8,20 @@
 
 #import "NoteCellView.h"
 
+@interface NoteCellView()
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, retain) UIColor *dateAndTimeColor;
+@end
 
 @implementation NoteCellView
 
 @synthesize note, dateFormatter;
 @synthesize highlighted, editing;
+@synthesize dateAndTimeColor;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        
-        
         self.opaque = YES;
         self.backgroundColor = [UIColor whiteColor];
     }
@@ -37,11 +39,25 @@
     [self setNeedsDisplay];
 }
 
+- (NSDateFormatter *)dateFormatter {
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    return dateFormatter;
+}
+
 - (void)setHighlighted:(BOOL)lit {
     if (highlighted != lit) {
         highlighted = lit;
         [self setNeedsDisplay];
     }
+}
+
+- (UIColor *)dateAndTimeColor {
+    if (!dateAndTimeColor) {
+        dateAndTimeColor = [[UIColor colorWithRed:0.1412 green:0.4392 blue:0.8471 alpha:1.0000] retain];
+    }
+    return dateAndTimeColor;
 }
 
 #pragma mark - Custom drawing
@@ -81,8 +97,8 @@
     
     if (!self.highlighted) {
         titleColor = [UIColor blackColor];
-        dateColor = [UIColor blueColor];
-        timeColor = [UIColor blueColor];
+        dateColor = self.dateAndTimeColor;
+        timeColor = self.dateAndTimeColor;
         previewColor = [UIColor darkGrayColor];
         self.backgroundColor = [UIColor whiteColor];
     } else {

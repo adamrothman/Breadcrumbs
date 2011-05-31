@@ -2,7 +2,7 @@
 //  Attachment.h
 //  Breadcrumbs
 //
-//  Created by Adam Rothman on 5/21/11.
+//  Created by Adam Rothman on 5/30/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,7 +16,8 @@
 }
 @property (nonatomic, retain) NSString * path;
 @property (nonatomic, retain) NSNumber * bytes;
-@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSDate * added;
 @property (nonatomic, retain) Note * owner;
 
 @end
