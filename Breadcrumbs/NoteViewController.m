@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NoteViewController.h"
 #import "NoteMapViewController.h"
-#import "NoteEditorViewController.h"
 #import "NoteAttachmentsViewController.h"
 #import "Attachment_Create.h"
 #import "NSManagedObjectContext_Autosave.h"

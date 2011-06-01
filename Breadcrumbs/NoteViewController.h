@@ -10,7 +10,6 @@
 #import "Note.h"
 #import "NoteMapViewController.h"
 #import "NoteManagerViewController.h"
-#import "NoteEditorViewController.h"
 
 @interface NoteViewController : UIViewController <NoteMapDelegate>
 @property (nonatomic, retain) IBOutlet UILabel *daysAgoLabel;

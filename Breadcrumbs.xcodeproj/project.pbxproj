@@ -39,6 +39,8 @@
 		66E922DC13949459004571A5 /* NoteAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E922DB13949459004571A5 /* NoteAttachmentsViewController.m */; };
 		66F40113138F028000240B71 /* NoteManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F40111138F027F00240B71 /* NoteManagerViewController.m */; };
 		66F40114138F028000240B71 /* NoteManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F40112138F027F00240B71 /* NoteManagerViewController.xib */; };
+		66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F532CB1395B405001A46B8 /* NoteEditorController.m */; };
+		66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F532CE1395B449001A46B8 /* NoteEditor.xib */; };
 		66FF1DBA13879AEF009E4F89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DB913879AEF009E4F89 /* UIKit.framework */; };
 		66FF1DBC13879AEF009E4F89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBB13879AEF009E4F89 /* Foundation.framework */; };
 		66FF1DBE13879AEF009E4F89 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBD13879AEF009E4F89 /* CoreGraphics.framework */; };
@@ -107,6 +109,9 @@
 		66F40110138F027F00240B71 /* NoteManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManagerViewController.h; sourceTree = "<group>"; };
 		66F40111138F027F00240B71 /* NoteManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManagerViewController.m; sourceTree = "<group>"; };
 		66F40112138F027F00240B71 /* NoteManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteManagerViewController.xib; sourceTree = "<group>"; };
+		66F532CA1395B405001A46B8 /* NoteEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NoteEditorController.h; sourceTree = "<group>"; };
+		66F532CB1395B405001A46B8 /* NoteEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteEditorController.m; sourceTree = "<group>"; };
+		66F532CE1395B449001A46B8 /* NoteEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteEditor.xib; sourceTree = "<group>"; };
 		66FF1DB513879AEF009E4F89 /* Breadcrumbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breadcrumbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FF1DB913879AEF009E4F89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66FF1DBB13879AEF009E4F89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -251,6 +256,7 @@
 				666BD506138F403A00989A43 /* NoteViewController.h */,
 				666BD507138F403A00989A43 /* NoteViewController.m */,
 				666BD508138F403A00989A43 /* NoteViewController.xib */,
+				66F532CD1395B40A001A46B8 /* Editor */,
 				665F292E138D20DE004D628B /* Attachments */,
 				66F40115138F028500240B71 /* Map */,
 			);
@@ -295,6 +301,16 @@
 				66E922D713949426004571A5 /* NoteMapViewController.xib */,
 			);
 			name = Map;
+			sourceTree = "<group>";
+		};
+		66F532CD1395B40A001A46B8 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				66F532CA1395B405001A46B8 /* NoteEditorController.h */,
+				66F532CB1395B405001A46B8 /* NoteEditorController.m */,
+				66F532CE1395B449001A46B8 /* NoteEditor.xib */,
+			);
+			name = Editor;
 			sourceTree = "<group>";
 		};
 		66FF1DAA13879AEF009E4F89 = {
@@ -491,6 +507,7 @@
 				66586CD41394601700A934EF /* trash.png in Resources */,
 				66586CD51394601700A934EF /* trash@2x.png in Resources */,
 				66E922D913949426004571A5 /* NoteMapViewController.xib in Resources */,
+				66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +539,7 @@
 				66586CDD13948EA400A934EF /* Attachment.m in Sources */,
 				66E922D813949426004571A5 /* NoteMapViewController.m in Sources */,
 				66E922DC13949459004571A5 /* NoteAttachmentsViewController.m in Sources */,
+				66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
