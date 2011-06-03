@@ -8,6 +8,8 @@
 
 #import "NearbyViewController.h"
 #import "MKMapView_ZoomToFit.h"
+#import "Note.h"
+#import "NoteViewController.h"
 
 @interface NearbyViewController()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -39,7 +41,7 @@
     if (!mapView) {
         mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
         mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        mapView.showsUserLocation = YES;
+        mapView.delegate = self;
     }
     return mapView;
 }
@@ -52,18 +54,30 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)sender
             viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *reuseIdentifier = @"NearbyAnnotationView";
-    MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
+    if (annotation == self.mapView.userLocation) return nil;
+    
+    static NSString *reuseIdentifier = @"NearbyViewController.AnnotationView";
+    
+    MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
     if (!aView) {
         aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
                                                  reuseIdentifier:reuseIdentifier] autorelease];
-        aView.animatesDrop = YES;
-        aView.canShowCallout = YES;
+        ((MKPinAnnotationView *)aView).animatesDrop = YES;
         aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        aView.canShowCallout = YES;
     }
     aView.annotation = annotation;
     
     return aView;
+}
+
+- (void)mapView:(MKMapView *)mapView
+ annotationView:(MKAnnotationView *)view
+calloutAccessoryControlTapped:(UIControl *)control {
+    if ([view.annotation isKindOfClass:[Note class]]) {
+        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:(Note *)view.annotation] autorelease];
+        [self.navigationController pushViewController:noteViewer animated:YES];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -78,16 +92,12 @@
                                                                               action:@selector(centerOnUser:)] autorelease];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    // should be set according to number of "nearby" notes
-    self.navigationController.tabBarItem.badgeValue = @"1";
-    
-    
-    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:self.mapView.annotations];
-    [annotationsToRemove removeObject:self.mapView.userLocation];
-    [self.mapView removeAnnotations:annotationsToRemove];
+    self.mapView.showsUserLocation = NO;
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.mapView.showsUserLocation = YES;
     
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     request.entity = [NSEntityDescription entityForName:@"Note"
@@ -98,11 +108,22 @@
                                                               selector:@selector(localizedCaseInsensitiveCompare:)]];
     
     NSError *error = nil;
-    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request
+                                                                       error:&error];
     
     if ([fetchedObjects count]) {
         [self.mapView addAnnotations:fetchedObjects];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // should be set according to number of "nearby" notes
+    self.navigationController.tabBarItem.badgeValue = @"1";
+    
+    // should zoom to fit user
+    [self.mapView zoomToFitUserAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

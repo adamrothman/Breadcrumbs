@@ -9,6 +9,7 @@
 #import "NoteEditorController.h"
 #import "NSManagedObjectContext_Autosave.h"
 #import "NoteMapViewController.h"
+#import "NoteTagsViewController.h"
 
 #define SECONDS_PER_DAY 86400
 
@@ -31,11 +32,6 @@
 @synthesize dateFormatter;
 @synthesize deletionActionSheet;
 
-/** in view controller
- MyController = [alloc init]
- UIView frontView = controller.view;
- */
-
 #pragma mark - Designated initializer
 
 - (id)initWithNote:(Note *)aNote {
@@ -46,21 +42,10 @@
     return self;
 }
 
-#pragma mark - Properties
+#pragma mark - Convenience
 
-- (UIView *)view {
-    if (!view) {
-        [[NSBundle mainBundle] loadNibNamed:@"NoteEditor" owner:self options:nil];
-        view = self.editorView;
-    }
-    return view;
-}
-
-- (void)setEditorView:(UIView *)newEditorView {
-    [editorView release];
-    editorView = [newEditorView retain];
-    
-    // set up days ago label
+- (void)populateViewFields {
+    // days ago label
     NSString *daysAgo = nil;
     NSInteger daysSinceModified = -1 * [self.note.modified timeIntervalSinceNow] / SECONDS_PER_DAY;
     if (daysSinceModified == 0) {
@@ -72,23 +57,33 @@
     }
     self.daysAgoLabel.text = daysAgo;
     
-    // set up date label
+    // date label
     NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"MMMMd"
                                                              options:0
                                                               locale:[NSLocale currentLocale]];
     [self.dateFormatter setDateFormat:formatString];
     self.dateLabel.text = [self.dateFormatter stringFromDate:self.note.modified];
     
-    // set up time label
+    // time label
     formatString = [NSDateFormatter dateFormatFromTemplate:@"h:mma"
                                                    options:0
                                                     locale:[NSLocale currentLocale]];
     [self.dateFormatter setDateFormat:formatString];
     self.timeLabel.text = [self.dateFormatter stringFromDate:self.note.modified];
     
-    // fill in note info
+    // note data
     self.titleTextField.text = self.note.title;
     self.bodyTextView.text = self.note.text;
+}
+
+#pragma mark - Properties
+
+- (UIView *)view {
+    if (!editorView) {
+        [[NSBundle mainBundle] loadNibNamed:@"NoteEditor" owner:self options:nil];
+    }
+    [self populateViewFields];
+    return editorView;
 }
 
 - (NSDateFormatter *)dateFormatter {
@@ -130,15 +125,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 - (IBAction)showOnMap:(UIButton *)sender {
     NoteMapViewController *nmvc = [[[NoteMapViewController alloc] initWithNote:self.note] autorelease];
     nmvc.delegate = self.delegate;
-    [self.delegate displayModally:nmvc animated:YES];
+    
+    UINavigationController *nmnvc = [[[UINavigationController alloc] initWithRootViewController:nmvc] autorelease];
+    [self.delegate modalDisplay:nmnvc animated:YES];
+}
+
+- (void)dismissTags:(UIBarButtonItem *)sender {
+    [self.delegate modalDismiss:YES];
 }
 
 - (IBAction)manageTags:(UIButton *)sender {
-    NSLog(@"NYE: modal presentation of tag manager");
+    NoteTagsViewController *ntvc = [[[NoteTagsViewController alloc] initWithNote:self.note] autorelease];
+    ntvc.delegate = self.delegate;
+    
+    UINavigationController *ntnvc = [[[UINavigationController alloc] initWithRootViewController:ntvc] autorelease];
+    [self.delegate modalDisplay:ntnvc animated:YES];
 }
 
 - (IBAction)showAttachments:(UIButton *)sender {
-    NSLog(@"NYE: card flip animation to show attachments");
+    [self.delegate showAttachments];
 }
 
 #pragma mark - Memory management
@@ -156,6 +161,5 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     [deletionActionSheet release];
     [super dealloc];
 }
-
 
 @end

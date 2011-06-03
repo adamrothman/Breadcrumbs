@@ -17,13 +17,15 @@
 		664621F01388D5BB0041FC2C /* 164-glasses-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 664621EE1388D5BB0041FC2C /* 164-glasses-2@2x.png */; };
 		664C25D11389ABD000180B92 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C25D01389ABD000180B92 /* NearbyViewController.m */; };
 		664C25D81389B3DE00180B92 /* Note_MKAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C25D71389B3DE00180B92 /* Note_MKAnnotation.m */; };
+		664FDA9E139998AE00DC09DF /* 14-tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 664FDA9C139998AE00DC09DF /* 14-tag.png */; };
+		664FDA9F139998AE00DC09DF /* 14-tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 664FDA9D139998AE00DC09DF /* 14-tag@2x.png */; };
+		664FDAA3139999DA00DC09DF /* Tag_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 664FDAA2139999DA00DC09DF /* Tag_Create.m */; };
 		66586CD41394601700A934EF /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 66586CD21394601700A934EF /* trash.png */; };
 		66586CD51394601700A934EF /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66586CD31394601700A934EF /* trash@2x.png */; };
 		66586CDD13948EA400A934EF /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66586CDC13948EA400A934EF /* Attachment.m */; };
 		665F2915138D098F004D628B /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2913138D098F004D628B /* 07-map-marker.png */; };
 		665F2916138D098F004D628B /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2914138D098F004D628B /* 07-map-marker@2x.png */; };
 		666BD509138F403A00989A43 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666BD507138F403A00989A43 /* NoteViewController.m */; };
-		666BD50A138F403A00989A43 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666BD508138F403A00989A43 /* NoteViewController.xib */; };
 		6696B79713904F43005632EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B79613904F43005632EC /* QuartzCore.framework */; };
 		6696B7A213905EA7005632EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B7A113905EA7005632EC /* MobileCoreServices.framework */; };
 		6696B7B113907805005632EC /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7AF13907805005632EC /* 86-camera.png */; };
@@ -34,13 +36,14 @@
 		669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */; };
 		66B0A261138A6186001D2280 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A260138A6186001D2280 /* NoteCell.m */; };
 		66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A264138A61C6001D2280 /* NoteCellView.m */; };
+		66E555441395FB6600BD2A40 /* NoteAttachmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */; };
+		66E555461395FB7900BD2A40 /* NoteAttachments.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E555451395FB7900BD2A40 /* NoteAttachments.xib */; };
 		66E922D813949426004571A5 /* NoteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E922D613949426004571A5 /* NoteMapViewController.m */; };
 		66E922D913949426004571A5 /* NoteMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E922D713949426004571A5 /* NoteMapViewController.xib */; };
-		66E922DC13949459004571A5 /* NoteAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E922DB13949459004571A5 /* NoteAttachmentsViewController.m */; };
-		66F40113138F028000240B71 /* NoteManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F40111138F027F00240B71 /* NoteManagerViewController.m */; };
-		66F40114138F028000240B71 /* NoteManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F40112138F027F00240B71 /* NoteManagerViewController.xib */; };
 		66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F532CB1395B405001A46B8 /* NoteEditorController.m */; };
 		66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F532CE1395B449001A46B8 /* NoteEditor.xib */; };
+		66F8713B13996832009A59DA /* NoteTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8713913996832009A59DA /* NoteTagsViewController.m */; };
+		66FCA7AD13983DAC00BC8BC4 /* LocationMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FCA7AC13983DAC00BC8BC4 /* LocationMonitor.m */; };
 		66FF1DBA13879AEF009E4F89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DB913879AEF009E4F89 /* UIKit.framework */; };
 		66FF1DBC13879AEF009E4F89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBB13879AEF009E4F89 /* Foundation.framework */; };
 		66FF1DBE13879AEF009E4F89 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FF1DBD13879AEF009E4F89 /* CoreGraphics.framework */; };
@@ -55,7 +58,7 @@
 		66FF1DEE1388763C009E4F89 /* 68-paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DEC1388763C009E4F89 /* 68-paperclip.png */; };
 		66FF1DEF1388763C009E4F89 /* 68-paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */; };
 		66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */; };
-		66FF1E04138899D6009E4F89 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E03138899D6009E4F89 /* NotesViewController.m */; };
+		66FF1E04138899D6009E4F89 /* NoteBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E03138899D6009E4F89 /* NoteBrowserViewController.m */; };
 		66FF1E2C1388C34E009E4F89 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2B1388C34E009E4F89 /* Note.m */; };
 		66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2E1388C34E009E4F89 /* Tag.m */; };
 		66FF1E321388C866009E4F89 /* Note_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E311388C866009E4F89 /* Note_Create.m */; };
@@ -78,6 +81,10 @@
 		664C25D01389ABD000180B92 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		664C25D61389B3DE00180B92 /* Note_MKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note_MKAnnotation.h; sourceTree = "<group>"; };
 		664C25D71389B3DE00180B92 /* Note_MKAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note_MKAnnotation.m; sourceTree = "<group>"; };
+		664FDA9C139998AE00DC09DF /* 14-tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "14-tag.png"; sourceTree = "<group>"; };
+		664FDA9D139998AE00DC09DF /* 14-tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "14-tag@2x.png"; sourceTree = "<group>"; };
+		664FDAA1139999DA00DC09DF /* Tag_Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag_Create.h; sourceTree = "<group>"; };
+		664FDAA2139999DA00DC09DF /* Tag_Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag_Create.m; sourceTree = "<group>"; };
 		66586CD21394601700A934EF /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		66586CD31394601700A934EF /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
 		66586CDB13948EA400A934EF /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
@@ -86,7 +93,6 @@
 		665F2914138D098F004D628B /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker@2x.png"; sourceTree = "<group>"; };
 		666BD506138F403A00989A43 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		666BD507138F403A00989A43 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
-		666BD508138F403A00989A43 /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
 		6696B79613904F43005632EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6696B7A113905EA7005632EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6696B7AF13907805005632EC /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
@@ -101,17 +107,19 @@
 		66B0A260138A6186001D2280 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		66B0A263138A61C6001D2280 /* NoteCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCellView.h; sourceTree = "<group>"; };
 		66B0A264138A61C6001D2280 /* NoteCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCellView.m; sourceTree = "<group>"; };
+		66E555421395FB6600BD2A40 /* NoteAttachmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteAttachmentsController.h; sourceTree = "<group>"; };
+		66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteAttachmentsController.m; sourceTree = "<group>"; };
+		66E555451395FB7900BD2A40 /* NoteAttachments.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteAttachments.xib; sourceTree = "<group>"; };
 		66E922D513949426004571A5 /* NoteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteMapViewController.h; sourceTree = "<group>"; };
 		66E922D613949426004571A5 /* NoteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteMapViewController.m; sourceTree = "<group>"; };
 		66E922D713949426004571A5 /* NoteMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteMapViewController.xib; sourceTree = "<group>"; };
-		66E922DA13949459004571A5 /* NoteAttachmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteAttachmentsViewController.h; sourceTree = "<group>"; };
-		66E922DB13949459004571A5 /* NoteAttachmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteAttachmentsViewController.m; sourceTree = "<group>"; };
-		66F40110138F027F00240B71 /* NoteManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManagerViewController.h; sourceTree = "<group>"; };
-		66F40111138F027F00240B71 /* NoteManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManagerViewController.m; sourceTree = "<group>"; };
-		66F40112138F027F00240B71 /* NoteManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteManagerViewController.xib; sourceTree = "<group>"; };
-		66F532CA1395B405001A46B8 /* NoteEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NoteEditorController.h; sourceTree = "<group>"; };
+		66F532CA1395B405001A46B8 /* NoteEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteEditorController.h; sourceTree = "<group>"; };
 		66F532CB1395B405001A46B8 /* NoteEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteEditorController.m; sourceTree = "<group>"; };
 		66F532CE1395B449001A46B8 /* NoteEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteEditor.xib; sourceTree = "<group>"; };
+		66F8713813996832009A59DA /* NoteTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTagsViewController.h; sourceTree = "<group>"; };
+		66F8713913996832009A59DA /* NoteTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTagsViewController.m; sourceTree = "<group>"; };
+		66FCA7AB13983DAC00BC8BC4 /* LocationMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMonitor.h; sourceTree = "<group>"; };
+		66FCA7AC13983DAC00BC8BC4 /* LocationMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMonitor.m; sourceTree = "<group>"; };
 		66FF1DB513879AEF009E4F89 /* Breadcrumbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breadcrumbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FF1DB913879AEF009E4F89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66FF1DBB13879AEF009E4F89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,8 +139,8 @@
 		66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip@2x.png"; sourceTree = "<group>"; };
 		66FF1DF11388768F009E4F89 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		66FF1E02138899D6009E4F89 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
-		66FF1E03138899D6009E4F89 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		66FF1E02138899D6009E4F89 /* NoteBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrowserViewController.h; sourceTree = "<group>"; };
+		66FF1E03138899D6009E4F89 /* NoteBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrowserViewController.m; sourceTree = "<group>"; };
 		66FF1E2A1388C34D009E4F89 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		66FF1E2B1388C34E009E4F89 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		66FF1E2D1388C34E009E4F89 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
@@ -204,23 +212,27 @@
 			children = (
 				66FF1E2D1388C34E009E4F89 /* Tag.h */,
 				66FF1E2E1388C34E009E4F89 /* Tag.m */,
+				664FDAA1139999DA00DC09DF /* Tag_Create.h */,
+				664FDAA2139999DA00DC09DF /* Tag_Create.m */,
 			);
 			name = Tag;
 			sourceTree = "<group>";
 		};
-		66586CDE1394905700A934EF /* Tag Browser */ = {
+		66586CDE1394905700A934EF /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				66F8713813996832009A59DA /* NoteTagsViewController.h */,
+				66F8713913996832009A59DA /* NoteTagsViewController.m */,
 			);
-			name = "Tag Browser";
+			name = Tags;
 			sourceTree = "<group>";
 		};
 		665F292E138D20DE004D628B /* Attachments */ = {
 			isa = PBXGroup;
 			children = (
-				66E922DA13949459004571A5 /* NoteAttachmentsViewController.h */,
-				66E922DB13949459004571A5 /* NoteAttachmentsViewController.m */,
-				66E922CF1394937E004571A5 /* OLD_Manager */,
+				66E555421395FB6600BD2A40 /* NoteAttachmentsController.h */,
+				66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */,
+				66E555451395FB7900BD2A40 /* NoteAttachments.xib */,
 			);
 			name = Attachments;
 			sourceTree = "<group>";
@@ -233,7 +245,9 @@
 				66FF1E331388CB8D009E4F89 /* Categories */,
 				66FF1E0E1388B6FB009E4F89 /* Managed Objects */,
 				669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */,
+				66FCA7AF13983DB400BC8BC4 /* Location Monitor */,
 				66FF1DF013887669009E4F89 /* CoreDataTableViewController */,
+				66F8712513995C07009A59DA /* TagBrowserTableViewController */,
 				66627721138C765D00E41287 /* Main View Controllers */,
 			);
 			name = Classes;
@@ -244,23 +258,20 @@
 			children = (
 				664C25C51389AADC00180B92 /* Nearby */,
 				66FF1DDF13886E98009E4F89 /* Note Browser */,
-				66627722138C78B700E41287 /* Single Note */,
-				66586CDE1394905700A934EF /* Tag Browser */,
+				66627722138C78B700E41287 /* Note Viewer */,
 			);
 			name = "Main View Controllers";
 			sourceTree = "<group>";
 		};
-		66627722138C78B700E41287 /* Single Note */ = {
+		66627722138C78B700E41287 /* Note Viewer */ = {
 			isa = PBXGroup;
 			children = (
 				666BD506138F403A00989A43 /* NoteViewController.h */,
 				666BD507138F403A00989A43 /* NoteViewController.m */,
-				666BD508138F403A00989A43 /* NoteViewController.xib */,
 				66F532CD1395B40A001A46B8 /* Editor */,
 				665F292E138D20DE004D628B /* Attachments */,
-				66F40115138F028500240B71 /* Map */,
 			);
-			name = "Single Note";
+			name = "Note Viewer";
 			sourceTree = "<group>";
 		};
 		669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */ = {
@@ -283,16 +294,6 @@
 			name = "Note Cell";
 			sourceTree = "<group>";
 		};
-		66E922CF1394937E004571A5 /* OLD_Manager */ = {
-			isa = PBXGroup;
-			children = (
-				66F40110138F027F00240B71 /* NoteManagerViewController.h */,
-				66F40111138F027F00240B71 /* NoteManagerViewController.m */,
-				66F40112138F027F00240B71 /* NoteManagerViewController.xib */,
-			);
-			name = OLD_Manager;
-			sourceTree = "<group>";
-		};
 		66F40115138F028500240B71 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,8 +310,26 @@
 				66F532CA1395B405001A46B8 /* NoteEditorController.h */,
 				66F532CB1395B405001A46B8 /* NoteEditorController.m */,
 				66F532CE1395B449001A46B8 /* NoteEditor.xib */,
+				66F40115138F028500240B71 /* Map */,
+				66586CDE1394905700A934EF /* Tags */,
 			);
 			name = Editor;
+			sourceTree = "<group>";
+		};
+		66F8712513995C07009A59DA /* TagBrowserTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TagBrowserTableViewController;
+			sourceTree = "<group>";
+		};
+		66FCA7AF13983DB400BC8BC4 /* Location Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				66FCA7AB13983DAC00BC8BC4 /* LocationMonitor.h */,
+				66FCA7AC13983DAC00BC8BC4 /* LocationMonitor.m */,
+			);
+			name = "Location Monitor";
 			sourceTree = "<group>";
 		};
 		66FF1DAA13879AEF009E4F89 = {
@@ -371,8 +390,8 @@
 		66FF1DDF13886E98009E4F89 /* Note Browser */ = {
 			isa = PBXGroup;
 			children = (
-				66FF1E02138899D6009E4F89 /* NotesViewController.h */,
-				66FF1E03138899D6009E4F89 /* NotesViewController.m */,
+				66FF1E02138899D6009E4F89 /* NoteBrowserViewController.h */,
+				66FF1E03138899D6009E4F89 /* NoteBrowserViewController.m */,
 				66B0A266138A61ED001D2280 /* Note Cell */,
 			);
 			name = "Note Browser";
@@ -392,6 +411,8 @@
 			children = (
 				665F2913138D098F004D628B /* 07-map-marker.png */,
 				665F2914138D098F004D628B /* 07-map-marker@2x.png */,
+				664FDA9C139998AE00DC09DF /* 14-tag.png */,
+				664FDA9D139998AE00DC09DF /* 14-tag@2x.png */,
 				664621E91388D4B80041FC2C /* 15-tags.png */,
 				664621EA1388D4B80041FC2C /* 15-tags@2x.png */,
 				66FF1DE81388743B009E4F89 /* 66-microphone.png */,
@@ -500,14 +521,15 @@
 				669A9AD1138CB1FB009F56F2 /* mini-location-arrow-white@2x.png in Resources */,
 				665F2915138D098F004D628B /* 07-map-marker.png in Resources */,
 				665F2916138D098F004D628B /* 07-map-marker@2x.png in Resources */,
-				66F40114138F028000240B71 /* NoteManagerViewController.xib in Resources */,
-				666BD50A138F403A00989A43 /* NoteViewController.xib in Resources */,
 				6696B7B113907805005632EC /* 86-camera.png in Resources */,
 				6696B7B213907805005632EC /* 86-camera@2x.png in Resources */,
 				66586CD41394601700A934EF /* trash.png in Resources */,
 				66586CD51394601700A934EF /* trash@2x.png in Resources */,
 				66E922D913949426004571A5 /* NoteMapViewController.xib in Resources */,
 				66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */,
+				66E555461395FB7900BD2A40 /* NoteAttachments.xib in Resources */,
+				664FDA9E139998AE00DC09DF /* 14-tag.png in Resources */,
+				664FDA9F139998AE00DC09DF /* 14-tag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +544,7 @@
 				66FF1DCC13879AEF009E4F89 /* BreadcrumbsAppDelegate.m in Sources */,
 				66FF1DD213879AEF009E4F89 /* Breadcrumbs.xcdatamodeld in Sources */,
 				66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */,
-				66FF1E04138899D6009E4F89 /* NotesViewController.m in Sources */,
+				66FF1E04138899D6009E4F89 /* NoteBrowserViewController.m in Sources */,
 				66FF1E2C1388C34E009E4F89 /* Note.m in Sources */,
 				66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */,
 				66FF1E321388C866009E4F89 /* Note_Create.m in Sources */,
@@ -533,13 +555,15 @@
 				66B0A261138A6186001D2280 /* NoteCell.m in Sources */,
 				66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */,
 				669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */,
-				66F40113138F028000240B71 /* NoteManagerViewController.m in Sources */,
 				666BD509138F403A00989A43 /* NoteViewController.m in Sources */,
 				6696B7B51390CEF8005632EC /* Attachment_Create.m in Sources */,
 				66586CDD13948EA400A934EF /* Attachment.m in Sources */,
 				66E922D813949426004571A5 /* NoteMapViewController.m in Sources */,
-				66E922DC13949459004571A5 /* NoteAttachmentsViewController.m in Sources */,
 				66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */,
+				66E555441395FB6600BD2A40 /* NoteAttachmentsController.m in Sources */,
+				66FCA7AD13983DAC00BC8BC4 /* LocationMonitor.m in Sources */,
+				66F8713B13996832009A59DA /* NoteTagsViewController.m in Sources */,
+				664FDAA3139999DA00DC09DF /* Tag_Create.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

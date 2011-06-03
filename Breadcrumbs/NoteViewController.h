@@ -7,16 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteEditorController.h"
+#import "NoteAttachmentsController.h"
 #import "Note.h"
-#import "NoteMapViewController.h"
-#import "NoteManagerViewController.h"
 
-@interface NoteViewController : UIViewController <NoteMapDelegate>
-@property (nonatomic, retain) IBOutlet UILabel *daysAgoLabel;
-@property (nonatomic, retain) IBOutlet UILabel *dateLabel;
-@property (nonatomic, retain) IBOutlet UILabel *timeLabel;
-@property (nonatomic, retain) IBOutlet UITextField *titleTextField;
-@property (nonatomic, retain) IBOutlet UITextView *bodyTextView;
-
+@interface NoteViewController : UIViewController <NoteEditorDelegate, NoteAttachmentsDelegate>
 - (id)initWithNote:(Note *)aNote;
 @end

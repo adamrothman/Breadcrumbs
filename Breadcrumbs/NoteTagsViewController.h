@@ -1,19 +1,17 @@
 //
-//  NoteMapViewController.h
+//  NoteTagsViewController.h
 //  Breadcrumbs
 //
-//  Created by Adam Rothman on 5/30/11.
+//  Created by Adam Rothman on 6/3/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
-#import "Note.h"
+#import "CoreDataTableViewController.h"
 #import "NoteEditorController.h"
 
-@interface NoteMapViewController : UIViewController <MKMapViewDelegate>
+@interface NoteTagsViewController : CoreDataTableViewController
 @property (nonatomic, assign) id <NoteEditorDelegate> delegate;
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (id)initWithNote:(Note *)aNote;
 @end

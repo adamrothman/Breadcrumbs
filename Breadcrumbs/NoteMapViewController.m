@@ -35,58 +35,62 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Button actions
-
-- (IBAction)relocate:(UIButton *)sender {
-    NSLog(@"NYE: relocate note to current location");
-}
-
-- (IBAction)dismissMap:(UIButton *)sender {
-    [self.delegate dismissMap:YES];
-}
-
 #pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)sender
             viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *reuseIdentifier = @"NearbyAnnotationView";
-    MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
+    if (annotation == self.mapView.userLocation) return nil;
+    
+    static NSString *reuseIdentifier = @"NoteMapViewController.AnnotationView";
+    
+    MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
     if (!aView) {
         aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
                                                  reuseIdentifier:reuseIdentifier] autorelease];
-        aView.animatesDrop = YES;
+        ((MKPinAnnotationView *)aView).animatesDrop = YES;
         aView.canShowCallout = YES;
-        aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     }
     aView.annotation = annotation;
     
-    // another place having a unique would be good
+    // another place having a unique might be nice
     if (annotation.coordinate.latitude == self.note.coordinate.latitude &&
         annotation.coordinate.longitude == self.note.coordinate.longitude &&
         [annotation.title isEqualToString:self.note.title]) {
-        aView.pinColor = MKPinAnnotationColorPurple;
+        ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorPurple;
         aView.draggable = YES;
     } else {
-        aView.pinColor = MKPinAnnotationColorRed;
+        ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorRed;
         aView.draggable = NO;
     }
     
     return aView;
 }
 
+#pragma mark - Button actions
+
+- (void)done:(UIButton *)sender {
+    [self.delegate modalDismiss:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.mapView.delegate = self;
+    
+    self.navigationItem.title = @"Drag to move";
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                            target:self
+                                                                                            action:@selector(done:)] autorelease];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:self.mapView.annotations];
-    [annotationsToRemove removeObject:self.mapView.userLocation];
-    [self.mapView removeAnnotations:annotationsToRemove];
+    self.mapView.showsUserLocation = NO;
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.mapView.showsUserLocation = YES;
     
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     request.entity = [NSEntityDescription entityForName:@"Note"
@@ -97,7 +101,8 @@
                                                               selector:@selector(localizedCaseInsensitiveCompare:)]];
     
     NSError *error = nil;
-    NSArray *fetchedObjects = [[self.note managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *fetchedObjects = [[self.note managedObjectContext] executeFetchRequest:request
+                                                                              error:&error];
     
     if ([fetchedObjects count]) {
         [self.mapView addAnnotations:fetchedObjects];

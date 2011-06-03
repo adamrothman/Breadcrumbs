@@ -8,7 +8,7 @@
 
 #import "BreadcrumbsAppDelegate.h"
 #import "NearbyViewController.h"
-#import "NotesViewController.h"
+#import "NoteBrowserViewController.h"
 
 @implementation BreadcrumbsAppDelegate
 
@@ -28,8 +28,8 @@
                                                           image:[UIImage imageNamed:@"73-radar"]
                                                             tag:0] autorelease];
     
-    NotesViewController *notes = [[[NotesViewController alloc] initWithStyle:UITableViewStylePlain
-                                                      inManagedObjectContext:self.managedObjectContext] autorelease];
+    NoteBrowserViewController *notes = [[[NoteBrowserViewController alloc] initWithStyle:UITableViewStylePlain
+                                                                  inManagedObjectContext:self.managedObjectContext] autorelease];
     UINavigationController *notesNVC = [[[UINavigationController alloc] initWithRootViewController:notes] autorelease];
     notesNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Notes"
                                                          image:[UIImage imageNamed:@"179-notepad"]

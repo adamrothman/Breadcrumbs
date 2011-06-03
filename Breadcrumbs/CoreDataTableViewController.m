@@ -45,7 +45,7 @@
                ![self.currentSearch isEqualToString:self.searchDisplayController.searchBar.text]) {
 		self.currentSearch = self.searchDisplayController.searchBar.text;
         NSString *searchPredicateFormat = [NSString stringWithFormat:@"%@ contains[c] %@", self.searchKey, @"%@"];
-        NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:searchPredicateFormat, self.searchDisplayController.searchBar.text]];
+        NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:searchPredicateFormat, self.searchDisplayController.searchBar.text];
         [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
 		self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:searchPredicate, self.normalPredicate , nil]];
 		[self performFetchForTableView:tableView];
@@ -96,33 +96,31 @@
     if (self.view.window) [self performFetchForTableView:self.tableView];
 }
 
-#pragma mark - UISearchDisplayController delegate
+#pragma mark - UISearchDisplayDelegate
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
     [self fetchedResultsControllerForTableView:self.tableView];
 }
 
+// Preserve custom row heights when searching.
+- (void)searchDisplayController:(UISearchDisplayController *)controller
+ willShowSearchResultsTableView:(UITableView *)searchTableView {
+    searchTableView.rowHeight = self.tableView.rowHeight;
+}
+
 #pragma mark - Overridable API
 
-/**
- * Configure the cell for each object.
- */
+// Configure the cell for each object.
 - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForManagedObject:(NSManagedObject *)managedObject { return nil; }
 
-/**
- * Called when an object's cell is selected.
- */
+// Called when an object's cell is selected.
 - (void)didSelectManagedObject:(NSManagedObject *)managedObject {}
 
-/**
- * Allow removal of an object's cell from the table?
- */
+// Allow removal of an object's cell from the table?
 - (BOOL)canRemoveManagedObject:(NSManagedObject *)managedObject { return NO; }
 
-/**
- * Called when a cell is removed from the table view.
- */
+// Called when a cell is removed from the table view.
 - (void)didRemoveManagedObject:(NSManagedObject *)managedObject {}
 
 #pragma mark - UITableViewDataSource

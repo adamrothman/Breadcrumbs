@@ -24,7 +24,7 @@
 }
 
 - (NSString *)subtitle {
-    return self.text;
+    return [self.text substringToIndex:15];
 }
 
 @end

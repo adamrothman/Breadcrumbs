@@ -39,8 +39,9 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
             note.text = [info objectForKey:@"text"];
             note.location = [info objectForKey:@"location"];
             note.modified = [info objectForKey:@"modified"];
-            note.attachments = [info objectForKey:@"attachments"];
-            note.tags = [info objectForKey:@"tags"];
+            
+            // note.attachments = [info objectForKey:@"attachments"];
+            // note.tags = [info objectForKey:@"tags"];
             
             [NSManagedObjectContext autosave:context];
         }
