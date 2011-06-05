@@ -2,7 +2,7 @@
 //  Attachment.m
 //  Breadcrumbs
 //
-//  Created by Adam Rothman on 5/30/11.
+//  Created by Adam Rothman on 6/5/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,10 +11,11 @@
 
 
 @implementation Attachment
-@dynamic path;
+@dynamic unique;
 @dynamic bytes;
-@dynamic type;
 @dynamic added;
+@dynamic path;
+@dynamic type;
 @dynamic owner;
 
 

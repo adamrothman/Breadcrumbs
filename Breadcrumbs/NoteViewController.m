@@ -48,18 +48,6 @@
 
 #pragma mark - Convenience
 
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
-}
-
 - (void)saveChanges {
     BOOL needsSave = NO;
     
@@ -76,6 +64,20 @@
         self.note.modified = [NSDate date];
         [NSManagedObjectContext autosave:[self.note managedObjectContext]];
     }
+}
+
+#pragma mark - Keyboard events
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -156,7 +158,7 @@
                     completion:nil];
 }
 
-#pragma mark - NoteEditorDelegate, NoteAttachmentsDelegate
+#pragma mark - NoteEditorDelegate
 
 - (void)dismissNoteViewAnimated:(BOOL)animated {
     [self.navigationController popViewControllerAnimated:animated];
@@ -164,14 +166,6 @@
 
 - (void)showAttachments {
     [self swipe:nil];
-}
-
-- (void)modalDisplay:(UIViewController *)viewController animated:(BOOL)animated {
-    [self presentModalViewController:viewController animated:animated];
-}
-
-- (void)modalDismiss:(BOOL)animated {
-    [self dismissModalViewControllerAnimated:animated];
 }
 
 #pragma mark - View lifecycle

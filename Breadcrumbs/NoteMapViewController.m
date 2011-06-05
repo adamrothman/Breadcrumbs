@@ -35,6 +35,17 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Properties
+
+- (MKMapView *)mapView {
+    if (!mapView) {
+        mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+        mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        mapView.delegate = self;
+    }
+    return mapView;
+}
+
 #pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)sender
@@ -69,15 +80,13 @@
 #pragma mark - Button actions
 
 - (void)done:(UIButton *)sender {
-    [self.delegate modalDismiss:YES];
+    [self.delegate dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.mapView.delegate = self;
+- (void)loadView {
+    self.view = self.mapView;
     
     self.navigationItem.title = @"Drag to move";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -109,11 +118,6 @@
     }
     
     [self.mapView zoomToFitAnnotation:self.note animated:YES];
-}
-
-- (void)viewDidUnload {
-    self.mapView = nil;
-    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

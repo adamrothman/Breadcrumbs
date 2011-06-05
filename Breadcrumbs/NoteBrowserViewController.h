@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "CoreDataTableViewController.h"
+#import "Tag.h"
 
 @interface NoteBrowserViewController : CoreDataTableViewController
 - (id)initWithStyle:(UITableViewStyle)style
-inManagedObjectContext:(NSManagedObjectContext *)context;
+inManagedObjectContext:(NSManagedObjectContext *)context
+             forTag:(Tag *)aTag;
 @end

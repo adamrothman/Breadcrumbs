@@ -8,6 +8,7 @@
 
 #import "NoteTagsViewController.h"
 #import "Tag.h"
+#import "NSManagedObjectContext_Autosave.h"
 
 @interface NoteTagsViewController()
 @property (nonatomic, retain) Note *note;
@@ -36,6 +37,8 @@
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
                                                                                             cacheName:nil] autorelease];
+            
+            self.note = aNote;
         }
     } else {
         [self release];
@@ -44,8 +47,8 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+    [note release];
     [super dealloc];
 }
 
@@ -61,26 +64,42 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForManagedObject:(NSManagedObject *)managedObject {
-    Tag *tag = (Tag *)managedObject;
-    
     static NSString *reuseIdentifier = @"NoteTagsViewController.TagCell";
+    
+    Tag *tag = (Tag *)managedObject;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:reuseIdentifier] autorelease];
         cell.imageView.image = [UIImage imageNamed:@"14-tag"];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     cell.textLabel.text = tag.title;
+    
+    if ([self.note.tags containsObject:tag]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
 
 - (void)didSelectManagedObject:(NSManagedObject *)managedObject {
     Tag *tag = (Tag *)managedObject;
+    UITableViewCell *cell = [self tableView:self.tableView
+                       cellForManagedObject:managedObject];
     
-    NSLog(@"selected tag: %@", tag.title);
+    NSMutableSet *tags = [[self.note.tags mutableCopy] autorelease];
+    if ([tags containsObject:tag]) {    // remove tag
+        [tags removeObject:tag];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {                            // add tag
+        [tags addObject:tag];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    self.note.tags = tags;
+    [NSManagedObjectContext autosave:[managedObject managedObjectContext]];
 }
 
 - (BOOL)canRemoveManagedObject:(NSManagedObject *)managedObject {
@@ -90,7 +109,7 @@
 #pragma mark - Button actions
 
 - (void)done:(UIButton *)sender {
-    [self.delegate modalDismiss:YES];
+    [self.delegate dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -98,7 +117,7 @@
 - (void)loadView {
     [super loadView];
     
-    self.navigationItem.title = @"Tags";
+    self.navigationItem.title = @"Add/remove tags";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
                                                                                             action:@selector(done:)] autorelease];

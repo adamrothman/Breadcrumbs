@@ -11,6 +11,6 @@
 #import "NoteAttachmentsController.h"
 #import "Note.h"
 
-@interface NoteViewController : UIViewController <NoteEditorDelegate, NoteAttachmentsDelegate>
+@interface NoteViewController : UIViewController <NoteEditorDelegate>
 - (id)initWithNote:(Note *)aNote;
 @end

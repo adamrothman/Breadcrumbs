@@ -127,11 +127,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     nmvc.delegate = self.delegate;
     
     UINavigationController *nmnvc = [[[UINavigationController alloc] initWithRootViewController:nmvc] autorelease];
-    [self.delegate modalDisplay:nmnvc animated:YES];
-}
-
-- (void)dismissTags:(UIBarButtonItem *)sender {
-    [self.delegate modalDismiss:YES];
+    [self.delegate presentModalViewController:nmnvc animated:YES];
 }
 
 - (IBAction)manageTags:(UIButton *)sender {
@@ -139,7 +135,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     ntvc.delegate = self.delegate;
     
     UINavigationController *ntnvc = [[[UINavigationController alloc] initWithRootViewController:ntvc] autorelease];
-    [self.delegate modalDisplay:ntnvc animated:YES];
+    [self.delegate presentModalViewController:ntnvc animated:YES];
 }
 
 - (IBAction)showAttachments:(UIButton *)sender {

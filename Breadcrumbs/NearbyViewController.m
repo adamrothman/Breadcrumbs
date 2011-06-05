@@ -13,11 +13,14 @@
 
 @interface NearbyViewController()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) BOOL hasAppeared;
 @end
 
 @implementation NearbyViewController
 
-@synthesize mapView, managedObjectContext;
+@synthesize mapView;
+
+@synthesize managedObjectContext, hasAppeared;
 
 #pragma mark - Designated initializer
 
@@ -122,8 +125,12 @@ calloutAccessoryControlTapped:(UIControl *)control {
     // should be set according to number of "nearby" notes
     self.navigationController.tabBarItem.badgeValue = @"1";
     
-    // should zoom to fit user
-    [self.mapView zoomToFitUserAnimated:YES];
+    if (!self.hasAppeared) {    // only zoom in on the user the first time this view appears
+        self.hasAppeared = YES;
+        [self.mapView performSelector:@selector(zoomToFitUserAnimated:)
+                           withObject:[NSNumber numberWithBool:YES]
+                           afterDelay:1];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

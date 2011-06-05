@@ -8,7 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "NoteBrowserViewController.h"
-#import "Note_Create.h"
+#import "Note_Lifecycle.h"
 #import "Tag_Create.h"
 #import "NoteCell.h"
 #import "NoteViewController.h"
@@ -16,23 +16,29 @@
 #import "NSManagedObjectContext_Autosave.h"
 
 @interface NoteBrowserViewController()
+@property (nonatomic, retain) Tag *tag;
 @property (nonatomic, retain) NSArray *sortOptions;
 @end
 
 @implementation NoteBrowserViewController
 
-@synthesize sortOptions;
+@synthesize tag, sortOptions;
 
 #pragma mark - Designated initializer
 
 - (id)initWithStyle:(UITableViewStyle)style
-inManagedObjectContext:(NSManagedObjectContext *)context {
+inManagedObjectContext:(NSManagedObjectContext *)context
+             forTag:(Tag *)aTag {
     if (context) {
         self = [super initWithStyle:style];
         if (self) {
             NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
             request.entity = [NSEntityDescription entityForName:@"Note"
                                          inManagedObjectContext:context];
+            if (aTag) {
+                self.tag = aTag;
+                request.predicate = [NSPredicate predicateWithFormat:@"tags contains[c] %@", self.tag];
+            }
             request.sortDescriptors = [NSArray arrayWithObject:
                                        [NSSortDescriptor sortDescriptorWithKey:@"modified"
                                                                      ascending:YES
@@ -65,7 +71,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForManagedObject:(NSManagedObject *)managedObject {
-    static NSString *reuseIdentifier = @"NotesViewController.NoteCell";
+    static NSString *reuseIdentifier = @"NoteBrowserViewController.NoteCell";
     
     NoteCell *cell = (NoteCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
@@ -94,9 +100,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 - (void)didRemoveManagedObject:(NSManagedObject *)managedObject {
     NSLog(@"NYE: pretty view when editing");
     
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    [context deleteObject:managedObject];
-    [NSManagedObjectContext autosave:context];
+    Note *note = (Note *)managedObject;
+    [Note removeNote:note];
 }
 
 #pragma mark - Testing tools
@@ -137,9 +142,16 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
         [Note noteWithInfo:info inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
     }
     
-    [Tag tagWithTitle:@"hello" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    [Tag tagWithTitle:@"world" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    [Tag tagWithTitle:@"sup" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
+    [Tag tagWithTitle:@"food" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
+    [Tag tagWithTitle:@"shopping" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
+    [Tag tagWithTitle:@"errands" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
+    
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [[NSDate alloc] initWithTimeIntervalSinceNow:5];
+//    notification.alertBody = @"You have 1 nearby note.";
+//    notification.alertAction = @"View";
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//    [notification release];
 }
 
 #pragma mark - Button actions
@@ -205,14 +217,20 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 - (void)loadView {
     [super loadView];
     
-    self.navigationItem.title = @"Notes";
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sort"
-                                                                              style:UIBarButtonItemStyleBordered
-                                                                             target:self
-                                                                             action:@selector(sort:)] autorelease];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                            target:self
-                                                                                            action:@selector(newNote:)] autorelease];
+    UIBarButtonItem *sortButton = [[[UIBarButtonItem alloc] initWithTitle:@"Sort"
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(sort:)] autorelease];
+    if (self.tag) {
+        self.navigationItem.title = [self.tag.title capitalizedString];
+        self.navigationItem.rightBarButtonItem = sortButton;
+    } else {
+        self.navigationItem.title = @"Notes";
+        self.navigationItem.leftBarButtonItem = sortButton;
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                                target:self
+                                                                                                action:@selector(newNote:)] autorelease];
+    }
 }
 
 - (void)viewDidLoad {
@@ -229,6 +247,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 #pragma mark - Memory management
 
 - (void)dealloc {
+    [tag release];
     [sortOptions release];
     [super dealloc];
 }

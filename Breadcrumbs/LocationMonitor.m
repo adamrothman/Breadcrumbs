@@ -12,7 +12,7 @@ static LocationMonitor *sharedLocationMonitor;
 
 @implementation LocationMonitor
 
-@synthesize locationManager, isValid;
+@synthesize locationManager, managedObjectContext, nearbyNoteCount;
 
 #pragma mark - Singleton class implementation
 
@@ -62,12 +62,20 @@ static LocationMonitor *sharedLocationMonitor;
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
-    self.isValid = YES;
+    // calculate number of nearby notes
+    NSUInteger nearbyCount = 0;
+    
+    // have to figure out when to display an alert (background) and when not to
+    
+    
+    if (nearbyCount) {
+        // display an alert
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    self.isValid = NO;
+    // do nothing
 }
 
 @end

@@ -2,7 +2,7 @@
 //  Note.m
 //  Breadcrumbs
 //
-//  Created by Adam Rothman on 5/21/11.
+//  Created by Adam Rothman on 6/4/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,10 +12,11 @@
 
 
 @implementation Note
-@dynamic text;
-@dynamic title;
 @dynamic location;
+@dynamic title;
+@dynamic text;
 @dynamic modified;
+@dynamic unique;
 @dynamic tags;
 @dynamic attachments;
 

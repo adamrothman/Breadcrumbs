@@ -12,8 +12,8 @@
 #import "NoteEditorController.h"
 
 @interface NoteMapViewController : UIViewController <MKMapViewDelegate>
-@property (nonatomic, assign) id <NoteEditorDelegate> delegate;
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, assign) UIViewController *delegate;
+@property (nonatomic, retain) MKMapView *mapView;
 
 - (id)initWithNote:(Note *)aNote;
 @end

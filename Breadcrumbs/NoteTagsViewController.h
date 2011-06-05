@@ -11,7 +11,7 @@
 #import "NoteEditorController.h"
 
 @interface NoteTagsViewController : CoreDataTableViewController
-@property (nonatomic, assign) id <NoteEditorDelegate> delegate;
+@property (nonatomic, assign) UIViewController *delegate;
 
 - (id)initWithNote:(Note *)aNote;
 @end

@@ -9,17 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Note.h"
 
-@protocol NoteAttachmentsDelegate
-- (void)modalDisplay:(UIViewController *)viewController animated:(BOOL)animated;
-- (void)modalDismiss:(BOOL)animated;
-@end
-
-@interface NoteAttachmentsController : NSObject
-@property (nonatomic, assign) id <NoteAttachmentsDelegate> delegate;
+@interface NoteAttachmentsController : NSObject <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@property (nonatomic, assign) UIViewController *delegate;
 @property (nonatomic, readonly) UIView *view;
 @property (nonatomic, retain) IBOutlet UIView *attachmentsView;
-@property (nonatomic, retain) IBOutlet UILabel *attachmentsCount;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableView *attachmentsTableView;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 - (id)initWithNote:(Note *)aNote;
 @end

@@ -22,24 +22,33 @@
 		664FDAA3139999DA00DC09DF /* Tag_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 664FDAA2139999DA00DC09DF /* Tag_Create.m */; };
 		66586CD41394601700A934EF /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 66586CD21394601700A934EF /* trash.png */; };
 		66586CD51394601700A934EF /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66586CD31394601700A934EF /* trash@2x.png */; };
-		66586CDD13948EA400A934EF /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66586CDC13948EA400A934EF /* Attachment.m */; };
 		665F2915138D098F004D628B /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2913138D098F004D628B /* 07-map-marker.png */; };
 		665F2916138D098F004D628B /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 665F2914138D098F004D628B /* 07-map-marker@2x.png */; };
 		666BD509138F403A00989A43 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666BD507138F403A00989A43 /* NoteViewController.m */; };
-		6696B79713904F43005632EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B79613904F43005632EC /* QuartzCore.framework */; };
+		667DA9FA139C2910006C3F78 /* 42-photos.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DA9F8139C2910006C3F78 /* 42-photos.png */; };
+		667DA9FB139C2910006C3F78 /* 42-photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DA9F9139C2910006C3F78 /* 42-photos@2x.png */; };
+		667DAA02139C2994006C3F78 /* 194-note-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA00139C2994006C3F78 /* 194-note-2.png */; };
+		667DAA03139C2994006C3F78 /* 194-note-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA01139C2994006C3F78 /* 194-note-2@2x.png */; };
+		667DAA06139C29EB006C3F78 /* 46-movie-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA04139C29EB006C3F78 /* 46-movie-2.png */; };
+		667DAA07139C29EB006C3F78 /* 46-movie-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA05139C29EB006C3F78 /* 46-movie-2@2x.png */; };
+		667DAA0A139C2A5F006C3F78 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA09139C2A5F006C3F78 /* Attachment.m */; };
 		6696B7A213905EA7005632EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B7A113905EA7005632EC /* MobileCoreServices.framework */; };
 		6696B7B113907805005632EC /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7AF13907805005632EC /* 86-camera.png */; };
 		6696B7B213907805005632EC /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7B013907805005632EC /* 86-camera@2x.png */; };
-		6696B7B51390CEF8005632EC /* Attachment_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B7B41390CEF8005632EC /* Attachment_Create.m */; };
+		6696B7B51390CEF8005632EC /* Attachment_Lifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B7B41390CEF8005632EC /* Attachment_Lifecycle.m */; };
 		669A9AD0138CB1FB009F56F2 /* mini-location-arrow-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 669A9ACE138CB1FB009F56F2 /* mini-location-arrow-white.png */; };
 		669A9AD1138CB1FB009F56F2 /* mini-location-arrow-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669A9ACF138CB1FB009F56F2 /* mini-location-arrow-white@2x.png */; };
 		669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */; };
+		66A62B9B139ADE1500BC297E /* TagBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */; };
+		66A62BA8139AFFA500BC297E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A62BA7139AFFA500BC297E /* Note.m */; };
+		66A7363C139B927E00F2616B /* NoteAttachmentsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */; };
+		66A7363E139B954D00F2616B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A7363D139B954D00F2616B /* MediaPlayer.framework */; };
+		66A73643139B99F600F2616B /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A73641139B99F600F2616B /* ImageViewController.m */; };
 		66B0A261138A6186001D2280 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A260138A6186001D2280 /* NoteCell.m */; };
 		66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A264138A61C6001D2280 /* NoteCellView.m */; };
 		66E555441395FB6600BD2A40 /* NoteAttachmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */; };
 		66E555461395FB7900BD2A40 /* NoteAttachments.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E555451395FB7900BD2A40 /* NoteAttachments.xib */; };
 		66E922D813949426004571A5 /* NoteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E922D613949426004571A5 /* NoteMapViewController.m */; };
-		66E922D913949426004571A5 /* NoteMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E922D713949426004571A5 /* NoteMapViewController.xib */; };
 		66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F532CB1395B405001A46B8 /* NoteEditorController.m */; };
 		66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F532CE1395B449001A46B8 /* NoteEditor.xib */; };
 		66F8713B13996832009A59DA /* NoteTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8713913996832009A59DA /* NoteTagsViewController.m */; };
@@ -59,9 +68,8 @@
 		66FF1DEF1388763C009E4F89 /* 68-paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1DED1388763C009E4F89 /* 68-paperclip@2x.png */; };
 		66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */; };
 		66FF1E04138899D6009E4F89 /* NoteBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E03138899D6009E4F89 /* NoteBrowserViewController.m */; };
-		66FF1E2C1388C34E009E4F89 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2B1388C34E009E4F89 /* Note.m */; };
 		66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E2E1388C34E009E4F89 /* Tag.m */; };
-		66FF1E321388C866009E4F89 /* Note_Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E311388C866009E4F89 /* Note_Create.m */; };
+		66FF1E321388C866009E4F89 /* Note_Lifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E311388C866009E4F89 /* Note_Lifecycle.m */; };
 		66FF1E361388CB9D009E4F89 /* MKMapView_ZoomToFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E351388CB9D009E4F89 /* MKMapView_ZoomToFit.m */; };
 		66FF1E391388CC30009E4F89 /* NSManagedObjectContext_Autosave.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF1E381388CC30009E4F89 /* NSManagedObjectContext_Autosave.m */; };
 		66FF1E3C1388CF07009E4F89 /* 179-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FF1E3A1388CF07009E4F89 /* 179-notepad.png */; };
@@ -87,22 +95,35 @@
 		664FDAA2139999DA00DC09DF /* Tag_Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag_Create.m; sourceTree = "<group>"; };
 		66586CD21394601700A934EF /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		66586CD31394601700A934EF /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
-		66586CDB13948EA400A934EF /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
-		66586CDC13948EA400A934EF /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
 		665F2913138D098F004D628B /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		665F2914138D098F004D628B /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker@2x.png"; sourceTree = "<group>"; };
 		666BD506138F403A00989A43 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		666BD507138F403A00989A43 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
-		6696B79613904F43005632EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		667DA9F8139C2910006C3F78 /* 42-photos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-photos.png"; sourceTree = "<group>"; };
+		667DA9F9139C2910006C3F78 /* 42-photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-photos@2x.png"; sourceTree = "<group>"; };
+		667DAA00139C2994006C3F78 /* 194-note-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "194-note-2.png"; sourceTree = "<group>"; };
+		667DAA01139C2994006C3F78 /* 194-note-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "194-note-2@2x.png"; sourceTree = "<group>"; };
+		667DAA04139C29EB006C3F78 /* 46-movie-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "46-movie-2.png"; sourceTree = "<group>"; };
+		667DAA05139C29EB006C3F78 /* 46-movie-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "46-movie-2@2x.png"; sourceTree = "<group>"; };
+		667DAA08139C2A5F006C3F78 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
+		667DAA09139C2A5F006C3F78 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
 		6696B7A113905EA7005632EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6696B7AF13907805005632EC /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		6696B7B013907805005632EC /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
-		6696B7B31390CEF8005632EC /* Attachment_Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment_Create.h; sourceTree = "<group>"; };
-		6696B7B41390CEF8005632EC /* Attachment_Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment_Create.m; sourceTree = "<group>"; };
+		6696B7B31390CEF8005632EC /* Attachment_Lifecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment_Lifecycle.h; sourceTree = "<group>"; };
+		6696B7B41390CEF8005632EC /* Attachment_Lifecycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment_Lifecycle.m; sourceTree = "<group>"; };
 		669A9ACE138CB1FB009F56F2 /* mini-location-arrow-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mini-location-arrow-white.png"; sourceTree = "<group>"; };
 		669A9ACF138CB1FB009F56F2 /* mini-location-arrow-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mini-location-arrow-white@2x.png"; sourceTree = "<group>"; };
 		669A9AEB138CC0FE009F56F2 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
 		669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPicker.m; sourceTree = "<group>"; };
+		66A62B99139ADE1500BC297E /* TagBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagBrowserViewController.h; sourceTree = "<group>"; };
+		66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagBrowserViewController.m; sourceTree = "<group>"; };
+		66A62BA6139AFFA500BC297E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		66A62BA7139AFFA500BC297E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteAttachmentsHeader.xib; sourceTree = "<group>"; };
+		66A7363D139B954D00F2616B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		66A73640139B99F600F2616B /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		66A73641139B99F600F2616B /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		66B0A25F138A6186001D2280 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		66B0A260138A6186001D2280 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		66B0A263138A61C6001D2280 /* NoteCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCellView.h; sourceTree = "<group>"; };
@@ -112,7 +133,6 @@
 		66E555451395FB7900BD2A40 /* NoteAttachments.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteAttachments.xib; sourceTree = "<group>"; };
 		66E922D513949426004571A5 /* NoteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteMapViewController.h; sourceTree = "<group>"; };
 		66E922D613949426004571A5 /* NoteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteMapViewController.m; sourceTree = "<group>"; };
-		66E922D713949426004571A5 /* NoteMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteMapViewController.xib; sourceTree = "<group>"; };
 		66F532CA1395B405001A46B8 /* NoteEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteEditorController.h; sourceTree = "<group>"; };
 		66F532CB1395B405001A46B8 /* NoteEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteEditorController.m; sourceTree = "<group>"; };
 		66F532CE1395B449001A46B8 /* NoteEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteEditor.xib; sourceTree = "<group>"; };
@@ -141,12 +161,10 @@
 		66FF1DF21388768F009E4F89 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		66FF1E02138899D6009E4F89 /* NoteBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrowserViewController.h; sourceTree = "<group>"; };
 		66FF1E03138899D6009E4F89 /* NoteBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrowserViewController.m; sourceTree = "<group>"; };
-		66FF1E2A1388C34D009E4F89 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		66FF1E2B1388C34E009E4F89 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		66FF1E2D1388C34E009E4F89 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		66FF1E2E1388C34E009E4F89 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		66FF1E301388C866009E4F89 /* Note_Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note_Create.h; sourceTree = "<group>"; };
-		66FF1E311388C866009E4F89 /* Note_Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note_Create.m; sourceTree = "<group>"; };
+		66FF1E301388C866009E4F89 /* Note_Lifecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note_Lifecycle.h; sourceTree = "<group>"; };
+		66FF1E311388C866009E4F89 /* Note_Lifecycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note_Lifecycle.m; sourceTree = "<group>"; };
 		66FF1E341388CB9D009E4F89 /* MKMapView_ZoomToFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMapView_ZoomToFit.h; sourceTree = "<group>"; };
 		66FF1E351388CB9D009E4F89 /* MKMapView_ZoomToFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMapView_ZoomToFit.m; sourceTree = "<group>"; };
 		66FF1E371388CC30009E4F89 /* NSManagedObjectContext_Autosave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectContext_Autosave.h; sourceTree = "<group>"; };
@@ -160,8 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A7363E139B954D00F2616B /* MediaPlayer.framework in Frameworks */,
 				6696B7A213905EA7005632EC /* MobileCoreServices.framework in Frameworks */,
-				6696B79713904F43005632EC /* QuartzCore.framework in Frameworks */,
 				664621DC1388D15D0041FC2C /* CoreLocation.framework in Frameworks */,
 				664621DA1388D13D0041FC2C /* MapKit.framework in Frameworks */,
 				66FF1DBA13879AEF009E4F89 /* UIKit.framework in Frameworks */,
@@ -186,10 +204,10 @@
 		664C25D91389B3E600180B92 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				66FF1E2A1388C34D009E4F89 /* Note.h */,
-				66FF1E2B1388C34E009E4F89 /* Note.m */,
-				66FF1E301388C866009E4F89 /* Note_Create.h */,
-				66FF1E311388C866009E4F89 /* Note_Create.m */,
+				66A62BA6139AFFA500BC297E /* Note.h */,
+				66A62BA7139AFFA500BC297E /* Note.m */,
+				66FF1E301388C866009E4F89 /* Note_Lifecycle.h */,
+				66FF1E311388C866009E4F89 /* Note_Lifecycle.m */,
 				664C25D61389B3DE00180B92 /* Note_MKAnnotation.h */,
 				664C25D71389B3DE00180B92 /* Note_MKAnnotation.m */,
 			);
@@ -199,10 +217,10 @@
 		664C25DA1389B3F000180B92 /* Attachment */ = {
 			isa = PBXGroup;
 			children = (
-				66586CDB13948EA400A934EF /* Attachment.h */,
-				66586CDC13948EA400A934EF /* Attachment.m */,
-				6696B7B31390CEF8005632EC /* Attachment_Create.h */,
-				6696B7B41390CEF8005632EC /* Attachment_Create.m */,
+				667DAA08139C2A5F006C3F78 /* Attachment.h */,
+				667DAA09139C2A5F006C3F78 /* Attachment.m */,
+				6696B7B31390CEF8005632EC /* Attachment_Lifecycle.h */,
+				6696B7B41390CEF8005632EC /* Attachment_Lifecycle.m */,
 			);
 			name = Attachment;
 			sourceTree = "<group>";
@@ -233,6 +251,8 @@
 				66E555421395FB6600BD2A40 /* NoteAttachmentsController.h */,
 				66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */,
 				66E555451395FB7900BD2A40 /* NoteAttachments.xib */,
+				66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */,
+				66A7363F139B99C900F2616B /* Image Viewer */,
 			);
 			name = Attachments;
 			sourceTree = "<group>";
@@ -259,6 +279,7 @@
 				664C25C51389AADC00180B92 /* Nearby */,
 				66FF1DDF13886E98009E4F89 /* Note Browser */,
 				66627722138C78B700E41287 /* Note Viewer */,
+				66A62B9D139ADE1900BC297E /* Tag Browser */,
 			);
 			name = "Main View Controllers";
 			sourceTree = "<group>";
@@ -269,7 +290,6 @@
 				666BD506138F403A00989A43 /* NoteViewController.h */,
 				666BD507138F403A00989A43 /* NoteViewController.m */,
 				66F532CD1395B40A001A46B8 /* Editor */,
-				665F292E138D20DE004D628B /* Attachments */,
 			);
 			name = "Note Viewer";
 			sourceTree = "<group>";
@@ -281,6 +301,24 @@
 				669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */,
 			);
 			name = ActionSheetPicker;
+			sourceTree = "<group>";
+		};
+		66A62B9D139ADE1900BC297E /* Tag Browser */ = {
+			isa = PBXGroup;
+			children = (
+				66A62B99139ADE1500BC297E /* TagBrowserViewController.h */,
+				66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */,
+			);
+			name = "Tag Browser";
+			sourceTree = "<group>";
+		};
+		66A7363F139B99C900F2616B /* Image Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				66A73640139B99F600F2616B /* ImageViewController.h */,
+				66A73641139B99F600F2616B /* ImageViewController.m */,
+			);
+			name = "Image Viewer";
 			sourceTree = "<group>";
 		};
 		66B0A266138A61ED001D2280 /* Note Cell */ = {
@@ -299,7 +337,6 @@
 			children = (
 				66E922D513949426004571A5 /* NoteMapViewController.h */,
 				66E922D613949426004571A5 /* NoteMapViewController.m */,
-				66E922D713949426004571A5 /* NoteMapViewController.xib */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -312,6 +349,7 @@
 				66F532CE1395B449001A46B8 /* NoteEditor.xib */,
 				66F40115138F028500240B71 /* Map */,
 				66586CDE1394905700A934EF /* Tags */,
+				665F292E138D20DE004D628B /* Attachments */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -357,8 +395,8 @@
 				664621DB1388D15D0041FC2C /* CoreLocation.framework */,
 				66FF1DBB13879AEF009E4F89 /* Foundation.framework */,
 				664621D91388D13D0041FC2C /* MapKit.framework */,
+				66A7363D139B954D00F2616B /* MediaPlayer.framework */,
 				6696B7A113905EA7005632EC /* MobileCoreServices.framework */,
-				6696B79613904F43005632EC /* QuartzCore.framework */,
 				66FF1DB913879AEF009E4F89 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -415,6 +453,10 @@
 				664FDA9D139998AE00DC09DF /* 14-tag@2x.png */,
 				664621E91388D4B80041FC2C /* 15-tags.png */,
 				664621EA1388D4B80041FC2C /* 15-tags@2x.png */,
+				667DA9F8139C2910006C3F78 /* 42-photos.png */,
+				667DA9F9139C2910006C3F78 /* 42-photos@2x.png */,
+				667DAA04139C29EB006C3F78 /* 46-movie-2.png */,
+				667DAA05139C29EB006C3F78 /* 46-movie-2@2x.png */,
 				66FF1DE81388743B009E4F89 /* 66-microphone.png */,
 				66FF1DE91388743B009E4F89 /* 66-microphone@2x.png */,
 				66FF1DEC1388763C009E4F89 /* 68-paperclip.png */,
@@ -427,6 +469,8 @@
 				664621EE1388D5BB0041FC2C /* 164-glasses-2@2x.png */,
 				66FF1E3A1388CF07009E4F89 /* 179-notepad.png */,
 				66FF1E3B1388CF07009E4F89 /* 179-notepad@2x.png */,
+				667DAA00139C2994006C3F78 /* 194-note-2.png */,
+				667DAA01139C2994006C3F78 /* 194-note-2@2x.png */,
 				669A9ACE138CB1FB009F56F2 /* mini-location-arrow-white.png */,
 				669A9ACF138CB1FB009F56F2 /* mini-location-arrow-white@2x.png */,
 				66586CD21394601700A934EF /* trash.png */,
@@ -525,11 +569,17 @@
 				6696B7B213907805005632EC /* 86-camera@2x.png in Resources */,
 				66586CD41394601700A934EF /* trash.png in Resources */,
 				66586CD51394601700A934EF /* trash@2x.png in Resources */,
-				66E922D913949426004571A5 /* NoteMapViewController.xib in Resources */,
 				66F532CF1395B449001A46B8 /* NoteEditor.xib in Resources */,
 				66E555461395FB7900BD2A40 /* NoteAttachments.xib in Resources */,
 				664FDA9E139998AE00DC09DF /* 14-tag.png in Resources */,
 				664FDA9F139998AE00DC09DF /* 14-tag@2x.png in Resources */,
+				66A7363C139B927E00F2616B /* NoteAttachmentsHeader.xib in Resources */,
+				667DA9FA139C2910006C3F78 /* 42-photos.png in Resources */,
+				667DA9FB139C2910006C3F78 /* 42-photos@2x.png in Resources */,
+				667DAA02139C2994006C3F78 /* 194-note-2.png in Resources */,
+				667DAA03139C2994006C3F78 /* 194-note-2@2x.png in Resources */,
+				667DAA06139C29EB006C3F78 /* 46-movie-2.png in Resources */,
+				667DAA07139C29EB006C3F78 /* 46-movie-2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,9 +595,8 @@
 				66FF1DD213879AEF009E4F89 /* Breadcrumbs.xcdatamodeld in Sources */,
 				66FF1DF31388768F009E4F89 /* CoreDataTableViewController.m in Sources */,
 				66FF1E04138899D6009E4F89 /* NoteBrowserViewController.m in Sources */,
-				66FF1E2C1388C34E009E4F89 /* Note.m in Sources */,
 				66FF1E2F1388C34E009E4F89 /* Tag.m in Sources */,
-				66FF1E321388C866009E4F89 /* Note_Create.m in Sources */,
+				66FF1E321388C866009E4F89 /* Note_Lifecycle.m in Sources */,
 				66FF1E361388CB9D009E4F89 /* MKMapView_ZoomToFit.m in Sources */,
 				66FF1E391388CC30009E4F89 /* NSManagedObjectContext_Autosave.m in Sources */,
 				664C25D11389ABD000180B92 /* NearbyViewController.m in Sources */,
@@ -556,14 +605,17 @@
 				66B0A265138A61C6001D2280 /* NoteCellView.m in Sources */,
 				669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */,
 				666BD509138F403A00989A43 /* NoteViewController.m in Sources */,
-				6696B7B51390CEF8005632EC /* Attachment_Create.m in Sources */,
-				66586CDD13948EA400A934EF /* Attachment.m in Sources */,
+				6696B7B51390CEF8005632EC /* Attachment_Lifecycle.m in Sources */,
 				66E922D813949426004571A5 /* NoteMapViewController.m in Sources */,
 				66F532CC1395B405001A46B8 /* NoteEditorController.m in Sources */,
 				66E555441395FB6600BD2A40 /* NoteAttachmentsController.m in Sources */,
 				66FCA7AD13983DAC00BC8BC4 /* LocationMonitor.m in Sources */,
 				66F8713B13996832009A59DA /* NoteTagsViewController.m in Sources */,
 				664FDAA3139999DA00DC09DF /* Tag_Create.m in Sources */,
+				66A62B9B139ADE1500BC297E /* TagBrowserViewController.m in Sources */,
+				66A62BA8139AFFA500BC297E /* Note.m in Sources */,
+				66A73643139B99F600F2616B /* ImageViewController.m in Sources */,
+				667DAA0A139C2A5F006C3F78 /* Attachment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

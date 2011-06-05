@@ -12,12 +12,10 @@
 @protocol NoteEditorDelegate
 - (void)dismissNoteViewAnimated:(BOOL)animated;
 - (void)showAttachments;
-- (void)modalDisplay:(UIViewController *)viewController animated:(BOOL)animated;
-- (void)modalDismiss:(BOOL)animated;
 @end
 
 @interface NoteEditorController : NSObject
-@property (nonatomic, assign) id <NoteEditorDelegate> delegate;
+@property (nonatomic, assign) UIViewController <NoteEditorDelegate> *delegate;
 @property (nonatomic, readonly) UIView *view;
 @property (nonatomic, retain) IBOutlet UIView *editorView;
 @property (nonatomic, retain) IBOutlet UILabel *daysAgoLabel;
