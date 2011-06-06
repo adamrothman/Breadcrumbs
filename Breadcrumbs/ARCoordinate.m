@@ -1,54 +1,67 @@
 //
 //  ARCoordinate.m
-//  ARView
+//  ARKitDemo
 //
-//  Created by Zac White on 01/08/2009.
+//  Created by Zac White on 8/1/09.
 //  Copyright 2009 Zac White. All rights reserved.
-//  Modified by Alasdair Allan on 07/04/2010.
-//  Modifications Copyright 2010 Babilim Light Industries. All rights reserved.
 //
 
 #import "ARCoordinate.h"
 
+
 @implementation ARCoordinate
 
-@synthesize coordinateTitle;
-@synthesize coordinateSubTitle;
-@synthesize coordinateDistance;
-@synthesize coordinateInclination;	
-@synthesize coordinateAzimuth;
-@synthesize coordinateMarker;
+@synthesize radialDistance, inclination, azimuth;
 
-// Override the coordinateAzimuth accessor method
-- (double)coordinateAzimuth {
-	if ( coordinateAzimuth < 0.0 ) {
-		coordinateAzimuth = (M_PI * 2.0) + coordinateAzimuth;
-	} else if ( coordinateAzimuth > (M_PI * 2.0) ) {
-		coordinateAzimuth = coordinateAzimuth - (M_PI * 2.0);
-	}
-	return coordinateAzimuth;
+@synthesize title, subtitle;
+
++ (ARCoordinate *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
+	ARCoordinate *newCoordinate = [[ARCoordinate alloc] init];
+	newCoordinate.radialDistance = newRadialDistance;
+	newCoordinate.inclination = newInclination;
+	newCoordinate.azimuth = newAzimuth;
+	
+	newCoordinate.title = @"";
+	
+	return [newCoordinate autorelease];
 }
 
+- (NSUInteger)hash{
+	return ([self.title hash] ^ [self.subtitle hash]) + (int)(self.radialDistance + self.inclination + self.azimuth);
+}
 
-- (id)initWithRadialDistance:(double)distance andInclination:(double)inclination andAzimuth:(double)azimuth {
-    self = [super init];
-	if (self) {
-		self.coordinateDistance = distance;
-		self.coordinateInclination = inclination;
-		self.coordinateAzimuth = azimuth;
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToCoordinate:other];
+}
+
+- (BOOL)isEqualToCoordinate:(ARCoordinate *)otherCoordinate {
+    if (self == otherCoordinate) return YES;
+    
+	BOOL equal = self.radialDistance == otherCoordinate.radialDistance;
+	equal = equal && self.inclination == otherCoordinate.inclination;
+	equal = equal && self.azimuth == otherCoordinate.azimuth;
+		
+	if (self.title && otherCoordinate.title || self.title && !otherCoordinate.title || !self.title && otherCoordinate.title) {
+		equal = equal && [self.title isEqualToString:otherCoordinate.title];
 	}
-	return self;
+	
+	return equal;
 }
 
 - (void)dealloc {
 	
-	[self coordinateTitle];
-	[self coordinateSubTitle];
+	self.title = nil;
+	self.subtitle = nil;
+	
 	[super dealloc];
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ r: %.3fm φ: %.3f° θ: %.3f°", [self coordinateTitle], [self coordinateDistance], RAD_TO_DEG([self coordinateAzimuth]), RAD_TO_DEG([self coordinateInclination])];
+	return [NSString stringWithFormat:@"%@ r: %.3fm φ: %.3f° θ: %.3f°", self.title, self.radialDistance, radiansToDegrees(self.azimuth), radiansToDegrees(self.inclination)];
 }
 
 @end

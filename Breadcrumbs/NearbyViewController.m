@@ -86,7 +86,7 @@ calloutAccessoryControlTapped:(UIControl *)control {
 
 #pragma mark - KVO
 
-// Update the badge on this view controller's tab bar item when the number of nearby notes changes.
+// Update the badge on this view controller's tab bar item when the number of nearby notes changes
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change

@@ -11,9 +11,11 @@
 #import "NearbyViewController.h"
 #import "NoteBrowserViewController.h"
 #import "TagBrowserViewController.h"
-#import "ARViewController.h"
+#import "ARGeoViewController.h"
+#import "ARGeoCoordinate.h"
+#import "Note.h"
 
-@interface BreadcrumbsAppDelegate()
+@interface BreadcrumbsAppDelegate() <ARViewDelegate>
 @property (nonatomic, readonly) LocationMonitor *locationMonitor;
 @end
 
@@ -37,10 +39,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.locationMonitor.managedObjectContext = self.managedObjectContext;
     
-//    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
-//        
-//    }
-    
     NearbyViewController *nearby = [[[NearbyViewController alloc] initInManagedObjectContext:self.managedObjectContext] autorelease];
     UINavigationController *nearbynvc = [[[UINavigationController alloc] initWithRootViewController:nearby] autorelease];
     nearbynvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Nearby"
@@ -62,8 +60,40 @@
                                                            image:[UIImage imageNamed:@"15-tags"]
                                                              tag:2] autorelease];
     
-    ARViewController *ar = [[[ARViewController alloc] initInManagedObjectContext:self.managedObjectContext] autorelease];
-    UINavigationController *arnvc = [[[UINavigationController alloc] initWithRootViewController:ar] autorelease];
+    UIViewController *arnvc = nil;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        // This part is more of a proof of concept than anything else
+        // it's pretty rough around the edges (there's no nice way to
+        // dismiss the AR view so I had to do it on a timer) but still
+        // cool. In future versions I'd like to make this more usable.
+        
+        ARGeoViewController *ar = [[ARGeoViewController alloc] init];
+        ar.delegate = self;
+        ar.scaleViewsBasedOnDistance = YES;
+        ar.minimumScaleFactor = 0.5;
+        ar.rotateViewsBasedOnPerspective = YES;
+        
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        request.entity = [NSEntityDescription entityForName:@"Note"
+                                     inManagedObjectContext:self.managedObjectContext];
+        NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request
+                                                                           error:NULL];
+        for (Note *note in fetchedObjects) {
+            ARGeoCoordinate *geoCoord = [ARGeoCoordinate coordinateWithLocation:note.location];
+            geoCoord.title = note.title;
+            
+            [ar addCoordinate:geoCoord];
+        }
+        
+        ar.centerLocation = self.locationMonitor.locationManager.location;
+        
+        [ar startListening];
+        
+        arnvc = [[[UINavigationController alloc] initWithRootViewController:ar] autorelease];
+    } else {
+        arnvc = [[[UIViewController alloc] initWithNibName:@"ARNotAvailable"
+                                                    bundle:nil] autorelease];
+    }
     arnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"AR"
                                                       image:[UIImage imageNamed:@"164-glasses-2"]
                                                         tag:3] autorelease];
@@ -219,6 +249,40 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     }    
     
     return __persistentStoreCoordinator;
+}
+
+#pragma mark - ARViewDelegate
+
+- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate {
+    
+#define BOX_WIDTH   150
+#define BOX_HEIGHT  100
+	
+	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
+	UIView *tempView = [[UIView alloc] initWithFrame:theFrame];
+	
+	//tempView.backgroundColor = [UIColor colorWithWhite:.5 alpha:.3];
+	
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, BOX_WIDTH, 20.0)];
+	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
+	titleLabel.textColor = [UIColor whiteColor];
+	titleLabel.textAlignment = UITextAlignmentCenter;
+	titleLabel.text = coordinate.title;
+	[titleLabel sizeToFit];
+	
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, 0, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
+	
+	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	pointView.image = [UIImage imageNamed:@"location.png"];
+	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), (int)(BOX_HEIGHT / 2.0 - pointView.image.size.height / 2.0), pointView.image.size.width, pointView.image.size.height);
+    
+	[tempView addSubview:titleLabel];
+	[tempView addSubview:pointView];
+	
+	[titleLabel release];
+	[pointView release];
+	
+	return [tempView autorelease];
 }
 
 #pragma mark - Application's Documents directory

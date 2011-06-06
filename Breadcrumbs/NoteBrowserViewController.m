@@ -151,13 +151,6 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     [Tag tagWithTitle:@"food" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
     [Tag tagWithTitle:@"shopping" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
     [Tag tagWithTitle:@"errands" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    
-//    UILocalNotification *notification = [[UILocalNotification alloc] init];
-//    notification.fireDate = [[NSDate alloc] initWithTimeIntervalSinceNow:5];
-//    notification.alertBody = @"You have 1 nearby note.";
-//    notification.alertAction = @"View";
-//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//    [notification release];
 }
 
 #pragma mark - Button actions

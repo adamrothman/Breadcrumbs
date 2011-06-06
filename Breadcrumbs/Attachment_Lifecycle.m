@@ -66,7 +66,7 @@
     } else {                                                        // audio
         attachment.type = (NSString *)kUTTypeAudio;
         
-        // do some other stuff
+        // future versions will support audio attachments
     }
     
     dispatch_release(fileSystemQueue);

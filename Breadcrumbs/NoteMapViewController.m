@@ -48,6 +48,7 @@
 
 #pragma mark - MKMapViewDelegate
 
+// Current note's pin is a different color and is draggable
 - (MKAnnotationView *)mapView:(MKMapView *)sender
             viewForAnnotation:(id <MKAnnotation>)annotation {
     if (annotation == self.mapView.userLocation) return nil;

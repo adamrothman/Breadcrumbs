@@ -308,7 +308,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 }
 
 - (IBAction)addAudioAttachment:(UIButton *)sender {
-    NSLog(@"NYE: add audio attachments");
+    // future versions will support audio attachments
 }
 
 #pragma mark - Memory management

@@ -5,6 +5,8 @@
 //  Created by Adam Rothman on 5/21/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+//  Heavily inspired by demo code from Stanford's CS 193P class.
+//
 
 #import "CoreDataTableViewController.h"
 

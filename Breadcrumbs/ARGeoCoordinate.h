@@ -1,30 +1,27 @@
 //
 //  ARGeoCoordinate.h
-//  ARView
+//  ARKitDemo
 //
-//  Created by Haseman on 01/08/09.
-//  Copyright 2009 Haseman. All rights reserved.
-//  Modified by Zac White on 01/08/2009.
-//  Modifications Copyright 2009 Zac White. All rights reserved.
-//  Modified by Alasdair Allan on 07/04/2010.
-//  Modifications Copyright 2010 Babilim Light Industries. All rights reserved.
+//  Created by Haseman on 8/1/09.
+//  Copyright 2009 Zac White. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-
 #import "ARCoordinate.h"
 
+#import <CoreLocation/CoreLocation.h>
+
 @interface ARGeoCoordinate : ARCoordinate {
-	CLLocation *coordinateGeoLocation;
+	CLLocation *geoLocation;
 }
 
-@property (nonatomic, retain) CLLocation *coordinateGeoLocation;
+@property (nonatomic, retain) CLLocation *geoLocation;
 
-- (id)initWithCoordinate:(CLLocation *)location andTitle:(NSString*)title;
-- (id)initWithCoordinate:(CLLocation *)location andOrigin:(CLLocation *)origin;
+- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
+
++ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location;
 
 - (void)calibrateUsingOrigin:(CLLocation *)origin;
-- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
++ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin;
 
 @end

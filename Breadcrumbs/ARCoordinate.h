@@ -1,33 +1,67 @@
 //
 //  ARCoordinate.h
-//  ARView
+//  ARKitDemo
 //
-//  Created by Zac White on 01/08/2009.
+//  Created by Zac White on 8/1/09.
 //  Copyright 2009 Zac White. All rights reserved.
-//  Modified by Alasdair Allan on 07/04/2010.
-//  Modifications Copyright 2010 Babilim Light Industries. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class ARMarker;
+#import <MapKit/MapKit.h>
+
+#define degreesToRadians(x) (M_PI * x / 180.0)
+#define radiansToDegrees(x) (x * (180.0/M_PI))
+
+@class ARCoordinate;
+
+@protocol ARPersistentItem
+
+@property (nonatomic, readonly) ARCoordinate *arCoordinate;
+
+@optional
+
+// Title and subtitle for use by selection UI.
+- (NSString *)title;
+- (NSString *)subtitle;
+
+@end
+
+
+@protocol ARGeoPersistentItem
+
+// Center latitude and longitude of the annotion view.
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+@optional
+
+// Title and subtitle for use by selection UI.
+- (NSString *)title;
+- (NSString *)subtitle;
+
+@end
+
 
 @interface ARCoordinate : NSObject {
-	double coordinateDistance;
-	double coordinateInclination;
-	double coordinateAzimuth;
-	NSString *coordinateTitle;
-	NSString *coordinateSubTitle;
-	ARMarker *coordinateMarker;
+	double radialDistance;
+	double inclination;
+	double azimuth;
+	
+	NSString *title;
+	NSString *subtitle;
 }
 
-- (id)initWithRadialDistance:(double)distance andInclination:(double)inclination andAzimuth:(double)azimuth;
+- (NSUInteger)hash;
+- (BOOL)isEqual:(id)other;
+- (BOOL)isEqualToCoordinate:(ARCoordinate *)otherCoordinate;
 
-@property (nonatomic, retain) NSString *coordinateTitle;
-@property (nonatomic, retain) NSString *coordinateSubTitle;
-@property (nonatomic) double coordinateDistance;
-@property (nonatomic) double coordinateInclination;	
-@property (nonatomic) double coordinateAzimuth;	
-@property (nonatomic, retain) ARMarker *coordinateMarker;	
++ (ARCoordinate *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
+
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
+
+@property (nonatomic) double radialDistance;
+@property (nonatomic) double inclination;
+@property (nonatomic) double azimuth;
 
 @end
