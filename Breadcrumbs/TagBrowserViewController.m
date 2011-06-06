@@ -10,6 +10,7 @@
 #import "Tag.h"
 #import "NSManagedObjectContext_Autosave.h"
 #import "NoteBrowserViewController.h"
+#import "NewTagViewController.h"
 
 @implementation TagBrowserViewController
 
@@ -85,12 +86,24 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     [NSManagedObjectContext autosave:context];
 }
 
+#pragma mark - Button actions
+
+- (void)newTag:(UIButton *)sender {
+    NewTagViewController *ntvc = [[[NewTagViewController alloc]
+                                   initInManagedObjectContext:self.fetchedResultsController.managedObjectContext] autorelease];
+    ntvc.delegate = self;
+    [self presentModalViewController:ntvc animated:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
     [super loadView];
     
     self.navigationItem.title = @"Tags";
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                            target:self
+                                                                                            action:@selector(newTag:)] autorelease];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

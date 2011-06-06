@@ -80,7 +80,6 @@ zoomToFitContentsAnimated:(BOOL)animated {
 #pragma mark - View lifecycle
 
 - (void)loadView {
-    self.navigationItem.title = @"image";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
                                                                                             action:@selector(done:)] autorelease];

@@ -62,7 +62,10 @@
 
 - (UIColor *)dateAndTimeColor {
     if (!dateAndTimeColor) {
-        dateAndTimeColor = [[UIColor colorWithRed:0.1412 green:0.4392 blue:0.8471 alpha:1.0000] retain];
+        dateAndTimeColor = [[UIColor colorWithRed:0.1412
+                                            green:0.4392
+                                             blue:0.8471
+                                            alpha:1.0000] retain];
     }
     return dateAndTimeColor;
 }
@@ -157,7 +160,7 @@
              baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
         
         // note modification time
-        [self.dateFormatter setDateFormat:@"hh:mm a"];
+        [self.dateFormatter setDateFormat:@"h:mm a"];
         NSString *timeString = [self.dateFormatter stringFromDate:self.note.modified];
         size = [timeString sizeWithFont:timeFont
                             minFontSize:TIME_FONT_SIZE

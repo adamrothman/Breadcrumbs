@@ -51,7 +51,6 @@
 						<string key="NSFrame">{{12, 73}, {296, 295}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="1056731401">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -60,9 +59,9 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Body</string>
-						<object class="NSFont" key="IBUIFont" id="807597364">
+						<object class="NSFont" key="IBUIFont" id="194508664">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">14</double>
+							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -110,7 +109,6 @@
 						<string key="NSFrame">{{260, 376}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="1056731401"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -197,7 +195,7 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<reference key="IBUIFont" ref="807597364"/>
+						<reference key="IBUIFont" ref="194508664"/>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">12</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">

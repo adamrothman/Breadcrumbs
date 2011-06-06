@@ -14,6 +14,7 @@
 @interface NoteAttachmentsController() <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, retain) Note *note;
 @property (nonatomic, retain) UIActionSheet *mediaSourceActionSheet;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
 @end
 
 @implementation NoteAttachmentsController
@@ -26,6 +27,7 @@
 
 @synthesize note;
 @synthesize mediaSourceActionSheet;
+@synthesize dateFormatter;
 
 #pragma mark - Designated initializer
 
@@ -82,6 +84,14 @@
     return attachmentsView;
 }
 
+- (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController {
+    fetchedResultsController.delegate = nil;
+    [fetchedResultsController release];
+    fetchedResultsController = [newFetchedResultsController retain];
+    fetchedResultsController.delegate = self;
+    if (self.view.window) [self performFetch];
+}
+
 - (UIActionSheet *)mediaSourceActionSheet {
     if (!mediaSourceActionSheet) {
         mediaSourceActionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -93,12 +103,11 @@
     return mediaSourceActionSheet;
 }
 
-- (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController {
-    fetchedResultsController.delegate = nil;
-    [fetchedResultsController release];
-    fetchedResultsController = [newFetchedResultsController retain];
-    fetchedResultsController.delegate = self;
-    if (self.view.window) [self performFetch];
+- (NSDateFormatter *)dateFormatter {
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    return dateFormatter;
 }
 
 #pragma mark - UITableViewDataSource
@@ -111,7 +120,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                        reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -121,9 +130,14 @@
     } else if ([attachment.type isEqualToString:(NSString *)kUTTypeMovie]) {
         cell.imageView.image = [UIImage imageNamed:@"46-movie-2"];
     } else {
+        // future versions will support audio attachments
         cell.imageView.image = [UIImage imageNamed:@"194-note-2"];
     }
-    cell.textLabel.text = attachment.unique;
+    
+    [self.dateFormatter setDateFormat:@"MM/dd/yy"];
+    cell.textLabel.text = [self.dateFormatter stringFromDate:attachment.added];
+    [self.dateFormatter setDateFormat:@"h:mm a"];
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:attachment.added];
     
     return cell;
 }
@@ -177,15 +191,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([attachment.type isEqualToString:(NSString *)kUTTypeImage]) {
         ImageViewController *ivc = [[[ImageViewController alloc] initWithContentURL:URL] autorelease];
         ivc.delegate = self.delegate;
-        UINavigationController *ivnvc = [[[UINavigationController alloc] initWithRootViewController:ivc] autorelease];
+        [self.dateFormatter setDateFormat:@"MM/dd/yy"];
+        NSString *dateString = [self.dateFormatter stringFromDate:attachment.added];
+        [self.dateFormatter setDateFormat:@"h:mm a"];
+        NSString *timeString = [self.dateFormatter stringFromDate:attachment.added];
+        ivc.navigationItem.title = [NSString stringWithFormat:@"%@, %@", dateString, timeString];
         
+        UINavigationController *ivnvc = [[[UINavigationController alloc] initWithRootViewController:ivc] autorelease];
         [self.delegate presentModalViewController:ivnvc animated:YES];
     } else if ([attachment.type isEqualToString:(NSString *)kUTTypeMovie]) {
         MPMoviePlayerViewController *mpvc = [[[MPMoviePlayerViewController alloc] initWithContentURL:URL] autorelease];
         [self.delegate presentMoviePlayerViewControllerAnimated:mpvc];
     } else {
-        NSLog(@"NYE: audio attachment playback");
+        // future versions will support audio attachments
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -299,6 +320,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [fetchedResultsController release];
     [note release];
     [mediaSourceActionSheet release];
+    [dateFormatter release];
     [super dealloc];
 }
 

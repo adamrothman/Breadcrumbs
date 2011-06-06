@@ -14,42 +14,25 @@
 
 + (Note *)noteWithInfo:(NSDictionary *)info
 inManagedObjectContext:(NSManagedObjectContext *)context {
-    Note *note = nil;
+    Note *note = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
+                                               inManagedObjectContext:context];
     
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    request.entity = [NSEntityDescription entityForName:NSStringFromClass([self class])
-                                 inManagedObjectContext:context];
-    // maybe every note should have a unique? a hash of the contents or something?
-    request.predicate = [NSPredicate predicateWithFormat:@"title = %@", [info objectForKey:@"title"]];
+    note.unique = [NSString stringWithFormat:@"%lu", [note hash]];
     
-    NSError *error = nil;
-    NSArray *fetchedObjects = [context executeFetchRequest:request
-                                                     error:&error];
+    note.location = [info objectForKey:@"location"];
+    note.modified = [info objectForKey:@"modified"];
     
-    if (!fetchedObjects || [fetchedObjects count] > 1) {
-        if (error) {
-            NSLog(@"failed to create Note: %@, (%@)", [error localizedDescription], [error localizedFailureReason]);
-        }
-    } else {
-        note = [fetchedObjects lastObject];
-        if (!note) {
-            note = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
-                                                 inManagedObjectContext:context];
-            
-            note.title = [info objectForKey:@"title"];
-            note.text = [info objectForKey:@"text"];
-            note.unique = [NSString stringWithFormat:@"%lu", [note hash]];
-            note.location = [info objectForKey:@"location"];
-            note.modified = [info objectForKey:@"modified"];
-            
-            [NSManagedObjectContext autosave:context];
-        }
-    }
+    // these two keys don't exist when creating new notes
+    // just here to allow batch note creation for testing
+    note.title = [info objectForKey:@"title"];
+    note.text = [info objectForKey:@"text"];
+    
+    [NSManagedObjectContext autosave:context];
     
     return note;
 }
 
-// Delete the directory that contains this note's attachments, then remove from the data model.
+// delete note's attachments, then remove it from data model
 + (void)removeNote:(Note *)note {
     dispatch_queue_t fileSystemQueue = dispatch_queue_create("Note attachments deleter", NULL);
     dispatch_async(fileSystemQueue, ^{

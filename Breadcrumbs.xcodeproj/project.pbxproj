@@ -40,6 +40,8 @@
 		667DAA50139C73E9006C3F78 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA4E139C73E3006C3F78 /* 13-target.png */; };
 		667DAA51139C73E9006C3F78 /* 13-target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA4F139C73E6006C3F78 /* 13-target@2x.png */; };
 		667DAA53139C76B8006C3F78 /* CellViewMockups.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA52139C76B7006C3F78 /* CellViewMockups.xib */; };
+		667DAA58139C987D006C3F78 /* NewTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA56139C987D006C3F78 /* NewTagViewController.m */; };
+		667DAA59139C987D006C3F78 /* NewTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA57139C987D006C3F78 /* NewTagViewController.xib */; };
 		6696B7A213905EA7005632EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B7A113905EA7005632EC /* MobileCoreServices.framework */; };
 		6696B7B113907805005632EC /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7AF13907805005632EC /* 86-camera.png */; };
 		6696B7B213907805005632EC /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7B013907805005632EC /* 86-camera@2x.png */; };
@@ -127,6 +129,9 @@
 		667DAA4E139C73E3006C3F78 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
 		667DAA4F139C73E6006C3F78 /* 13-target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target@2x.png"; sourceTree = "<group>"; };
 		667DAA52139C76B7006C3F78 /* CellViewMockups.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellViewMockups.xib; sourceTree = "<group>"; };
+		667DAA55139C987D006C3F78 /* NewTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTagViewController.h; sourceTree = "<group>"; };
+		667DAA56139C987D006C3F78 /* NewTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTagViewController.m; sourceTree = "<group>"; };
+		667DAA57139C987D006C3F78 /* NewTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTagViewController.xib; sourceTree = "<group>"; };
 		6696B7A113905EA7005632EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6696B7AF13907805005632EC /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		6696B7B013907805005632EC /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
@@ -345,6 +350,16 @@
 			name = "Augmented Reality";
 			sourceTree = "<group>";
 		};
+		667DAA54139C9865006C3F78 /* New Tag */ = {
+			isa = PBXGroup;
+			children = (
+				667DAA55139C987D006C3F78 /* NewTagViewController.h */,
+				667DAA56139C987D006C3F78 /* NewTagViewController.m */,
+				667DAA57139C987D006C3F78 /* NewTagViewController.xib */,
+			);
+			name = "New Tag";
+			sourceTree = "<group>";
+		};
 		669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +374,7 @@
 			children = (
 				66A62B99139ADE1500BC297E /* TagBrowserViewController.h */,
 				66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */,
+				667DAA54139C9865006C3F78 /* New Tag */,
 			);
 			name = "Tag Browser";
 			sourceTree = "<group>";
@@ -629,6 +645,7 @@
 				667DAA50139C73E9006C3F78 /* 13-target.png in Resources */,
 				667DAA51139C73E9006C3F78 /* 13-target@2x.png in Resources */,
 				667DAA53139C76B8006C3F78 /* CellViewMockups.xib in Resources */,
+				667DAA59139C987D006C3F78 /* NewTagViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +687,7 @@
 				667DAA40139C6384006C3F78 /* ARGeoCoordinate.m in Sources */,
 				667DAA41139C6384006C3F78 /* ARMarker.m in Sources */,
 				667DAA4D139C6415006C3F78 /* ARViewController.m in Sources */,
+				667DAA58139C987D006C3F78 /* NewTagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -237,7 +237,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context
                                                                    target:self
                                                                    action:@selector(sort:)] autorelease];
     if (self.tag) {
-        self.navigationItem.title = [self.tag.title capitalizedString];
+        self.navigationItem.title = self.tag.title;
         self.navigationItem.rightBarButtonItem = sortButton;
     } else {
         self.navigationItem.title = @"Notes";
