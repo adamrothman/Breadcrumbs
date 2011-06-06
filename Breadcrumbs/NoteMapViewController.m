@@ -109,9 +109,8 @@
                                                              ascending:YES
                                                               selector:@selector(localizedCaseInsensitiveCompare:)]];
     
-    NSError *error = nil;
     NSArray *fetchedObjects = [[self.note managedObjectContext] executeFetchRequest:request
-                                                                              error:&error];
+                                                                              error:NULL];
     
     if ([fetchedObjects count]) {
         [self.mapView addAnnotations:fetchedObjects];

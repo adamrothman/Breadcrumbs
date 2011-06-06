@@ -10,6 +10,7 @@
 #import "MKMapView_ZoomToFit.h"
 #import "Note.h"
 #import "NoteViewController.h"
+#import "LocationMonitor.h"
 
 @interface NearbyViewController()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -83,6 +84,25 @@ calloutAccessoryControlTapped:(UIControl *)control {
     }
 }
 
+#pragma mark - KVO
+
+// Update the badge on this view controller's tab bar item when the number of nearby notes changes.
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if (object == [LocationMonitor sharedMonitor] &&
+        [keyPath isEqualToString:@"nearbyNoteCount"]) {
+        NSUInteger newCount = [[change objectForKey:NSKeyValueChangeNewKey] unsignedIntegerValue];
+        
+        if (newCount) {
+            self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", newCount];
+        } else {
+            self.navigationController.tabBarItem.badgeValue = nil;
+        }
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
@@ -95,6 +115,13 @@ calloutAccessoryControlTapped:(UIControl *)control {
                                                                               action:@selector(centerOnUser:)] autorelease];
 }
 
+- (void)viewDidLoad {
+    [[LocationMonitor sharedMonitor] addObserver:self
+                                      forKeyPath:@"nearbyNoteCount"
+                                         options:NSKeyValueObservingOptionNew
+                                         context:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -105,14 +132,9 @@ calloutAccessoryControlTapped:(UIControl *)control {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     request.entity = [NSEntityDescription entityForName:@"Note"
                                  inManagedObjectContext:self.managedObjectContext];
-    request.sortDescriptors = [NSArray arrayWithObject:
-                               [NSSortDescriptor sortDescriptorWithKey:@"title"
-                                                             ascending:YES
-                                                              selector:@selector(localizedCaseInsensitiveCompare:)]];
     
-    NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request
-                                                                       error:&error];
+                                                                       error:NULL];
     
     if ([fetchedObjects count]) {
         [self.mapView addAnnotations:fetchedObjects];
@@ -122,15 +144,17 @@ calloutAccessoryControlTapped:(UIControl *)control {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // should be set according to number of "nearby" notes
-    self.navigationController.tabBarItem.badgeValue = @"1";
-    
     if (!self.hasAppeared) {    // only zoom in on the user the first time this view appears
         self.hasAppeared = YES;
         [self.mapView performSelector:@selector(zoomToFitUserAnimated:)
                            withObject:[NSNumber numberWithBool:YES]
                            afterDelay:1];
     }
+}
+
+- (void)viewDidUnload {
+    [[LocationMonitor sharedMonitor] removeObserver:self
+                                         forKeyPath:@"nearbyNoteCount"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

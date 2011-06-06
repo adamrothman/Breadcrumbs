@@ -267,7 +267,6 @@
 				669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */,
 				66FCA7AF13983DB400BC8BC4 /* Location Monitor */,
 				66FF1DF013887669009E4F89 /* CoreDataTableViewController */,
-				66F8712513995C07009A59DA /* TagBrowserTableViewController */,
 				66627721138C765D00E41287 /* Main View Controllers */,
 			);
 			name = Classes;
@@ -352,13 +351,6 @@
 				665F292E138D20DE004D628B /* Attachments */,
 			);
 			name = Editor;
-			sourceTree = "<group>";
-		};
-		66F8712513995C07009A59DA /* TagBrowserTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = TagBrowserTableViewController;
 			sourceTree = "<group>";
 		};
 		66FCA7AF13983DB400BC8BC4 /* Location Monitor */ = {

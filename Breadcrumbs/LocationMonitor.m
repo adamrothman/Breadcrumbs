@@ -7,6 +7,10 @@
 //
 
 #import "LocationMonitor.h"
+#import "Note.h"
+
+// future versions will let the user set this radius
+#define NEARBY_RADIUS   7500
 
 static LocationMonitor *sharedLocationMonitor;
 
@@ -52,6 +56,7 @@ static LocationMonitor *sharedLocationMonitor;
 - (CLLocationManager *)locationManager {
     if (!locationManager) {
         locationManager = [[CLLocationManager alloc] init];
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.delegate = self;
     }
     return locationManager;
@@ -62,20 +67,42 @@ static LocationMonitor *sharedLocationMonitor;
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
-    // calculate number of nearby notes
-    NSUInteger nearbyCount = 0;
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    request.entity = [NSEntityDescription entityForName:@"Note"
+                                 inManagedObjectContext:self.managedObjectContext];
     
-    // have to figure out when to display an alert (background) and when not to
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request
+                                                                       error:NULL];
     
+    // have to fetch all notes then filter because SQLite doesn't support block predicates
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        Note *note = (Note *)evaluatedObject;
+        
+        if ([self.locationManager.location distanceFromLocation:note.location] < NEARBY_RADIUS) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }];
+    NSArray *nearbyNotes = [fetchedObjects filteredArrayUsingPredicate:predicate];
     
-    if (nearbyCount) {
-        // display an alert
+    if (nearbyNotes) self.nearbyNoteCount = [nearbyNotes count];
+    
+    // only need to fire a notification if the note is in the background and there are notes nearby
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground &&
+        self.nearbyNoteCount) {
+        UILocalNotification *notification = [[[UILocalNotification alloc] init] autorelease];
+        notification.alertBody = [NSString stringWithFormat:@"You have %lu nearby notes", (unsigned long)self.nearbyNoteCount];
+        notification.applicationIconBadgeNumber = self.nearbyNoteCount;
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.alertAction = @"View";
+        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    // do nothing
+    NSLog(@"LocationMonitor: location update failed");
 }
 
 @end

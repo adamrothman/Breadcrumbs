@@ -19,6 +19,7 @@
     CLLocation *newLocation = [[[CLLocation alloc] initWithLatitude:newCoordinate.latitude
                                                           longitude:newCoordinate.longitude] autorelease];
     self.location = newLocation;
+    self.modified = [NSDate date];
     
     [NSManagedObjectContext autosave:[self managedObjectContext]];
 }

@@ -12,7 +12,7 @@
 @interface LocationMonitor : NSObject <CLLocationManagerDelegate>
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, readonly) NSUInteger nearbyNoteCount;
+@property (nonatomic) NSUInteger nearbyNoteCount;
 
 + (LocationMonitor *)sharedMonitor;
 @end
