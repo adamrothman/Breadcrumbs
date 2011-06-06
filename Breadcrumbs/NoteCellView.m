@@ -53,6 +53,13 @@
     }
 }
 
+- (void)setEditing:(BOOL)edit {
+    if (editing != edit) {
+        editing = edit;
+        [self setNeedsDisplay];
+    }
+}
+
 - (UIColor *)dateAndTimeColor {
     if (!dateAndTimeColor) {
         dateAndTimeColor = [[UIColor colorWithRed:0.1412 green:0.4392 blue:0.8471 alpha:1.0000] retain];
@@ -62,13 +69,17 @@
 
 #pragma mark - Custom drawing
 
+// Lots of hardcoded dimensions, etc in here. Future versions will determine these values in a more elegant way.
 - (void)drawRect:(CGRect)rect {
     
 #define LEFT_MARGIN         10
 #define TOP_MARGIN          5
-#define LOWER_TOP_MARGIN    27
 #define RIGHT_MARGIN        10
 #define BOTTOM_MARGIN       5
+    
+#define DATE_TOP            14
+#define TIME_TOP            28
+#define PREVIEW_TOP         27
     
 #define TITLE_FONT_SIZE     14
 #define MIN_TITLE_FONT_SIZE 12
@@ -76,12 +87,11 @@
 #define TIME_FONT_SIZE      10
 #define PREVIEW_FONT_SIZE   12
     
-#define TITLE_WIDTH         236
-#define DATE_WIDTH          56
-#define TIME_WIDTH          56
-#define PREVIEW_WIDTH       262
+#define TEXT_WIDTH          250
+#define DATESTAMP_WIDTH     60
 #define PREVIEW_HEIGHT      32
-#define IMAGE_WIDTH         30
+    
+#define TEXT_WIDTH_EDITING  227
     
     UIColor *titleColor = nil;
     UIFont *titleFont = [UIFont boldSystemFontOfSize:TITLE_FONT_SIZE];
@@ -95,7 +105,7 @@
     UIColor *previewColor = nil;
     UIFont *previewFont = [UIFont systemFontOfSize:PREVIEW_FONT_SIZE];
     
-    if (!self.highlighted) {
+    if (!self.isHighlighted) {
         titleColor = [UIColor blackColor];
         dateColor = self.dateAndTimeColor;
         timeColor = self.dateAndTimeColor;
@@ -109,78 +119,88 @@
     }
     
     CGRect contentRect = self.bounds;
+    CGFloat boundsX = contentRect.origin.x;
+    CGPoint point;
     
-    if (!self.editing) {
-        CGFloat boundsX = contentRect.origin.x;
-        CGPoint point;
-        
+    if (!self.isEditing) {
         CGFloat actualFontSize;
         CGSize size;
         
-        // Draw the note's title.
+        // note title
         [titleColor set];
         point = CGPointMake(boundsX + LEFT_MARGIN, TOP_MARGIN);
         [self.note.title drawAtPoint:point
-                            forWidth:TITLE_WIDTH
+                            forWidth:TEXT_WIDTH
                             withFont:titleFont
                          minFontSize:MIN_TITLE_FONT_SIZE
                       actualFontSize:NULL
                        lineBreakMode:UILineBreakModeTailTruncation
                   baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
         
-        // Draw the note's modification date.
+        // note modification date
         [dateColor set];
         [self.dateFormatter setDateFormat:@"MM/dd/yy"];
         NSString *dateString = [self.dateFormatter stringFromDate:self.note.modified];
         size = [dateString sizeWithFont:dateFont
                             minFontSize:DATE_FONT_SIZE
                          actualFontSize:&actualFontSize
-                               forWidth:DATE_WIDTH
+                               forWidth:DATESTAMP_WIDTH
                           lineBreakMode:UILineBreakModeClip];
         
-        point = CGPointMake(boundsX + contentRect.size.width - RIGHT_MARGIN - size.width, TOP_MARGIN);
+        point = CGPointMake(boundsX + contentRect.size.width - RIGHT_MARGIN - size.width, DATE_TOP);
         [dateString drawAtPoint:point
-                       forWidth:DATE_WIDTH
+                       forWidth:DATESTAMP_WIDTH
                        withFont:dateFont
                     minFontSize:actualFontSize
                  actualFontSize:&actualFontSize
                   lineBreakMode:UILineBreakModeClip
              baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
         
-        // Draw the note's modification time.
+        // note modification time
         [self.dateFormatter setDateFormat:@"hh:mm a"];
         NSString *timeString = [self.dateFormatter stringFromDate:self.note.modified];
         size = [timeString sizeWithFont:timeFont
                             minFontSize:TIME_FONT_SIZE
                          actualFontSize:&actualFontSize
-                               forWidth:TIME_WIDTH
+                               forWidth:DATESTAMP_WIDTH
                           lineBreakMode:UILineBreakModeClip];
         
-        point = CGPointMake(boundsX + contentRect.size.width - RIGHT_MARGIN - size.width, TOP_MARGIN + 15);
+        point = CGPointMake(boundsX + contentRect.size.width - RIGHT_MARGIN - size.width, TIME_TOP);
         [timeString drawAtPoint:point
-                       forWidth:TIME_WIDTH
+                       forWidth:DATESTAMP_WIDTH
                        withFont:timeFont
                     minFontSize:actualFontSize
                  actualFontSize:&actualFontSize
                   lineBreakMode:UILineBreakModeClip
              baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
         
-        // Draw the preview of the note's body.
+        // preview of body text
         [previewColor set];
-        point = CGPointMake(boundsX + LEFT_MARGIN, LOWER_TOP_MARGIN);
-        [self.note.text drawInRect:CGRectMake(point.x, point.y, PREVIEW_WIDTH, PREVIEW_HEIGHT)
+        point = CGPointMake(boundsX + LEFT_MARGIN, PREVIEW_TOP);
+        [self.note.text drawInRect:CGRectMake(point.x, point.y, TEXT_WIDTH, PREVIEW_HEIGHT)
                           withFont:previewFont
                      lineBreakMode:UILineBreakModeWordWrap
                          alignment:UITextAlignmentLeft];
+    } else {
+        // note title
+        [titleColor set];
+        point = CGPointMake(boundsX + LEFT_MARGIN, TOP_MARGIN);
+        [self.note.title drawAtPoint:point
+                            forWidth:TEXT_WIDTH_EDITING
+                            withFont:titleFont
+                         minFontSize:MIN_TITLE_FONT_SIZE
+                      actualFontSize:NULL
+                       lineBreakMode:UILineBreakModeTailTruncation
+                  baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
         
-        // Draw the attachment image.
-        UIImage *attachmentImage = nil;
-        attachmentImage = [UIImage imageNamed:@"68-paperclip"];
-        
-        point = CGPointMake(boundsX + contentRect.size.width - RIGHT_MARGIN - IMAGE_WIDTH, LOWER_TOP_MARGIN);
-        [attachmentImage drawAtPoint:point];
+        // note body text preview
+        [previewColor set];
+        point = CGPointMake(boundsX + LEFT_MARGIN, PREVIEW_TOP);
+        [self.note.text drawInRect:CGRectMake(point.x, point.y, TEXT_WIDTH_EDITING, PREVIEW_HEIGHT)
+                          withFont:previewFont
+                     lineBreakMode:UILineBreakModeWordWrap
+                         alignment:UITextAlignmentLeft];
     }
-    
 }
 
 #pragma mark - Memory management

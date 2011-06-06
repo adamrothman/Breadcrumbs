@@ -7,7 +7,6 @@
 //
 
 #import "Attachment_Lifecycle.h"
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "NSManagedObjectContext_Autosave.h"
 
 @implementation Attachment (Attachment_Lifecycle)

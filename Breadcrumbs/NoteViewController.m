@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "NoteViewController.h"
 #import "NoteMapViewController.h"
 #import "NSManagedObjectContext_Autosave.h"
@@ -182,7 +181,11 @@
     self.attachments.view.frame = self.view.bounds;
     self.attachments.view.hidden = YES;
     
-    self.navigationItem.title = self.note.title;
+    if (self.note.title) {
+        self.navigationItem.title = self.note.title;
+    } else {
+        self.navigationItem.title = @"New note";
+    }
 }
 
 - (void)viewDidLoad {

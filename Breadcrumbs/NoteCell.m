@@ -8,7 +8,6 @@
 
 #import "NoteCell.h"
 
-
 @implementation NoteCell
 
 @synthesize noteCellView;
@@ -44,6 +43,16 @@
 
 - (void)redisplay {
     [self.noteCellView setNeedsDisplay];
+}
+
+- (void)willTransitionToState:(UITableViewCellStateMask)state {
+    [super willTransitionToState:state];
+    
+    if (state == UITableViewCellStateDefaultMask) {
+        self.noteCellView.editing = NO;
+    } else if (state == UITableViewCellStateShowingDeleteConfirmationMask) {
+        self.noteCellView.editing = YES;
+    }
 }
 
 #pragma mark - Memory management

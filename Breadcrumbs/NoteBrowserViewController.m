@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
 #import "NoteBrowserViewController.h"
 #import "Note_Lifecycle.h"
 #import "Tag_Create.h"
@@ -14,6 +13,7 @@
 #import "NoteViewController.h"
 #import "ActionSheetPicker.h"
 #import "NSManagedObjectContext_Autosave.h"
+#import "LocationMonitor.h"
 
 @interface NoteBrowserViewController()
 @property (nonatomic, retain) Tag *tag;
@@ -67,6 +67,14 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     return sortOptions;
 }
 
+#pragma mark - Convenience
+
+- (void)displayNote:(Note *)note {
+    NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:note] autorelease];
+    [self.navigationController pushViewController:noteViewer
+                                         animated:YES];
+}
+
 #pragma mark - CoreDataTableViewController customization
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -88,8 +96,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 
 - (void)didSelectManagedObject:(NSManagedObject *)managedObject {
     if ([managedObject isKindOfClass:[Note class]]) {
-        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:(Note *)managedObject] autorelease];
-        [self.navigationController pushViewController:noteViewer animated:YES];
+        [self displayNote:(Note *)managedObject];
     }
 }
 
@@ -98,10 +105,9 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 }
 
 - (void)didRemoveManagedObject:(NSManagedObject *)managedObject {
-    NSLog(@"NYE: pretty view when editing");
-    
-    Note *note = (Note *)managedObject;
-    [Note removeNote:note];
+    if ([managedObject isKindOfClass:[Note class]]) {
+        [Note removeNote:(Note *)managedObject];
+    }
 }
 
 #pragma mark - Testing tools
@@ -123,8 +129,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     for (int i = 0; i < numberOfNotes; i++) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         
-        int loc = [self randomIntFrom:0 to:[sample length] / 3];
-        int len = [self randomIntFrom:10 to:[sample length] - loc];
+        int loc = [self randomIntFrom:0 to:[sample length] - 25];
+        int len = [self randomIntFrom:10 to:20];
         [info setObject:[sample substringWithRange:NSMakeRange(loc, len)]
                  forKey:@"title"];
         
@@ -155,15 +161,6 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 }
 
 #pragma mark - Button actions
-
-- (void)sort:(UIBarButtonItem *)sender {
-    [ActionSheetPicker displayActionPickerWithView:self.view
-                                              data:self.sortOptions
-                                     selectedIndex:0
-                                            target:self
-                                            action:@selector(itemSelected:)
-                                             title:@"Sort by"];
-}
 
 - (void)itemSelected:(NSNumber *)selectedIndex {
     NSSortDescriptor *sortDescriptor;
@@ -207,9 +204,27 @@ inManagedObjectContext:(NSManagedObjectContext *)context
                                                                                     cacheName:nil] autorelease];
 }
 
+- (void)sort:(UIBarButtonItem *)sender {
+    [ActionSheetPicker displayActionPickerWithView:self.view
+                                              data:self.sortOptions
+                                     selectedIndex:0
+                                            target:self
+                                            action:@selector(itemSelected:)
+                                             title:@"Sort by"];
+}
+
 - (void)newNote:(UIBarButtonItem *)sender {
-    // right now, just create a bunch of sample notes
-    [self createSampleNotes:10];
+    CLLocation *location = [LocationMonitor sharedMonitor].locationManager.location;
+    NSDate *modified = [NSDate date];
+    
+    NSDictionary *newInfo = [NSDictionary dictionaryWithObjectsAndKeys:location, @"location", modified, @"modified", nil];
+    
+    Note *newNote = [Note noteWithInfo:newInfo
+                inManagedObjectContext:[self.fetchedResultsController managedObjectContext]];
+    [self displayNote:newNote];
+    
+    // create a bunch of sample notes for testing
+    // [self createSampleNotes:10];
 }
 
 #pragma mark - View lifecycle

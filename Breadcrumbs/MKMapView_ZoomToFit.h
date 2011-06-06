@@ -6,8 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-
 @interface MKMapView (MKMapView_ZoomToFit)
 - (void)zoomToFitAnnotation:(id <MKAnnotation>)annotation
                    animated:(BOOL)animated;

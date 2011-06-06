@@ -32,6 +32,14 @@
 		667DAA06139C29EB006C3F78 /* 46-movie-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA04139C29EB006C3F78 /* 46-movie-2.png */; };
 		667DAA07139C29EB006C3F78 /* 46-movie-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA05139C29EB006C3F78 /* 46-movie-2@2x.png */; };
 		667DAA0A139C2A5F006C3F78 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA09139C2A5F006C3F78 /* Attachment.m */; };
+		667DAA3E139C6384006C3F78 /* ARController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA37139C6384006C3F78 /* ARController.m */; };
+		667DAA3F139C6384006C3F78 /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA39139C6384006C3F78 /* ARCoordinate.m */; };
+		667DAA40139C6384006C3F78 /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA3B139C6384006C3F78 /* ARGeoCoordinate.m */; };
+		667DAA41139C6384006C3F78 /* ARMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA3D139C6384006C3F78 /* ARMarker.m */; };
+		667DAA4D139C6415006C3F78 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DAA4C139C6415006C3F78 /* ARViewController.m */; };
+		667DAA50139C73E9006C3F78 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA4E139C73E3006C3F78 /* 13-target.png */; };
+		667DAA51139C73E9006C3F78 /* 13-target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA4F139C73E6006C3F78 /* 13-target@2x.png */; };
+		667DAA53139C76B8006C3F78 /* CellViewMockups.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667DAA52139C76B7006C3F78 /* CellViewMockups.xib */; };
 		6696B7A213905EA7005632EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696B7A113905EA7005632EC /* MobileCoreServices.framework */; };
 		6696B7B113907805005632EC /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7AF13907805005632EC /* 86-camera.png */; };
 		6696B7B213907805005632EC /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696B7B013907805005632EC /* 86-camera@2x.png */; };
@@ -41,7 +49,6 @@
 		669A9AED138CC0FE009F56F2 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A9AEC138CC0FE009F56F2 /* ActionSheetPicker.m */; };
 		66A62B9B139ADE1500BC297E /* TagBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */; };
 		66A62BA8139AFFA500BC297E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A62BA7139AFFA500BC297E /* Note.m */; };
-		66A7363C139B927E00F2616B /* NoteAttachmentsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */; };
 		66A7363E139B954D00F2616B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A7363D139B954D00F2616B /* MediaPlayer.framework */; };
 		66A73643139B99F600F2616B /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A73641139B99F600F2616B /* ImageViewController.m */; };
 		66B0A261138A6186001D2280 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0A260138A6186001D2280 /* NoteCell.m */; };
@@ -107,6 +114,19 @@
 		667DAA05139C29EB006C3F78 /* 46-movie-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "46-movie-2@2x.png"; sourceTree = "<group>"; };
 		667DAA08139C2A5F006C3F78 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
 		667DAA09139C2A5F006C3F78 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
+		667DAA36139C6384006C3F78 /* ARController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARController.h; sourceTree = "<group>"; };
+		667DAA37139C6384006C3F78 /* ARController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARController.m; sourceTree = "<group>"; };
+		667DAA38139C6384006C3F78 /* ARCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoordinate.h; sourceTree = "<group>"; };
+		667DAA39139C6384006C3F78 /* ARCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoordinate.m; sourceTree = "<group>"; };
+		667DAA3A139C6384006C3F78 /* ARGeoCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoCoordinate.h; sourceTree = "<group>"; };
+		667DAA3B139C6384006C3F78 /* ARGeoCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoCoordinate.m; sourceTree = "<group>"; };
+		667DAA3C139C6384006C3F78 /* ARMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMarker.h; sourceTree = "<group>"; };
+		667DAA3D139C6384006C3F78 /* ARMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMarker.m; sourceTree = "<group>"; };
+		667DAA4B139C6415006C3F78 /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
+		667DAA4C139C6415006C3F78 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
+		667DAA4E139C73E3006C3F78 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
+		667DAA4F139C73E6006C3F78 /* 13-target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target@2x.png"; sourceTree = "<group>"; };
+		667DAA52139C76B7006C3F78 /* CellViewMockups.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellViewMockups.xib; sourceTree = "<group>"; };
 		6696B7A113905EA7005632EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6696B7AF13907805005632EC /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		6696B7B013907805005632EC /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
@@ -120,7 +140,6 @@
 		66A62B9A139ADE1500BC297E /* TagBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagBrowserViewController.m; sourceTree = "<group>"; };
 		66A62BA6139AFFA500BC297E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		66A62BA7139AFFA500BC297E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteAttachmentsHeader.xib; sourceTree = "<group>"; };
 		66A7363D139B954D00F2616B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		66A73640139B99F600F2616B /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		66A73641139B99F600F2616B /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
@@ -251,7 +270,6 @@
 				66E555421395FB6600BD2A40 /* NoteAttachmentsController.h */,
 				66E555431395FB6600BD2A40 /* NoteAttachmentsController.m */,
 				66E555451395FB7900BD2A40 /* NoteAttachments.xib */,
-				66A7363B139B927E00F2616B /* NoteAttachmentsHeader.xib */,
 				66A7363F139B99C900F2616B /* Image Viewer */,
 			);
 			name = Attachments;
@@ -263,11 +281,10 @@
 				66FF1DCA13879AEF009E4F89 /* BreadcrumbsAppDelegate.h */,
 				66FF1DCB13879AEF009E4F89 /* BreadcrumbsAppDelegate.m */,
 				66FF1E331388CB8D009E4F89 /* Categories */,
-				66FF1E0E1388B6FB009E4F89 /* Managed Objects */,
-				669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */,
 				66FCA7AF13983DB400BC8BC4 /* Location Monitor */,
-				66FF1DF013887669009E4F89 /* CoreDataTableViewController */,
 				66627721138C765D00E41287 /* Main View Controllers */,
+				66FF1E0E1388B6FB009E4F89 /* Managed Objects */,
+				667DAA1C139C5FC4006C3F78 /* Not Mine */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -279,6 +296,7 @@
 				66FF1DDF13886E98009E4F89 /* Note Browser */,
 				66627722138C78B700E41287 /* Note Viewer */,
 				66A62B9D139ADE1900BC297E /* Tag Browser */,
+				667DAA4A139C63F3006C3F78 /* Augmented Reality */,
 			);
 			name = "Main View Controllers";
 			sourceTree = "<group>";
@@ -291,6 +309,40 @@
 				66F532CD1395B40A001A46B8 /* Editor */,
 			);
 			name = "Note Viewer";
+			sourceTree = "<group>";
+		};
+		667DAA1C139C5FC4006C3F78 /* Not Mine */ = {
+			isa = PBXGroup;
+			children = (
+				669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */,
+				667DAA35139C636C006C3F78 /* ARToolkit */,
+				66FF1DF013887669009E4F89 /* CoreDataTableViewController */,
+			);
+			name = "Not Mine";
+			sourceTree = "<group>";
+		};
+		667DAA35139C636C006C3F78 /* ARToolkit */ = {
+			isa = PBXGroup;
+			children = (
+				667DAA36139C6384006C3F78 /* ARController.h */,
+				667DAA37139C6384006C3F78 /* ARController.m */,
+				667DAA38139C6384006C3F78 /* ARCoordinate.h */,
+				667DAA39139C6384006C3F78 /* ARCoordinate.m */,
+				667DAA3A139C6384006C3F78 /* ARGeoCoordinate.h */,
+				667DAA3B139C6384006C3F78 /* ARGeoCoordinate.m */,
+				667DAA3C139C6384006C3F78 /* ARMarker.h */,
+				667DAA3D139C6384006C3F78 /* ARMarker.m */,
+			);
+			name = ARToolkit;
+			sourceTree = "<group>";
+		};
+		667DAA4A139C63F3006C3F78 /* Augmented Reality */ = {
+			isa = PBXGroup;
+			children = (
+				667DAA4B139C6415006C3F78 /* ARViewController.h */,
+				667DAA4C139C6415006C3F78 /* ARViewController.m */,
+			);
+			name = "Augmented Reality";
 			sourceTree = "<group>";
 		};
 		669A9AEA138CC0DD009F56F2 /* ActionSheetPicker */ = {
@@ -327,6 +379,7 @@
 				66B0A260138A6186001D2280 /* NoteCell.m */,
 				66B0A263138A61C6001D2280 /* NoteCellView.h */,
 				66B0A264138A61C6001D2280 /* NoteCellView.m */,
+				667DAA52139C76B7006C3F78 /* CellViewMockups.xib */,
 			);
 			name = "Note Cell";
 			sourceTree = "<group>";
@@ -441,6 +494,8 @@
 			children = (
 				665F2913138D098F004D628B /* 07-map-marker.png */,
 				665F2914138D098F004D628B /* 07-map-marker@2x.png */,
+				667DAA4E139C73E3006C3F78 /* 13-target.png */,
+				667DAA4F139C73E6006C3F78 /* 13-target@2x.png */,
 				664FDA9C139998AE00DC09DF /* 14-tag.png */,
 				664FDA9D139998AE00DC09DF /* 14-tag@2x.png */,
 				664621E91388D4B80041FC2C /* 15-tags.png */,
@@ -565,13 +620,15 @@
 				66E555461395FB7900BD2A40 /* NoteAttachments.xib in Resources */,
 				664FDA9E139998AE00DC09DF /* 14-tag.png in Resources */,
 				664FDA9F139998AE00DC09DF /* 14-tag@2x.png in Resources */,
-				66A7363C139B927E00F2616B /* NoteAttachmentsHeader.xib in Resources */,
 				667DA9FA139C2910006C3F78 /* 42-photos.png in Resources */,
 				667DA9FB139C2910006C3F78 /* 42-photos@2x.png in Resources */,
 				667DAA02139C2994006C3F78 /* 194-note-2.png in Resources */,
 				667DAA03139C2994006C3F78 /* 194-note-2@2x.png in Resources */,
 				667DAA06139C29EB006C3F78 /* 46-movie-2.png in Resources */,
 				667DAA07139C29EB006C3F78 /* 46-movie-2@2x.png in Resources */,
+				667DAA50139C73E9006C3F78 /* 13-target.png in Resources */,
+				667DAA51139C73E9006C3F78 /* 13-target@2x.png in Resources */,
+				667DAA53139C76B8006C3F78 /* CellViewMockups.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +665,11 @@
 				66A62BA8139AFFA500BC297E /* Note.m in Sources */,
 				66A73643139B99F600F2616B /* ImageViewController.m in Sources */,
 				667DAA0A139C2A5F006C3F78 /* Attachment.m in Sources */,
+				667DAA3E139C6384006C3F78 /* ARController.m in Sources */,
+				667DAA3F139C6384006C3F78 /* ARCoordinate.m in Sources */,
+				667DAA40139C6384006C3F78 /* ARGeoCoordinate.m in Sources */,
+				667DAA41139C6384006C3F78 /* ARMarker.m in Sources */,
+				667DAA4D139C6415006C3F78 /* ARViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

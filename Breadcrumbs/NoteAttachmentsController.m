@@ -6,8 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "NoteAttachmentsController.h"
 #import "Attachment_Lifecycle.h"
 #import "NSManagedObjectContext_Autosave.h"

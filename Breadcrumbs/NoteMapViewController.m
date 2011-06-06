@@ -63,15 +63,16 @@
     }
     aView.annotation = annotation;
     
-    // another place having a unique might be nice
-    if (annotation.coordinate.latitude == self.note.coordinate.latitude &&
-        annotation.coordinate.longitude == self.note.coordinate.longitude &&
-        [annotation.title isEqualToString:self.note.title]) {
-        ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorPurple;
-        aView.draggable = YES;
-    } else {
-        ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorRed;
-        aView.draggable = NO;
+    if ([annotation isKindOfClass:[Note class]]) {
+        Note *annotationNote = (Note *)annotation;
+        
+        if ([annotationNote.unique isEqualToString:self.note.unique]) {
+            ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorPurple;
+            aView.draggable = YES;
+        } else {
+            ((MKPinAnnotationView *)aView).pinColor = MKPinAnnotationColorRed;
+            aView.draggable = NO;
+        }
     }
     
     return aView;

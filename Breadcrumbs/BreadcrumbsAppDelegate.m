@@ -7,10 +7,11 @@
 //
 
 #import "BreadcrumbsAppDelegate.h"
+#import "LocationMonitor.h"
 #import "NearbyViewController.h"
 #import "NoteBrowserViewController.h"
 #import "TagBrowserViewController.h"
-#import "LocationMonitor.h"
+#import "ARViewController.h"
 
 @interface BreadcrumbsAppDelegate()
 @property (nonatomic, readonly) LocationMonitor *locationMonitor;
@@ -41,35 +42,34 @@
 //    }
     
     NearbyViewController *nearby = [[[NearbyViewController alloc] initInManagedObjectContext:self.managedObjectContext] autorelease];
-    UINavigationController *nearbyNVC = [[[UINavigationController alloc] initWithRootViewController:nearby] autorelease];
-    nearbyNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Nearby"
+    UINavigationController *nearbynvc = [[[UINavigationController alloc] initWithRootViewController:nearby] autorelease];
+    nearbynvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Nearby"
                                                           image:[UIImage imageNamed:@"73-radar"]
                                                             tag:0] autorelease];
     
     NoteBrowserViewController *notes = [[[NoteBrowserViewController alloc] initWithStyle:UITableViewStylePlain
                                                                   inManagedObjectContext:self.managedObjectContext
                                                                                   forTag:nil] autorelease];
-    UINavigationController *notesNVC = [[[UINavigationController alloc] initWithRootViewController:notes] autorelease];
-    notesNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Notes"
+    UINavigationController *notesnvc = [[[UINavigationController alloc] initWithRootViewController:notes] autorelease];
+    notesnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Notes"
                                                          image:[UIImage imageNamed:@"179-notepad"]
                                                            tag:1] autorelease];
     
     TagBrowserViewController *tags = [[[TagBrowserViewController alloc] initWithStyle:UITableViewStylePlain
                                                                inManagedObjectContext:self.managedObjectContext] autorelease];
-    UINavigationController *tagsNVC = [[[UINavigationController alloc] initWithRootViewController:tags] autorelease];
-    tagsNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Tags"
+    UINavigationController *tagsnvc = [[[UINavigationController alloc] initWithRootViewController:tags] autorelease];
+    tagsnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Tags"
                                                            image:[UIImage imageNamed:@"15-tags"]
                                                              tag:2] autorelease];
     
-    UIViewController *augmentedReality = [[[UIViewController alloc] initWithNibName:nil
-                                                                             bundle:nil] autorelease];
-    UINavigationController *augmentedRealityNVC = [[[UINavigationController alloc] initWithRootViewController:augmentedReality] autorelease];
-    augmentedRealityNVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"AR"
+    ARViewController *ar = [[[ARViewController alloc] initInManagedObjectContext:self.managedObjectContext] autorelease];
+    UINavigationController *arnvc = [[[UINavigationController alloc] initWithRootViewController:ar] autorelease];
+    arnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"AR"
                                                       image:[UIImage imageNamed:@"164-glasses-2"]
                                                         tag:3] autorelease];
     
     UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
-    tbc.viewControllers = [NSArray arrayWithObjects:nearbyNVC, notesNVC, tagsNVC, augmentedRealityNVC, nil];
+    tbc.viewControllers = [NSArray arrayWithObjects:nearbynvc, notesnvc, tagsnvc, arnvc, nil];
     
     self.window.rootViewController = tbc;
     
