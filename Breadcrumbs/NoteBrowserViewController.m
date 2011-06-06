@@ -162,7 +162,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context
                                                        ascending:NO
                                                         selector:@selector(compare:)];
     } else if ([selectedIndex integerValue] == 1) {
-        CLLocation *currentLocation = nil;
+        CLLocation *currentLocation = [LocationMonitor sharedMonitor].locationManager.location;
         
         sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location"
                                                        ascending:YES
