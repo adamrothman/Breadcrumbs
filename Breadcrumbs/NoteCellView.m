@@ -32,8 +32,7 @@
 
 - (void)setNote:(Note *)newNote {
     if (note != newNote) {
-        [note release];
-        note = [newNote retain];
+        note = newNote;
     }
     // Might be the same note with modified contents.
     [self setNeedsDisplay];
@@ -62,10 +61,10 @@
 
 - (UIColor *)dateAndTimeColor {
     if (!dateAndTimeColor) {
-        dateAndTimeColor = [[UIColor colorWithRed:0.1412
+        dateAndTimeColor = [UIColor colorWithRed:0.1412
                                             green:0.4392
                                              blue:0.8471
-                                            alpha:1.0000] retain];
+                                            alpha:1.0000];
     }
     return dateAndTimeColor;
 }
@@ -208,10 +207,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [note release];
-    [dateFormatter release];
-    [super dealloc];
-}
 
 @end

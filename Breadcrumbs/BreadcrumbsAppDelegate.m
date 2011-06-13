@@ -7,17 +7,11 @@
 //
 
 #import "BreadcrumbsAppDelegate.h"
-#import "LocationMonitor.h"
 #import "NearbyViewController.h"
 #import "NoteBrowserViewController.h"
 #import "TagBrowserViewController.h"
-#import "ARGeoViewController.h"
-#import "ARGeoCoordinate.h"
+#import "SettingsViewController.h"
 #import "Note.h"
-
-@interface BreadcrumbsAppDelegate() <ARViewDelegate>
-@property (nonatomic, readonly) LocationMonitor *locationMonitor;
-@end
 
 @implementation BreadcrumbsAppDelegate
 
@@ -26,80 +20,38 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-@synthesize locationMonitor;
-
-#pragma mark - Properties
-
-- (LocationMonitor *)locationMonitor {
-    return [LocationMonitor sharedMonitor];
-}
-
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.locationMonitor.managedObjectContext = self.managedObjectContext;
-    
-    NearbyViewController *nearby = [[[NearbyViewController alloc] initInManagedObjectContext:self.managedObjectContext] autorelease];
-    UINavigationController *nearbynvc = [[[UINavigationController alloc] initWithRootViewController:nearby] autorelease];
-    nearbynvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Nearby"
+    NearbyViewController *nearby = [[NearbyViewController alloc] initInManagedObjectContext:self.managedObjectContext];
+    UINavigationController *nearbynvc = [[UINavigationController alloc] initWithRootViewController:nearby];
+    nearbynvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Nearby"
                                                           image:[UIImage imageNamed:@"73-radar"]
-                                                            tag:0] autorelease];
+                                                            tag:0];
     
-    NoteBrowserViewController *notes = [[[NoteBrowserViewController alloc] initWithStyle:UITableViewStylePlain
+    NoteBrowserViewController *notes = [[NoteBrowserViewController alloc] initWithStyle:UITableViewStylePlain
                                                                   inManagedObjectContext:self.managedObjectContext
-                                                                                  forTag:nil] autorelease];
-    UINavigationController *notesnvc = [[[UINavigationController alloc] initWithRootViewController:notes] autorelease];
-    notesnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Notes"
+                                                                                  forTag:nil];
+    UINavigationController *notesnvc = [[UINavigationController alloc] initWithRootViewController:notes];
+    notesnvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notes"
                                                          image:[UIImage imageNamed:@"179-notepad"]
-                                                           tag:1] autorelease];
+                                                           tag:1];
     
-    TagBrowserViewController *tags = [[[TagBrowserViewController alloc] initWithStyle:UITableViewStylePlain
-                                                               inManagedObjectContext:self.managedObjectContext] autorelease];
-    UINavigationController *tagsnvc = [[[UINavigationController alloc] initWithRootViewController:tags] autorelease];
-    tagsnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Tags"
+    TagBrowserViewController *tags = [[TagBrowserViewController alloc] initWithStyle:UITableViewStylePlain
+                                                               inManagedObjectContext:self.managedObjectContext];
+    UINavigationController *tagsnvc = [[UINavigationController alloc] initWithRootViewController:tags];
+    tagsnvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tags"
                                                            image:[UIImage imageNamed:@"15-tags"]
-                                                             tag:2] autorelease];
+                                                             tag:2];
     
-    UIViewController *arnvc = nil;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        // This part is more of a proof of concept than anything else
-        // it's pretty rough around the edges (there's no nice way to
-        // dismiss the AR view so I had to do it on a timer) but still
-        // cool. In future versions I'd like to make this more usable.
-        
-        ARGeoViewController *ar = [[ARGeoViewController alloc] init];
-        ar.delegate = self;
-        ar.scaleViewsBasedOnDistance = YES;
-        ar.minimumScaleFactor = 0.5;
-        ar.rotateViewsBasedOnPerspective = YES;
-        
-        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-        request.entity = [NSEntityDescription entityForName:@"Note"
-                                     inManagedObjectContext:self.managedObjectContext];
-        NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request
-                                                                           error:NULL];
-        for (Note *note in fetchedObjects) {
-            ARGeoCoordinate *geoCoord = [ARGeoCoordinate coordinateWithLocation:note.location];
-            geoCoord.title = note.title;
-            
-            [ar addCoordinate:geoCoord];
-        }
-        
-        ar.centerLocation = self.locationMonitor.locationManager.location;
-        
-        [ar startListening];
-        
-        arnvc = [[[UINavigationController alloc] initWithRootViewController:ar] autorelease];
-    } else {
-        arnvc = [[[UIViewController alloc] initWithNibName:@"ARNotAvailable"
-                                                    bundle:nil] autorelease];
-    }
-    arnvc.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"AR"
-                                                      image:[UIImage imageNamed:@"164-glasses-2"]
-                                                        tag:3] autorelease];
+    SettingsViewController *settings = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *settingsnvc = [[UINavigationController alloc] initWithRootViewController:settings];
+    settingsnvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings"
+                                                            image:[UIImage imageNamed:@"19-gear"]
+                                                              tag:3];
     
-    UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
-    tbc.viewControllers = [NSArray arrayWithObjects:nearbynvc, notesnvc, tagsnvc, arnvc, nil];
+    UITabBarController *tbc = [[UITabBarController alloc] init];
+    tbc.viewControllers = [NSArray arrayWithObjects:nearbynvc, notesnvc, tagsnvc, settingsnvc, nil];
     
     self.window.rootViewController = tbc;
     
@@ -115,9 +67,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [self.locationMonitor.locationManager stopUpdatingLocation];
-    [self.locationMonitor.locationManager startMonitoringSignificantLocationChanges];
-    
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -131,18 +80,12 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [self.locationMonitor.locationManager startUpdatingLocation];
-    [self.locationMonitor.locationManager stopMonitoringSignificantLocationChanges];
-    
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self.locationMonitor.locationManager stopUpdatingLocation];
-    [self.locationMonitor.locationManager stopMonitoringSignificantLocationChanges];
-    
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
@@ -251,40 +194,6 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     return __persistentStoreCoordinator;
 }
 
-#pragma mark - ARViewDelegate
-
-- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate {
-    
-#define BOX_WIDTH   150
-#define BOX_HEIGHT  100
-	
-	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	UIView *tempView = [[UIView alloc] initWithFrame:theFrame];
-	
-	//tempView.backgroundColor = [UIColor colorWithWhite:.5 alpha:.3];
-	
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, BOX_WIDTH, 20.0)];
-	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.textAlignment = UITextAlignmentCenter;
-	titleLabel.text = coordinate.title;
-	[titleLabel sizeToFit];
-	
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, 0, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-	
-	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	pointView.image = [UIImage imageNamed:@"location.png"];
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), (int)(BOX_HEIGHT / 2.0 - pointView.image.size.height / 2.0), pointView.image.size.width, pointView.image.size.height);
-    
-	[tempView addSubview:titleLabel];
-	[tempView addSubview:pointView];
-	
-	[titleLabel release];
-	[pointView release];
-	
-	return [tempView autorelease];
-}
-
 #pragma mark - Application's Documents directory
 
 /**
@@ -296,12 +205,5 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [_window release];
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
-    [super dealloc];
-}
 
 @end

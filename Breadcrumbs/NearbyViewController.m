@@ -10,7 +10,6 @@
 #import "MKMapView_ZoomToFit.h"
 #import "Note.h"
 #import "NoteViewController.h"
-#import "LocationMonitor.h"
 
 @interface NearbyViewController()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -32,7 +31,6 @@
             self.managedObjectContext = context;
         }
     } else {
-        [self release];
         self = nil;
     }
     
@@ -64,8 +62,8 @@
     
     MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
     if (!aView) {
-        aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                 reuseIdentifier:reuseIdentifier] autorelease];
+        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                 reuseIdentifier:reuseIdentifier];
         ((MKPinAnnotationView *)aView).animatesDrop = YES;
         aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         aView.canShowCallout = YES;
@@ -79,47 +77,30 @@
  annotationView:(MKAnnotationView *)view
 calloutAccessoryControlTapped:(UIControl *)control {
     if ([view.annotation isKindOfClass:[Note class]]) {
-        NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:(Note *)view.annotation] autorelease];
+        NoteViewController *noteViewer = [[NoteViewController alloc] initWithNote:(Note *)view.annotation];
         [self.navigationController pushViewController:noteViewer animated:YES];
     }
 }
 
-#pragma mark - KVO
-
+#warning make this work properly
 // Update the badge on this view controller's tab bar item when the number of nearby notes changes
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if (object == [LocationMonitor sharedMonitor] &&
-        [keyPath isEqualToString:@"nearbyNoteCount"]) {
-        NSUInteger newCount = [[change objectForKey:NSKeyValueChangeNewKey] unsignedIntegerValue];
-        
-        if (newCount) {
-            self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", newCount];
-        } else {
-            self.navigationController.tabBarItem.badgeValue = nil;
-        }
-    }
-}
 
 #pragma mark - View lifecycle
 
 - (void)loadView {
+    [super loadView];
+    
     self.view = self.mapView;
     
     self.navigationItem.title = @"Nearby";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mini-location-arrow-white"]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mini-location-arrow-white"]
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self
-                                                                              action:@selector(centerOnUser:)] autorelease];
+                                                                              action:@selector(centerOnUser:)];
 }
 
 - (void)viewDidLoad {
-    [[LocationMonitor sharedMonitor] addObserver:self
-                                      forKeyPath:@"nearbyNoteCount"
-                                         options:NSKeyValueObservingOptionNew
-                                         context:nil];
+    [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -129,7 +110,7 @@ calloutAccessoryControlTapped:(UIControl *)control {
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.showsUserLocation = YES;
     
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"Note"
                                  inManagedObjectContext:self.managedObjectContext];
     
@@ -153,8 +134,7 @@ calloutAccessoryControlTapped:(UIControl *)control {
 }
 
 - (void)viewDidUnload {
-    [[LocationMonitor sharedMonitor] removeObserver:self
-                                         forKeyPath:@"nearbyNoteCount"];
+    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -163,10 +143,5 @@ calloutAccessoryControlTapped:(UIControl *)control {
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [mapView release];
-    [managedObjectContext release];
-    [super dealloc];
-}
 
 @end

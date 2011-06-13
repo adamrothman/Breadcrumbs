@@ -57,9 +57,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [noteCellView release];
-    [super dealloc];
-}
 
 @end

@@ -94,9 +94,8 @@
 	
 	UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionPickerCancel)];
 	[barItems addObject:cancelBtn];
-	[cancelBtn release];
 	
-	UIBarButtonItem *flexSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
+	UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
 	[barItems addObject:flexSpace];
 	
 	//Add tool bar title label
@@ -110,9 +109,7 @@
 		toolBarItemlabel.text = self.title;	
 		
 		UIBarButtonItem *buttonLabel =[[UIBarButtonItem alloc]initWithCustomView:toolBarItemlabel];
-		[toolBarItemlabel release];	
 		[barItems addObject:buttonLabel];	
-		[buttonLabel release];	
 		
 		[barItems addObject:flexSpace];
 	}
@@ -120,13 +117,10 @@
 	//add "Done" button 	
 	UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(actionPickerDone)];
 	[barItems addObject:barButton];
-	[barButton release];
 	
 	[pickerDateToolbar setItems:barItems animated:YES];
-	[barItems release];
 	
 	[self.actionSheet addSubview:pickerDateToolbar];
-	[pickerDateToolbar release];
 
 	[self.actionSheet showInView:self.view];
 	if ( [self isViewPortrait] )
@@ -171,10 +165,6 @@
 		//send date picker message
 		[self.target performSelector:self.action withObject:self.selectedDate];
 	}
-	
-	if (self.convenientObject)
-		[self release]; //release convenient object
-	
 }
 
 - (void)actionPickerCancel {
@@ -223,17 +213,12 @@
 
 - (void)dealloc {
 //	NSLog(@"ActionSheet Dealloc");
-	self.actionSheet = nil;
 		
 	self.pickerView.delegate = nil;
 	self.pickerView.dataSource = nil;
-	self.pickerView = nil;
 	
 	[self.datePickerView removeTarget:self action:@selector(eventForDatePicker:) forControlEvents:UIControlEventValueChanged];
-	self.datePickerView = nil;
-	self.selectedDate = nil;
 	
-    [super dealloc];
 }
 
 @end

@@ -16,8 +16,8 @@
 }
 
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-    CLLocation *newLocation = [[[CLLocation alloc] initWithLatitude:newCoordinate.latitude
-                                                          longitude:newCoordinate.longitude] autorelease];
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:newCoordinate.latitude
+                                                          longitude:newCoordinate.longitude];
     self.location = newLocation;
     self.modified = [NSDate date];
     

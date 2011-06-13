@@ -13,7 +13,6 @@
 #import "NoteViewController.h"
 #import "ActionSheetPicker.h"
 #import "NSManagedObjectContext_Autosave.h"
-#import "LocationMonitor.h"
 
 @interface NoteBrowserViewController()
 @property (nonatomic, retain) Tag *tag;
@@ -32,7 +31,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     if (context) {
         self = [super initWithStyle:style];
         if (self) {
-            NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
             request.entity = [NSEntityDescription entityForName:@"Note"
                                          inManagedObjectContext:context];
             if (aTag) {
@@ -43,15 +42,14 @@ inManagedObjectContext:(NSManagedObjectContext *)context
                                        [NSSortDescriptor sortDescriptorWithKey:@"modified"
                                                                      ascending:YES
                                                                       selector:@selector(compare:)]];
-            self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+            self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
-                                                                                            cacheName:nil] autorelease];
+                                                                                            cacheName:nil];
             
             self.searchKey = @"title";
         }
     } else {
-        [self release];
         self = nil;
     }
     
@@ -70,7 +68,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 #pragma mark - Convenience
 
 - (void)displayNote:(Note *)note {
-    NoteViewController *noteViewer = [[[NoteViewController alloc] initWithNote:note] autorelease];
+    NoteViewController *noteViewer = [[NoteViewController alloc] initWithNote:note];
     [self.navigationController pushViewController:noteViewer
                                          animated:YES];
 }
@@ -83,8 +81,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     
     NoteCell *cell = (NoteCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        cell = [[[NoteCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[NoteCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                reuseIdentifier:reuseIdentifier];
     }
     
     if ([managedObject isKindOfClass:[Note class]]) {
@@ -141,8 +139,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context
         [info setObject:[NSDate dateWithTimeIntervalSinceNow:days * 86400]
                  forKey:@"modified"];
         
-        [info setObject:[[[CLLocation alloc] initWithLatitude:37.42644 + [self randomDoubleFrom:-0.1 to:0.1]
-                                                    longitude:-122.16331 + [self randomDoubleFrom:-0.1 to:0.1]] autorelease]
+        [info setObject:[[CLLocation alloc] initWithLatitude:37.42644 + [self randomDoubleFrom:-0.1 to:0.1]
+                                                    longitude:-122.16331 + [self randomDoubleFrom:-0.1 to:0.1]]
                  forKey:@"location"];
         
         [Note noteWithInfo:info inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
@@ -162,7 +160,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context
                                                        ascending:NO
                                                         selector:@selector(compare:)];
     } else if ([selectedIndex integerValue] == 1) {
-        CLLocation *currentLocation = [LocationMonitor sharedMonitor].locationManager.location;
+        #warning need to make this work properly
+        CLLocation *currentLocation = nil;
         
         sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location"
                                                        ascending:YES
@@ -186,15 +185,15 @@ inManagedObjectContext:(NSManagedObjectContext *)context
     
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"Note"
                                  inManagedObjectContext:context];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
-    self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                          managedObjectContext:context
                                                                            sectionNameKeyPath:nil
-                                                                                    cacheName:nil] autorelease];
+                                                                                    cacheName:nil];
 }
 
 - (void)sort:(UIBarButtonItem *)sender {
@@ -207,7 +206,8 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 }
 
 - (void)newNote:(UIBarButtonItem *)sender {
-    CLLocation *location = [LocationMonitor sharedMonitor].locationManager.location;
+    #warning need to make this work properly
+    CLLocation *location = nil;
     NSDate *modified = [NSDate date];
     
     NSDictionary *newInfo = [NSDictionary dictionaryWithObjectsAndKeys:location, @"location", modified, @"modified", nil];
@@ -225,19 +225,19 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 - (void)loadView {
     [super loadView];
     
-    UIBarButtonItem *sortButton = [[[UIBarButtonItem alloc] initWithTitle:@"Sort"
+    UIBarButtonItem *sortButton = [[UIBarButtonItem alloc] initWithTitle:@"Sort"
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
-                                                                   action:@selector(sort:)] autorelease];
+                                                                   action:@selector(sort:)];
     if (self.tag) {
         self.navigationItem.title = self.tag.title;
         self.navigationItem.rightBarButtonItem = sortButton;
     } else {
         self.navigationItem.title = @"Notes";
         self.navigationItem.leftBarButtonItem = sortButton;
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                                 target:self
-                                                                                                action:@selector(newNote:)] autorelease];
+                                                                                                action:@selector(newNote:)];
     }
 }
 
@@ -254,10 +254,5 @@ inManagedObjectContext:(NSManagedObjectContext *)context
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [tag release];
-    [sortOptions release];
-    [super dealloc];
-}
 
 @end

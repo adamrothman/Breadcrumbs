@@ -15,7 +15,7 @@
 inManagedObjectContext:(NSManagedObjectContext *)context {
     Tag *tag = nil;
     
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:NSStringFromClass([self class])
                                  inManagedObjectContext:context];
     request.predicate = [NSPredicate predicateWithFormat:@"title = %@", [title lowercaseString]];

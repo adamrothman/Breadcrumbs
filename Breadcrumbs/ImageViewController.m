@@ -80,14 +80,14 @@ zoomToFitContentsAnimated:(BOOL)animated {
 #pragma mark - View lifecycle
 
 - (void)loadView {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
-                                                                                            action:@selector(done:)] autorelease];
+                                                                                            action:@selector(done:)];
     
-    UIView *loadingView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    UIView *loadingView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     loadingView.backgroundColor = [UIColor whiteColor];
     
-    UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner startAnimating];
     
     self.view = loadingView;
@@ -101,10 +101,10 @@ zoomToFitContentsAnimated:(BOOL)animated {
     dispatch_queue_t imageQueue = dispatch_queue_create("Image loader", NULL);
     dispatch_async(imageQueue, ^{
         UIImage *image = [UIImage imageWithContentsOfFile:[self.contentURL path]];
-        self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        self.imageView = [[UIImageView alloc] initWithImage:image];
         
-        UIScrollView *scrollView = [[[UIScrollView alloc]
-                                     initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+        UIScrollView *scrollView = [[UIScrollView alloc]
+                                     initWithFrame:[[UIScreen mainScreen] applicationFrame]];
         [scrollView addSubview:self.imageView];
         scrollView.contentSize = self.imageView.image.size;
         scrollView.maximumZoomScale = 2;
@@ -124,9 +124,5 @@ zoomToFitContentsAnimated:(BOOL)animated {
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [imageView release];
-    [super dealloc];
-}
 
 @end

@@ -58,8 +58,7 @@
 #pragma mark - Properties
 
 - (void)setSearchController:(UISearchDisplayController *)newSearchController {
-    [searchController release];
-    searchController = [newSearchController retain];
+    searchController = newSearchController;
     
     searchController.searchResultsDelegate = self;
     searchController.searchResultsDataSource = self;
@@ -69,9 +68,9 @@
 - (void)setUpSearchBar {
     if (self.searchKey.length) {
         if (self.tableView && !self.tableView.tableHeaderView) {
-            UISearchBar *searchBar = [[[UISearchBar alloc] init] autorelease];
-            self.searchController = [[[UISearchDisplayController alloc] initWithSearchBar:searchBar
-                                                                       contentsController:self] autorelease];
+            UISearchBar *searchBar = [[UISearchBar alloc] init];
+            self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar
+                                                                       contentsController:self];
             [searchBar sizeToFit];
             self.tableView.tableHeaderView = searchBar;
         }
@@ -82,7 +81,6 @@
 
 - (void)setSearchKey:(NSString *)newKey {
     if (newKey != searchKey) {
-        [searchKey release];
         searchKey = [newKey copy];
         [self setUpSearchBar];
     }
@@ -90,8 +88,7 @@
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController {
     fetchedResultsController.delegate = nil;
-    [fetchedResultsController release];
-    fetchedResultsController = [newFetchedResultsController retain];
+    fetchedResultsController = newFetchedResultsController;
     fetchedResultsController.delegate = self;
     self.normalPredicate = newFetchedResultsController.fetchRequest.predicate;
     if (!self.title) self.title = newFetchedResultsController.fetchRequest.entity.name;
@@ -257,15 +254,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)dealloc {
     fetchedResultsController.delegate = nil;
-    [fetchedResultsController release];
     searchController.delegate = nil;
     searchController.searchResultsDelegate = nil;
     searchController.searchResultsDataSource = nil;
-    [searchController release];
-    [searchKey release];
-    [currentSearch release];
-    [normalPredicate release];
-    [super dealloc];
 }
 
 @end

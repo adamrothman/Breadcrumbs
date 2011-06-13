@@ -25,7 +25,7 @@
         if (self) {
             NSManagedObjectContext *context = [aNote managedObjectContext];
             
-            NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
             request.entity = [NSEntityDescription entityForName:@"Tag"
                                          inManagedObjectContext:context];
             request.sortDescriptors = [NSArray arrayWithObject:
@@ -33,24 +33,19 @@
                                                                      ascending:YES
                                                                       selector:@selector(localizedCaseInsensitiveCompare:)]];
             
-            self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+            self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
-                                                                                            cacheName:nil] autorelease];
+                                                                                            cacheName:nil];
             
             self.note = aNote;
         }
     } else {
-        [self release];
         self = nil;
     }
     return self;
 }
 
-- (void)dealloc {
-    [note release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -70,8 +65,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:reuseIdentifier];
         cell.imageView.image = [UIImage imageNamed:@"14-tag"];
     }
     cell.textLabel.text = tag.title;
@@ -90,7 +85,7 @@
     UITableViewCell *cell = [self tableView:self.tableView
                        cellForManagedObject:managedObject];
     
-    NSMutableSet *tags = [[self.note.tags mutableCopy] autorelease];
+    NSMutableSet *tags = [self.note.tags mutableCopy];
     if ([tags containsObject:tag]) {    // remove tag
         [tags removeObject:tag];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -118,9 +113,9 @@
     [super loadView];
     
     self.navigationItem.title = @"Add/remove tags";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
-                                                                                            action:@selector(done:)] autorelease];
+                                                                                            action:@selector(done:)];
 }
 
 - (void)viewDidLoad {

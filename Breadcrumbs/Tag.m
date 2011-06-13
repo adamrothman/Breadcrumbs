@@ -19,7 +19,6 @@
     [self willChangeValueForKey:@"notes" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"notes"] addObject:value];
     [self didChangeValueForKey:@"notes" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeNotesObject:(Note *)value {
@@ -27,7 +26,6 @@
     [self willChangeValueForKey:@"notes" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"notes"] removeObject:value];
     [self didChangeValueForKey:@"notes" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addNotes:(NSSet *)value {    

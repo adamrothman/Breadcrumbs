@@ -36,7 +36,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
 + (void)removeNote:(Note *)note {
     dispatch_queue_t fileSystemQueue = dispatch_queue_create("Note attachments deleter", NULL);
     dispatch_async(fileSystemQueue, ^{
-        NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
         
         NSString *documentsDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *noteDirPath = [documentsDirPath stringByAppendingPathComponent:note.unique];

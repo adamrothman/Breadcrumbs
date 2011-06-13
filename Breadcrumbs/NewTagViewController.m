@@ -27,7 +27,6 @@
             self.managedObjectContext = context;
         }
     } else {
-        [self release];
         self = nil;
     }
     
@@ -70,10 +69,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [titleTextField release];
-    [managedObjectContext release];
-    [super dealloc];
-}
 
 @end

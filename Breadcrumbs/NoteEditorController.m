@@ -10,6 +10,7 @@
 #import "NSManagedObjectContext_Autosave.h"
 #import "NoteMapViewController.h"
 #import "NoteTagsViewController.h"
+#import "Note_Lifecycle.h"
 
 #define SECONDS_PER_DAY 86400
 
@@ -110,9 +111,8 @@
 clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet == self.deletionActionSheet && buttonIndex == 0) { // delete note
         [self.delegate dismissNoteViewAnimated:YES];
-        NSManagedObjectContext *context = [self.note managedObjectContext];
-        [context deleteObject:self.note];
-        [NSManagedObjectContext autosave:context];
+        
+        [Note removeNote:self.note];
     }
 }
 
@@ -123,18 +123,18 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 }
 
 - (IBAction)showOnMap:(UIButton *)sender {
-    NoteMapViewController *nmvc = [[[NoteMapViewController alloc] initWithNote:self.note] autorelease];
+    NoteMapViewController *nmvc = [[NoteMapViewController alloc] initWithNote:self.note];
     nmvc.delegate = self.delegate;
     
-    UINavigationController *nmnvc = [[[UINavigationController alloc] initWithRootViewController:nmvc] autorelease];
+    UINavigationController *nmnvc = [[UINavigationController alloc] initWithRootViewController:nmvc];
     [self.delegate presentModalViewController:nmnvc animated:YES];
 }
 
 - (IBAction)manageTags:(UIButton *)sender {
-    NoteTagsViewController *ntvc = [[[NoteTagsViewController alloc] initWithNote:self.note] autorelease];
+    NoteTagsViewController *ntvc = [[NoteTagsViewController alloc] initWithNote:self.note];
     ntvc.delegate = self.delegate;
     
-    UINavigationController *ntnvc = [[[UINavigationController alloc] initWithRootViewController:ntvc] autorelease];
+    UINavigationController *ntnvc = [[UINavigationController alloc] initWithRootViewController:ntvc];
     [self.delegate presentModalViewController:ntnvc animated:YES];
 }
 
@@ -144,18 +144,5 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [view release];
-    [editorView release];
-    [daysAgoLabel release];
-    [dateLabel release];
-    [timeLabel release];
-    [titleTextField release];
-    [bodyTextView release];
-    [note release];
-    [dateFormatter release];
-    [deletionActionSheet release];
-    [super dealloc];
-}
 
 @end

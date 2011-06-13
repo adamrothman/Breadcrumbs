@@ -37,7 +37,7 @@
         if (self) {
             NSManagedObjectContext *context = [aNote managedObjectContext];
             
-            NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
             request.entity = [NSEntityDescription entityForName:@"Attachment"
                                          inManagedObjectContext:context];
             request.predicate = [NSPredicate predicateWithFormat:@"owner = %@", aNote];
@@ -46,15 +46,14 @@
                                                                      ascending:YES
                                                                       selector:@selector(compare:)]];
             
-            self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+            self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
-                                                                                            cacheName:nil] autorelease];
+                                                                                            cacheName:nil];
             
             self.note = aNote;
         }
     } else {
-        [self release];
         self = nil;
     }
     
@@ -86,8 +85,7 @@
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController {
     fetchedResultsController.delegate = nil;
-    [fetchedResultsController release];
-    fetchedResultsController = [newFetchedResultsController retain];
+    fetchedResultsController = newFetchedResultsController;
     fetchedResultsController.delegate = self;
     if (self.view.window) [self performFetch];
 }
@@ -120,8 +118,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                       reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                       reuseIdentifier:reuseIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
@@ -189,7 +187,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *URL = [NSURL fileURLWithPath:attachment.path isDirectory:NO];
     
     if ([attachment.type isEqualToString:(NSString *)kUTTypeImage]) {
-        ImageViewController *ivc = [[[ImageViewController alloc] initWithContentURL:URL] autorelease];
+        ImageViewController *ivc = [[ImageViewController alloc] initWithContentURL:URL];
         ivc.delegate = self.delegate;
         [self.dateFormatter setDateFormat:@"MM/dd/yy"];
         NSString *dateString = [self.dateFormatter stringFromDate:attachment.added];
@@ -197,10 +195,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         NSString *timeString = [self.dateFormatter stringFromDate:attachment.added];
         ivc.navigationItem.title = [NSString stringWithFormat:@"%@, %@", dateString, timeString];
         
-        UINavigationController *ivnvc = [[[UINavigationController alloc] initWithRootViewController:ivc] autorelease];
+        UINavigationController *ivnvc = [[UINavigationController alloc] initWithRootViewController:ivc];
         [self.delegate presentModalViewController:ivnvc animated:YES];
     } else if ([attachment.type isEqualToString:(NSString *)kUTTypeMovie]) {
-        MPMoviePlayerViewController *mpvc = [[[MPMoviePlayerViewController alloc] initWithContentURL:URL] autorelease];
+        MPMoviePlayerViewController *mpvc = [[MPMoviePlayerViewController alloc] initWithContentURL:URL];
         [self.delegate presentMoviePlayerViewControllerAnimated:mpvc];
     } else {
         // future versions will support audio attachments
@@ -266,7 +264,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)actionSheet:(UIActionSheet *)actionSheet
 clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet == self.mediaSourceActionSheet && buttonIndex != 2) {
-        UIImagePickerController *picker = [[[UIImagePickerController alloc] init] autorelease];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         if (buttonIndex == 0 &&
             [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -313,15 +311,5 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [view release];
-    [attachmentsView release];
-    [attachmentsTableView release];
-    [fetchedResultsController release];
-    [note release];
-    [mediaSourceActionSheet release];
-    [dateFormatter release];
-    [super dealloc];
-}
 
 @end

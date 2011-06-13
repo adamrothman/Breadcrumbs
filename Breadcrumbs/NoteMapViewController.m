@@ -57,8 +57,8 @@
     
     MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
     if (!aView) {
-        aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                 reuseIdentifier:reuseIdentifier] autorelease];
+        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                 reuseIdentifier:reuseIdentifier];
         ((MKPinAnnotationView *)aView).animatesDrop = YES;
         aView.canShowCallout = YES;
     }
@@ -91,9 +91,9 @@
     self.view = self.mapView;
     
     self.navigationItem.title = @"Drag to move";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
-                                                                                            action:@selector(done:)] autorelease];
+                                                                                            action:@selector(done:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -103,7 +103,7 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.showsUserLocation = YES;
     
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"Note"
                                  inManagedObjectContext:[self.note managedObjectContext]];
     request.sortDescriptors = [NSArray arrayWithObject:
@@ -127,10 +127,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [mapView release];
-    [note release];
-    [super dealloc];
-}
 
 @end

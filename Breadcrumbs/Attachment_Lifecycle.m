@@ -20,7 +20,7 @@
     attachment.owner = note;
     attachment.unique = [NSString stringWithFormat:@"%lu", [attachment hash]];
     
-    NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     
     // attachment gets saved at [documents]/[note.unique]/[attachment.unique].ext
     NSString *documentsDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -81,7 +81,7 @@
 + (void)removeAttachment:(Attachment *)attachment {
     dispatch_queue_t fileSystemQueue = dispatch_queue_create("Attachment deleter", NULL);
     dispatch_async(fileSystemQueue, ^{
-        NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
         
         if ([fileManager fileExistsAtPath:attachment.path]) {
             [fileManager removeItemAtPath:attachment.path

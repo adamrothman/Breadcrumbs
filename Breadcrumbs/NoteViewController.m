@@ -80,9 +80,9 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
-                                                                                            action:@selector(doneEditing:)] autorelease];
+                                                                                            action:@selector(doneEditing:)];
     
     if (!self.editor.view.isHidden) {
         CGRect newFrame = self.editor.bodyTextView.frame;
@@ -191,13 +191,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISwipeGestureRecognizer *rightRecognizer = [[[UISwipeGestureRecognizer alloc]
-                                                  initWithTarget:self action:@selector(swipe:)] autorelease];
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(swipe:)];
     rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:rightRecognizer];
     
-    UISwipeGestureRecognizer *leftRecognizer = [[[UISwipeGestureRecognizer alloc]
-                                                 initWithTarget:self action:@selector(swipe:)] autorelease];
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc]
+                                                 initWithTarget:self action:@selector(swipe:)];
     leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:leftRecognizer];
     
@@ -216,11 +216,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc {
-    [note release];
-    [editor release];
-    [attachments release];
-    [super dealloc];
-}
 
 @end
